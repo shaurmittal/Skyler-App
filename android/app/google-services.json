@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "531965731071",
+    "project_id": "main-proj-app",
+    "storage_bucket": "main-proj-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531965731071:android:f865ad6d65eda654856cca",
+        "android_client_info": {
+          "package_name": "com.example.main_sociavism"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_RA49a7FX-nTIAeXtDmurCsfvvc6kUK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
