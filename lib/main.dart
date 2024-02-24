@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:main_sociavism/in_app%20pages/event_page.dart';
 import 'package:main_sociavism/in_app%20pages/profile_page.dart';
 import 'package:main_sociavism/pages/auth_page.dart';
@@ -10,6 +11,10 @@ import 'package:main_sociavism/pages/login_or_register_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  await Hive.initFlutter();
+
+  // open a box
+  var box = await Hive.openBox('users');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

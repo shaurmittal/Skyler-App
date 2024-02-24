@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:main_sociavism/components/my_button.dart';
 import 'package:main_sociavism/components/my_textfield.dart';
+import 'package:main_sociavism/pages/register_page.dart';
+import 'package:main_sociavism/pages/register_page_admin.dart';
 
 import 'forgot_pw.dart';
 
 class LoginPage extends StatefulWidget {
-  final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  // final Function()? onTap;
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -153,17 +155,32 @@ class _LoginPageState extends State<LoginPage> {
 
                 // not a member? register now
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      'First time user?',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    const SizedBox(width: 4),
                     GestureDetector(
-                      onTap: widget.onTap,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterPageAdmin()));
+                      },
                       child: const Text(
-                        'Register now',
+                        'Register As Admin',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegisterPage()));
+                      },
+                      child: const Text(
+                        'Register as Volunteer',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

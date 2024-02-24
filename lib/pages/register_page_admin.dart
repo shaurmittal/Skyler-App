@@ -12,15 +12,15 @@ import 'package:main_sociavism/components/my_textfield.dart';
 import 'package:main_sociavism/pages/login_page.dart';
 import 'package:main_sociavism/utils.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPageAdmin extends StatefulWidget {
   // final Function()? onTap;
-  const RegisterPage({super.key});
+  const RegisterPageAdmin({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<RegisterPageAdmin> createState() => _RegisterPageAdminState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageAdminState extends State<RegisterPageAdmin> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -56,7 +56,6 @@ class _RegisterPageState extends State<RegisterPage> {
             addUserDetails(
               username: usernameController.text.trim(),
               email: emailController.text.trim(),
-              role: typeController!,
               bio: bioController.text.trim(),
               file: _image!,
             );
@@ -114,7 +113,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Future addUserDetails(
       {required String username,
       required String email,
-      required String role,
       required String bio,
       required Uint8List file}) async {
     String resp = "Some error occured";
@@ -124,12 +122,12 @@ class _RegisterPageState extends State<RegisterPage> {
       if (username.isNotEmpty || email.isNotEmpty || bio.isNotEmpty) {
         String imageUrl = await uploadImageToStorage(currentUser.uid, file);
         await FirebaseFirestore.instance
-            .collection('users')
+            .collection('admin')
             .doc(currentUser.uid)
             .set({
           'username': username,
           'email': email,
-          'role': role,
+          'role': "NGO",
           'imageLink': imageUrl,
           'bio': bio
         });
@@ -159,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[500],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
