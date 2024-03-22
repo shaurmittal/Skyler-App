@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:main_sociavism/pages/home_pag.dart';
+import 'package:main_sociavism/pages/login_page.dart';
+import 'package:main_sociavism/pages/register_page.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
   const LoginOrRegisterPage({super.key});
@@ -10,18 +11,22 @@ class LoginOrRegisterPage extends StatefulWidget {
 
 class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   bool showLoginPage = true;
-  // void togglePages() {
-  //   setState(() {
-  //     showLoginPage = !showLoginPage;
-  //   });
-  // }
+  void togglePages() {
+    setState(() {
+      showLoginPage = !showLoginPage;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // if (showLoginPage) {
-    //   return LoginPage();
-    // } else {
-    return HomePage();
+    if (showLoginPage) {
+      return LoginPage(
+        onTap: togglePages,
+      );
+    } else {
+      return RegisterPage(
+        onTap: togglePages,
+      );
+    }
   }
 }
-// }

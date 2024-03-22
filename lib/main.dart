@@ -14,7 +14,8 @@ void main() async {
   await Hive.initFlutter();
 
   // open a box
-  var box = await Hive.openBox('users');
+  var box = await Hive.openBox('volunteers');
+  var box2 = await Hive.openBox('ngos');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

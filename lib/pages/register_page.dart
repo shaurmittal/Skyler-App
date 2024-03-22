@@ -9,12 +9,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:main_sociavism/components/my_button.dart';
 import 'package:main_sociavism/components/my_textfield.dart';
-import 'package:main_sociavism/pages/login_page.dart';
 import 'package:main_sociavism/utils.dart';
 
 class RegisterPage extends StatefulWidget {
-  // final Function()? onTap;
-  const RegisterPage({super.key});
+  final Function()? onTap;
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -42,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: CircularProgressIndicator(),
           );
         });
-    // try sign in
+    // try sign inx
     try {
       // check if password = confirmed password
 
@@ -280,10 +279,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 4,
               ),
               GestureDetector(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                },
+                onTap: widget.onTap,
                 child: const Text(
                   "Login now",
                   style: TextStyle(
