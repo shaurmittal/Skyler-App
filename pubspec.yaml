@@ -38,16 +38,13 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
   cloud_firestore: ^4.14.0
-  google_nav_bar: ^5.0.6
-  line_icons: ^2.0.3
-  hidden_drawer_menu: ^3.0.1
   firebase_database: ^10.4.5
   firebase_storage: ^11.6.5
   image_picker: ^1.0.7
-  styled_divider: ^1.0.5
-  dropdown_button2: ^2.3.9
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  get: ^4.6.6
+  google_fonts: ^6.2.1
 
 
 dev_dependencies:
@@ -76,18 +73,18 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/images/
+    - assets/
 
 
-  fonts:
-    - family: PlayfairDisplay
-      fonts:
-        - asset: fonts/Playfair/PlayfairDisplay-Black.ttf
-    - family: LTSoul
-      fonts:
-        - asset: fonts/LT_Soul/LTSoul-Medium.otf
-    - family: Cinzel
-      fonts:
-        - asset: fonts/Cinzel/CinzelDecorative-Regular.otf
+  # fonts:
+  #   - family: PlayfairDisplay
+  #     fonts:
+  #       - asset: fonts/Playfair/PlayfairDisplay-Black.ttf
+  #   - family: LTSoul
+  #     fonts:
+  #       - asset: fonts/LT_Soul/LTSoul-Medium.otf
+  #   - family: Cinzel
+  #     fonts:
+  #       - asset: fonts/Cinzel/CinzelDecorative-Regular.otf
 
 

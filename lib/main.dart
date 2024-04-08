@@ -1,22 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:main_sociavism/in_app%20pages/event_page.dart';
-import 'package:main_sociavism/in_app%20pages/profile_page.dart';
-import 'package:main_sociavism/pages/auth_page.dart';
-import 'package:main_sociavism/pages/edit_profile_page.dart';
-import 'package:main_sociavism/pages/home_pag.dart';
-import 'package:main_sociavism/pages/login_or_register_page.dart';
-
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'constants/color_constants.dart';
 import 'firebase_options.dart';
+import 'routes/app_pages.dart';
+import 'utils/size/size_config.dart';
 
 void main() async {
-  await Hive.initFlutter();
-
-  // open a box
-  var box = await Hive.openBox('volunteers');
-  var box2 = await Hive.openBox('ngos');
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -28,16 +24,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
-      routes: {
-        '/login_register_page': (context) => const LoginOrRegisterPage(),
-        '/home_pag': (context) => const HomePage(),
-        '/profile_page': (context) => ProfilePage(),
-        '/event_page': (context) => const EventPage(),
-        '/edit_profile_page': (context) => const EditProfile(),
-      },
+      title: "Sociavism",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+      onInit: () => SizeConfig().init(context),
+      theme: ThemeData(
+        scaffoldBackgroundColor: ColorConstants.lightGreen,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
     );
   }
 }
