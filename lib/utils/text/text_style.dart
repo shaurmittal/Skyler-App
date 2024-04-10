@@ -58,10 +58,10 @@ TextStyle largeButton() {
   );
 }
 
-TextStyle smallButton() {
+TextStyle smallButton({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4.5),
     fontWeight: FontWeight.w500,
-    color: ColorConstants.darkGreen,
+    color: color ?? ColorConstants.darkGreen,
   );
 }

@@ -1,12 +1,15 @@
 import 'package:get/get.dart';
 
 import '../elements/auth/bindings/auth_binding.dart';
-import '../elements/auth/pages/signup_page.dart';
+import '../elements/auth/pages/user/signup_page.dart';
+import '../elements/user/bindings/user_binding.dart';
+import '../elements/user/pages/ngo_detail_page.dart';
+import '../elements/user/pages/user_detail_page.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     // GetPage(
@@ -30,14 +33,19 @@ class AppPages {
     //   binding: AdminHomeBinding(),
     // ),
     GetPage(
-      name: _Paths.LOGIN,
+      name: _Paths.SIGNUP,
       page: () => SignUpPage(),
       binding: AuthBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.SIGNUP,
-    //   page: () => SignUpView(),
-    //   binding: SignupBinding(),
-    // ),
+    GetPage(
+      name: _Paths.USERDETAILS,
+      page: () => UserDetailPage(),
+      binding: UserBinding(),
+    ),
+    GetPage(
+      name: _Paths.NGOUSERDETAILS,
+      page: () => NGODetailPage(),
+      binding: UserBinding(),
+    ),
   ];
 }

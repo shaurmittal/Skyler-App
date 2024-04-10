@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:main_sociavism/elements/user/pages/user_detail_page.dart';
+
+import '../../../routes/app_pages.dart';
 
 class AuthController extends GetxController {
   // OnboardController();
@@ -11,6 +14,7 @@ class AuthController extends GetxController {
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> ngoFormKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -35,6 +39,8 @@ class AuthController extends GetxController {
   }
 
   signUp() {
-    if (signupFormKey.currentState!.validate()) {}
+    // if (signupFormKey.currentState!.validate()) {
+    Get.toNamed(Routes.USERDETAILS);
+    // }
   }
 }
