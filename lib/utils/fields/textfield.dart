@@ -13,6 +13,7 @@ class STextField extends StatelessWidget {
   var readOnly;
   var onTap;
   var maxLines;
+  var maxLength;
   var obscureText;
   STextField({
     required this.textController,
@@ -25,6 +26,7 @@ class STextField extends StatelessWidget {
     this.readOnly,
     this.onTap,
     this.maxLines,
+    this.maxLength,
     this.obscureText,
   });
   @override
@@ -37,6 +39,7 @@ class STextField extends StatelessWidget {
       onTap: onTap,
       readOnly: readOnly ?? false,
       maxLines: maxLines ?? 1,
+      maxLength: maxLength,
       obscureText: obscureText ?? false,
       decoration: ThemeHelper(context: context).textInputDecoration(
         label ?? "",

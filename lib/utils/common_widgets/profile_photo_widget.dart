@@ -86,7 +86,7 @@ class ProfilePhotoWidget extends StatelessWidget {
                             height: SizeConfig.getPercentSize(4),
                           ),
                           Text(
-                            'Upload your smiling photo',
+                            'Upload logo or your photo',
                             style: smallButton(),
                             textAlign: TextAlign.center,
                           ),

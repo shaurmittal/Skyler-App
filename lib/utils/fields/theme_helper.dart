@@ -15,6 +15,7 @@ class ThemeHelper {
     return InputDecoration(
       labelText: lableText,
       labelStyle: textField(color: ColorConstants.darkGreen),
+      helperStyle: smallHelperStyle(),
       hintText: hintText,
       hintStyle: hintField(),
       errorMaxLines: 3,
@@ -32,7 +33,7 @@ class ThemeHelper {
       filled: true,
       // contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
       contentPadding: EdgeInsets.only(
-        top: SizeConfig.getPercentSize(0.5),
+        top: SizeConfig.getPercentSize(4),
         left: SizeConfig.getPercentSize(4),
       ),
 

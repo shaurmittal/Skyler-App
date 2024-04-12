@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/profile_photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
@@ -8,6 +9,7 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/validators/text_field_validation.dart';
+import '../../home/pages/home_page.dart';
 import '../controller/user_controller.dart';
 
 class NGODetailPage extends GetView<UserController> {
@@ -24,10 +26,10 @@ class NGODetailPage extends GetView<UserController> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: controller.userDetailFormKey,
+              key: controller.ngoDetailFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.getPercentSize(5),
+                  horizontal: SizeConfig.getPercentSize(4),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +67,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'NGO / Organization Name',
+                      text: 'NGO / Organization Name *',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -73,14 +75,14 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     STextField(
-                      textController: controller.nameController,
+                      textController: controller.ngoNameController,
                       validate: Validator().required,
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(3),
                     ),
                     TextWidget(
-                      text: 'Summary',
+                      text: 'About *',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -88,16 +90,28 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     STextField(
-                      textController: controller.ageController,
-                      keyboardType: TextInputType.name,
+                      textController: controller.aboutNgoController,
+                      maxLength: 200,
                       maxLines: 4,
+                      validate: Validator().required,
+                    ),
+                    TextWidget(
+                      text: 'Location *',
+                      style: smallDescp(),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.getPercentSize(2),
+                    ),
+                    STextField(
+                      textController: controller.ngoLocationController,
                       validate: Validator().required,
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Location',
+                      text: 'Phone number *',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -105,16 +119,33 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     STextField(
-                      textController: controller.locationController,
+                      textController: controller.ngoPhoneController,
+                      validate: Validator().required,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.getPercentSize(5),
+                    ),
+                    TextWidget(
+                      text: 'Social Link (optional)',
+                      style: smallDescp(),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: SizeConfig.getPercentSize(2),
+                    ),
+                    STextField(
+                      textController: controller.ngoSocialController,
                       validate: Validator().required,
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
                     ),
                     SPlainButton(
-                      text: "Next",
+                      text: "Submit",
                       width: double.infinity,
-                      onTap: () => controller.home(),
+                      onTap: () {
+                        Get.toNamed(Routes.HOME);
+                      },
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),

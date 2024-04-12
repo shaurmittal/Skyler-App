@@ -5,8 +5,16 @@ import '../size/size_config.dart';
 TextStyle title() {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(8),
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.bold,
     color: ColorConstants.darkGreen,
+    // letterSpacing: 1.1,
+    // shadows: [
+    //   Shadow(
+    //     color: ColorConstants.green,
+    //     offset: Offset(4, 2),
+    //     blurRadius: 8,
+    //   ),
+    // ],
   );
 }
 
@@ -61,6 +69,14 @@ TextStyle largeButton() {
 TextStyle smallButton({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4.5),
+    fontWeight: FontWeight.w500,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
+TextStyle smallHelperStyle({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(3.4),
     fontWeight: FontWeight.w500,
     color: color ?? ColorConstants.darkGreen,
   );

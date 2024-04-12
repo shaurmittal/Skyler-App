@@ -29,7 +29,7 @@ class SignUpPage extends GetView<AuthController> {
               key: controller.signupFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.getPercentSize(5),
+                  horizontal: SizeConfig.getPercentSize(4),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
