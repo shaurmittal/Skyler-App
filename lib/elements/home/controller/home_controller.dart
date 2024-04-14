@@ -8,7 +8,9 @@ class HomeController extends GetxController {
   var isImageLoading = false.obs;
   var isVisiblePass = true.obs;
   var imageUrl = ''.obs;
+  var isDrawerClosed = true.obs;
 
+  GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();

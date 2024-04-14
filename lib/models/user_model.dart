@@ -6,6 +6,8 @@ class UserModel {
   final String location;
   final String phoneNo;
   final String socialLink;
+  final String createdAt;
+  final String updatedAt;
 
   UserModel({
     required this.email,
@@ -15,24 +17,7 @@ class UserModel {
     required this.location,
     required this.phoneNo,
     required this.socialLink,
+    required this.createdAt,
+    required this.updatedAt,
   });
-
-  UserModel.fromJson(Map<String, dynamic> json)
-      : email = json['email'],
-        profilePhoto = json['profilePhoto'],
-        name = json['name'],
-        age = json['age'],
-        location = json['location'],
-        phoneNo = json['phoneNo'],
-        socialLink = json['socialLink'];
-
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'profilePhoto': profilePhoto,
-        'name': name,
-        'age': age,
-        'location': location,
-        'phoneNo': phoneNo,
-        'socialLink': socialLink,
-      };
 }

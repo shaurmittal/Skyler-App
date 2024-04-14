@@ -26,14 +26,6 @@ TextStyle smallTitle() {
   );
 }
 
-TextStyle descp() {
-  return TextStyle(
-    fontSize: SizeConfig.getPercentSize(4.25),
-    fontWeight: FontWeight.w600,
-    color: ColorConstants.darkGreen,
-  );
-}
-
 TextStyle smallDescp({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4),
@@ -78,6 +70,30 @@ TextStyle smallHelperStyle({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(3.4),
     fontWeight: FontWeight.w500,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
+TextStyle boldTitle({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(4.5),
+    fontWeight: FontWeight.w600,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
+TextStyle boldBigTitle({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(6),
+    fontWeight: FontWeight.w600,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
+TextStyle boldDesp({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(3.8),
+    fontWeight: FontWeight.w600,
     color: color ?? ColorConstants.darkGreen,
   );
 }

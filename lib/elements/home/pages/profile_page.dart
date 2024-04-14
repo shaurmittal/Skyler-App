@@ -8,9 +8,8 @@ import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 import '../widgets/post_widget.dart';
-import 'profile_page.dart';
 
-class HomePage extends GetView<HomeController> {
+class ProfilePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -21,7 +20,6 @@ class HomePage extends GetView<HomeController> {
         navigator.pop();
       },
       child: Scaffold(
-        key: controller.scaffoldkey,
         drawer: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
@@ -43,45 +41,25 @@ class HomePage extends GetView<HomeController> {
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        onPressed: () {
-                          controller.scaffoldkey.currentState!.openDrawer();
-                        },
+                        onPressed: () {},
                         icon: Icon(
-                          CupertinoIcons.rectangle_grid_1x2_fill,
-                          // CupertinoIcons.line_horizontal_3,
+                          CupertinoIcons.back,
                           color: ColorConstants.darkGreen,
                           size: SizeConfig.getPercentSize(7),
                         ),
                       ),
-                      Row(
-                        children: [
-                          TextWidget(
-                            text: 'Sociavism',
-                            style: title(),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(
-                            width: SizeConfig.getPercentSize(2),
-                          ),
-                          Image.asset(
-                            'assets/earth.png',
-                            height: SizeConfig.getPercentSize(8),
-                            width: SizeConfig.getPercentSize(8),
-                            fit: BoxFit.cover,
-                          ),
-                        ],
+                      SizedBox(
+                        width: SizeConfig.getPercentSize(1),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          Get.to(() => ProfilePage());
-                        },
-                        icon: Icon(
-                          CupertinoIcons.profile_circled,
-                          color: ColorConstants.darkGreen,
-                          size: SizeConfig.getPercentSize(8),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            bottom: SizeConfig.getPercentSize(1)),
+                        child: TextWidget(
+                          text: 'Profile',
+                          style: boldBigTitle(),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],
