@@ -9,7 +9,6 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/validators/text_field_validation.dart';
-import '../../home/pages/home_page.dart';
 import '../controller/user_controller.dart';
 
 class NGODetailPage extends GetView<UserController> {
@@ -62,7 +61,10 @@ class NGODetailPage extends GetView<UserController> {
                     SizedBox(
                       height: SizeConfig.getPercentSize(8),
                     ),
-                    ProfilePhotoWidget(controller: controller),
+                    ProfilePhotoWidget(
+                      controller: controller,
+                      title: 'Upload your logo or photo',
+                    ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(8),
                     ),
@@ -82,7 +84,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(3),
                     ),
                     TextWidget(
-                      text: 'About *',
+                      text: 'Summary *',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -126,7 +128,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link (optional)',
+                      text: 'Social Link / Username (optional)',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),

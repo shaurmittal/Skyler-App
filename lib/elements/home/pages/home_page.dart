@@ -8,7 +8,8 @@ import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 import '../widgets/post_widget.dart';
-import 'profile_page.dart';
+import 'ngo_profile_page.dart';
+import 'user_profile_page.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -76,7 +77,8 @@ class HomePage extends GetView<HomeController> {
                       ),
                       IconButton(
                         onPressed: () {
-                          Get.to(() => ProfilePage());
+                          // Get.to(() => UserProfilePage());
+                          Get.to(() => NgoProfilePage());
                         },
                         icon: Icon(
                           CupertinoIcons.profile_circled,

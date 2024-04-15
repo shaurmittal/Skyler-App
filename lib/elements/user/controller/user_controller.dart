@@ -10,7 +10,6 @@ class UserController extends GetxController {
   var imageUrl = ''.obs;
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  // GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> userDetailFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> ngoDetailFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> ngoEventFormKey = GlobalKey<FormState>();

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   static HomeController instance = Get.find();
 
   var isLoading = false.obs;
@@ -23,6 +24,23 @@ class HomeController extends GetxController {
   TextEditingController ngoLocationController = TextEditingController();
   TextEditingController ngoPhoneController = TextEditingController();
   TextEditingController ngoSocialController = TextEditingController();
+
+  late TabController tabController;
+
+  @override
+  void onInit() {
+    super.onInit();
+    tabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   void loadingTrue() {
     isLoading(true);

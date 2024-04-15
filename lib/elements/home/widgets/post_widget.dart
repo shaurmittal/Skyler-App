@@ -14,7 +14,10 @@ class PostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(SizeConfig.getPercentSize(2.5)),
-      margin: EdgeInsets.only(right: SizeConfig.getPercentSize(2)),
+      margin: EdgeInsets.only(
+        right: SizeConfig.getPercentSize(2),
+        bottom: SizeConfig.getPercentSize(4),
+      ),
       decoration: BoxDecoration(
         color: ColorConstants.lightGreen,
         border: Border.all(

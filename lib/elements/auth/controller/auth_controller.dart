@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main_sociavism/elements/user/pages/user_detail_page.dart';
-
 import '../../../routes/app_pages.dart';
 
 class AuthController extends GetxController {

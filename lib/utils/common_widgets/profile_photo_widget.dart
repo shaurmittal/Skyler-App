@@ -9,7 +9,11 @@ import '../size/size_config.dart';
 
 class ProfilePhotoWidget extends StatelessWidget {
   dynamic controller;
-  ProfilePhotoWidget({required this.controller});
+  String title;
+  ProfilePhotoWidget({
+    required this.controller,
+    required this.title,
+  });
 
   @override
   Widget build(context) {
@@ -86,7 +90,7 @@ class ProfilePhotoWidget extends StatelessWidget {
                             height: SizeConfig.getPercentSize(4),
                           ),
                           Text(
-                            'Upload logo or your photo',
+                            title,
                             style: smallButton(),
                             textAlign: TextAlign.center,
                           ),
