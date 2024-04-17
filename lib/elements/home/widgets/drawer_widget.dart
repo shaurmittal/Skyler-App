@@ -9,7 +9,12 @@ import '../../../utils/text/text_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   BuildContext context;
-  DrawerWidget({required this.context, super.key});
+  var controller;
+  DrawerWidget({
+    required this.context,
+    required this.controller,
+    super.key,
+  });
 
   @override
   Widget build(context) {
@@ -74,7 +79,10 @@ class DrawerWidget extends StatelessWidget {
                   text: 'Logout',
                   style: smallTitle(),
                 ),
-                onTap: () {},
+                onTap: () {
+                  controller.logout();
+                  Get.back();
+                },
               ),
             ],
           ),

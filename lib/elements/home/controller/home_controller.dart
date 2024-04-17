@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../constants/firebase_constants.dart';
+import '../../../routes/app_pages.dart';
+
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
   static HomeController instance = Get.find();
@@ -55,7 +58,10 @@ class HomeController extends GetxController
     isVisiblePass = true.obs;
   }
 
-  home() {
-    // if (signupFormKey.currentState!.validate()) {}
+  logout() async {
+    isLoading(true);
+    await firebaseAuth.signOut();
+    Get.offAllNamed(Routes.SIGNUP);
+    isLoading(false);
   }
 }

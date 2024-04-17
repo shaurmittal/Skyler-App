@@ -26,7 +26,10 @@ class HomePage extends GetView<HomeController> {
         drawer: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
-            child: DrawerWidget(context: context),
+            child: DrawerWidget(
+              context: context,
+              controller: controller,
+            ),
           ),
         ),
         body: SafeArea(

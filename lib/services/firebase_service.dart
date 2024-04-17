@@ -9,8 +9,6 @@ import '../constants/firebase_constants.dart';
 import '../utils/common_widgets/snack_bar.dart';
 
 Future getImageGallery(dynamic controller) async {
-  showAppSnackBar(message: 'File not selected', toastType: ToastType.success);
-
   var status = Permission.storage.status;
   if (await status.isGranted) {
     print('gallery permisson granted');
@@ -54,13 +52,13 @@ Future<void> _uploadImageStorage(XFile image, dynamic controller) async {
   try {
     controller.isImageLoading(true);
     int randomNumber = Random().nextInt(100000);
-    String imageLocation = 'sociavism/image_$randomNumber';
+    String imageLocation = 'sociavism/proflePic/image_$randomNumber';
 
     Reference ref = firebaseStorage.ref().child(imageLocation);
     UploadTask uploadTask = ref.putFile(File(image.path));
     await uploadTask.then((res) async {
       var downloadUrl = await res.ref.getDownloadURL();
-      controller.imageUrlforFirestore(downloadUrl);
+      controller.imageUrl(downloadUrl);
       print(downloadUrl);
     });
   } catch (e) {
@@ -96,7 +94,7 @@ Future _uploadImageListStorage(List<XFile> image, dynamic controller) async {
           .child('sociavism')
           .child('image__$randomNumber');
       await reference.putFile(File(image[i].path));
-      controller.imageUrlforFirestore.add(await reference.getDownloadURL());
+      controller.imageUrl.add(await reference.getDownloadURL());
     } catch (e) {
       print(e);
       // await crashlytics.log("failed to upload image $e");

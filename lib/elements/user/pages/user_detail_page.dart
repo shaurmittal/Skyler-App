@@ -15,6 +15,7 @@ import '../controller/user_controller.dart';
 class UserDetailPage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
+    final String email = Get.arguments;
     return PopScope(
       canPop: false,
       onPopInvoked: (bool didPop) async {
@@ -42,6 +43,7 @@ class UserDetailPage extends GetView<UserController> {
                       children: [
                         IconButton(
                           onPressed: () {
+                            controller.logout();
                             Get.back();
                           },
                           icon: Icon(
@@ -131,7 +133,7 @@ class UserDetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link / Username (optional)',
+                      text: 'Social Link (optional)',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -145,12 +147,28 @@ class UserDetailPage extends GetView<UserController> {
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
                     ),
-                    SPlainButton(
-                      text: "Submit",
-                      width: double.infinity,
-                      onTap: () {
-                        Get.toNamed(Routes.HOME);
-                      },
+                    Obx(
+                      () => controller.isLoading.value
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: ColorConstants.darkGreen,
+                              ),
+                            )
+                          : SPlainButton(
+                              text: "Submit",
+                              width: double.infinity,
+                              onTap: () {
+                                controller.addUserDetails(
+                                  email: email,
+                                  profilePic: controller.imageUrl.value,
+                                  name: controller.nameController.text,
+                                  age: controller.ageController.text,
+                                  location: controller.locationController.text,
+                                  phoneNo: controller.phoneController.text,
+                                  socialLink: controller.socialController.text,
+                                );
+                              },
+                            ),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),

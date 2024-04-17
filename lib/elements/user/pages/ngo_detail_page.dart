@@ -128,7 +128,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link / Username (optional)',
+                      text: 'Social Link (optional)',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),

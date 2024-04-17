@@ -56,23 +56,25 @@ class ProfilePhotoWidget extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                         Positioned(
-                          bottom: -5,
-                          right: -5,
-                          child: IconButton(
-                            icon: Icon(
-                              CupertinoIcons.photo,
-                              size: SizeConfig.getPercentSize(5),
+                          bottom: 5,
+                          right: 5,
+                          child: CircleAvatar(
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.edit,
+                                size: SizeConfig.getPercentSize(5),
+                              ),
+                              color: ColorConstants.darkGreen,
+                              onPressed: () {
+                                getImageGallery(controller);
+                              },
                             ),
-                            color: ColorConstants.darkGreen,
-                            onPressed: () {
-                              getImageGallery(controller);
-                            },
                           ),
                         ),
                       ],
                     ),
                   )
-                : InkWell(
+                : GestureDetector(
                     onTap: () {
                       getImageGallery(controller);
                     },

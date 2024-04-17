@@ -52,10 +52,9 @@ void showAppSnackBar({
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          height: SizeConfig.getPercentSize(10),
+          // height: SizeConfig.getPercentSize(10),
           alignment: Alignment.center,
-          // padding: EdgeInsets.symmetric(
-          //     horizontal: SizeConfig.getPercentSize1(screenWidth, 0)),
+          padding: EdgeInsets.all(SizeConfig.getPercentSize(2)),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: backgroundColor,
@@ -75,10 +74,12 @@ void showAppSnackBar({
                   size: SizeConfig.getPercentSize(5),
                 ),
               ).paddingOnly(right: SizeConfig.getPercentSize(5)),
-              Text(
-                message,
-                style: smallButton(color: ColorConstants.white),
-                overflow: TextOverflow.ellipsis,
+              Expanded(
+                child: Text(
+                  message,
+                  style: smallDescp(color: ColorConstants.white),
+                  softWrap: true,
+                ),
               ),
             ],
           ),

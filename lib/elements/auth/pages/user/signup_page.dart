@@ -78,7 +78,7 @@ class SignUpPage extends GetView<AuthController> {
                         label: 'Password',
                         hint: 'Password@123',
                         keyboardType: TextInputType.name,
-                        validate: Validator().required,
+                        validate: Validator().password,
                         icon: controller.isVisiblePass.value == false
                             ? Icon(
                                 CupertinoIcons.eye_fill,
@@ -103,10 +103,18 @@ class SignUpPage extends GetView<AuthController> {
                     SizedBox(
                       height: SizeConfig.getPercentSize(2),
                     ),
-                    SPlainButton(
-                      text: "Sign Up",
-                      width: double.infinity,
-                      onTap: () => controller.signUp(),
+                    Obx(
+                      () => controller.isLoading.value
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: ColorConstants.darkGreen,
+                              ),
+                            )
+                          : SPlainButton(
+                              text: "Sign Up",
+                              width: double.infinity,
+                              onTap: () => controller.signUp(),
+                            ),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(3),
