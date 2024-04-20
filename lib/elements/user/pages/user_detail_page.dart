@@ -5,7 +5,7 @@ import 'package:main_sociavism/constants/color_constants.dart';
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
-import '../../../utils/common_widgets/profile_photo_widget.dart';
+import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';

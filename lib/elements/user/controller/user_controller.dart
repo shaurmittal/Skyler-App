@@ -58,8 +58,8 @@ class UserController extends GetxController {
           'location': user.location,
           'phoneNo': user.phoneNo,
           'socialLink': user.socialLink,
-          'created': user.createdAt,
-          'updated': user.updatedAt,
+          'createdAt': user.createdAt,
+          'updatedAt': user.updatedAt,
         }).then((value) async {
           Get.toNamed(Routes.HOME);
           showAppSnackBar(
@@ -89,8 +89,8 @@ class UserController extends GetxController {
           'location': user.location,
           'phoneNo': user.phoneNo,
           'socialLink': user.socialLink,
-          'created': user.createdAt,
-          'updated': user.updatedAt,
+          'createdAt': user.createdAt,
+          'updatedAt': user.updatedAt,
         }).then((value) async {
           Get.toNamed(Routes.HOME);
           showAppSnackBar(

@@ -4,12 +4,11 @@ import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
-import '../../../utils/common_widgets/profile_photo_widget.dart';
+import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
-import '../widgets/drawer_widget.dart';
 
 class UserProfilePage extends GetView<HomeController> {
   @override
@@ -83,7 +82,7 @@ class UserProfilePage extends GetView<HomeController> {
             text: "Edit Profile",
             width: double.infinity,
             onTap: () {
-              Get.toNamed(Routes.USERDETAILS);
+              // Get.toNamed(Routes.USERDETAILS);
             },
           ),
         ),

@@ -71,17 +71,35 @@ Future<void> _uploadImageStorage(XFile image, dynamic controller) async {
 
 Future getImageListGallery(dynamic controller) async {
   controller.isImageLoading(true);
-  final ImagePicker _picker = ImagePicker();
-  List<XFile>? image = await _picker.pickMultiImage(
-    imageQuality: 50,
-  );
-  if (image != null) {
-    await _uploadImageListStorage(image, controller);
-  } else {
-    showAppSnackBar(message: 'File not selected', toastType: ToastType.error);
-    controller.isImageLoading(false);
+  var status = Permission.storage.status;
+  if (await status.isGranted) {
+    final ImagePicker _picker = ImagePicker();
+    List<XFile>? image = await _picker.pickMultiImage(
+      imageQuality: 50,
+    );
+    if (image != null) {
+      await _uploadImageListStorage(image, controller);
+    } else {
+      showAppSnackBar(message: 'File not selected', toastType: ToastType.error);
+      controller.isImageLoading(false);
+    }
+    image.clear();
+  } else if (await status.isDenied) {
+    if (await Permission.storage.request().isGranted) {
+      final ImagePicker _picker = ImagePicker();
+      List<XFile>? image = await _picker.pickMultiImage(
+        imageQuality: 50,
+      );
+      if (image != null) {
+        await _uploadImageListStorage(image, controller);
+      } else {
+        showAppSnackBar(
+            message: 'File not selected', toastType: ToastType.error);
+        controller.isImageLoading(false);
+      }
+      image.clear();
+    }
   }
-  image.clear();
   controller.isImageLoading(false);
 }
 
@@ -92,12 +110,12 @@ Future _uploadImageListStorage(List<XFile> image, dynamic controller) async {
       Reference reference = firebaseStorage
           .ref()
           .child('sociavism')
+          .child('posts')
           .child('image__$randomNumber');
       await reference.putFile(File(image[i].path));
-      controller.imageUrl.add(await reference.getDownloadURL());
+      controller.postImgUrl.add(await reference.getDownloadURL());
     } catch (e) {
       print(e);
-      // await crashlytics.log("failed to upload image $e");
     }
   }
 }

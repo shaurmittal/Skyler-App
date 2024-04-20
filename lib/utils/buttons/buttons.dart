@@ -9,12 +9,16 @@ import '../text/text_style.dart';
 class SPlainButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  final double? height;
   final double? width;
   final EdgeInsetsGeometry? margin;
+  final btnTxtStl;
   const SPlainButton({
     super.key,
     required this.text,
     required this.onTap,
+    this.btnTxtStl,
+    this.height,
     this.width,
     this.margin,
   });
@@ -23,7 +27,7 @@ class SPlainButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: SizeConfig.getPercentSize(15),
+        height: height ?? SizeConfig.getPercentSize(15),
         width: width ?? SizeConfig.getPercentSize(90),
         // margin: margin ??
         //     EdgeInsets.all(
@@ -38,7 +42,7 @@ class SPlainButton extends StatelessWidget {
         ),
         child: TextWidget(
           text: text,
-          style: largeButton(),
+          style: btnTxtStl ?? largeButton(),
         ),
       ),
     );

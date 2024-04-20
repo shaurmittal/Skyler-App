@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
-import '../../../models/ngo_model.dart';
-import '../../../routes/app_pages.dart';
+import '../../../models/user_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
@@ -10,12 +9,11 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/validators/text_field_validation.dart';
-import '../controller/user_controller.dart';
+import '../controller/home_controller.dart';
 
-class NGODetailPage extends GetView<UserController> {
+class CreatePostPage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    final String email = Get.arguments;
     return PopScope(
       canPop: false,
       onPopInvoked: (bool didPop) async {
@@ -27,7 +25,7 @@ class NGODetailPage extends GetView<UserController> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: controller.ngoDetailFormKey,
+              key: controller.postFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.getPercentSize(4),
@@ -43,6 +41,7 @@ class NGODetailPage extends GetView<UserController> {
                       children: [
                         IconButton(
                           onPressed: () {
+                            controller.logout();
                             Get.back();
                           },
                           icon: Icon(
@@ -53,9 +52,9 @@ class NGODetailPage extends GetView<UserController> {
                         ),
                         Expanded(
                           child: TextWidget(
-                            text: 'Fill out the required details.',
+                            text: 'Create a new post',
                             style: smallTitle(),
-                            textAlign: TextAlign.center,
+                            // textAlign: TextAlign.center,
                           ),
                         ),
                       ],
@@ -63,15 +62,14 @@ class NGODetailPage extends GetView<UserController> {
                     SizedBox(
                       height: SizeConfig.getPercentSize(8),
                     ),
-                    ProfilePhotoWidget(
+                    MultiplePhotoWidget(
                       controller: controller,
-                      title: 'Upload your logo or photo',
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'NGO / Organization Name *',
+                      text: 'Write a caption *',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -79,67 +77,59 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     STextField(
-                      textController: controller.ngoNameController,
+                      textController: controller.captionController,
                       validate: Validator().required,
+                      maxLength: 200,
+                      maxLines: 4,
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(3),
                     ),
-                    TextWidget(
-                      text: 'Summary *',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Event Mode",
+                            style: smallDescp(),
+                          ),
+                          Switch(
+                            activeTrackColor: ColorConstants.green,
+                            activeColor: ColorConstants.darkGreen,
+                            value: controller.isActive.value,
+                            onChanged: (value) {
+                              print(controller.isActive);
+                              controller.switchIsActive(value);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(2),
                     ),
-                    STextField(
-                      textController: controller.aboutNgoController,
-                      maxLength: 200,
-                      maxLines: 4,
-                      validate: Validator().required,
-                    ),
-                    TextWidget(
-                      text: 'Location *',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.ngoLocationController,
-                      validate: Validator().required,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(5),
-                    ),
-                    TextWidget(
-                      text: 'Phone number *',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.ngoPhoneController,
-                      validate: Validator().required,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(5),
-                    ),
-                    TextWidget(
-                      text: 'Social Link (optional)',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.ngoSocialController,
-                      validate: Validator().required,
+                    Obx(
+                      () => controller.isActive.value
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextWidget(
+                                  text: 'Participant limit *',
+                                  style: smallDescp(),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.getPercentSize(2),
+                                ),
+                                STextField(
+                                  textController:
+                                      controller.participantController,
+                                  keyboardType: TextInputType.number,
+                                  validate: Validator().required,
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
@@ -152,26 +142,9 @@ class NGODetailPage extends GetView<UserController> {
                               ),
                             )
                           : SPlainButton(
-                              text: "Submit",
+                              text: "Upload",
                               width: double.infinity,
-                              onTap: () {
-                                controller.addNGODetails(
-                                  user: NgoModel(
-                                    id: '',
-                                    email: email,
-                                    profilePhoto: controller.imageUrl.value,
-                                    name: controller.ngoNameController.text,
-                                    about: controller.aboutNgoController.text,
-                                    location:
-                                        controller.ngoLocationController.text,
-                                    phoneNo: controller.ngoPhoneController.text,
-                                    socialLink:
-                                        controller.ngoSocialController.text,
-                                    createdAt: DateTime.now(),
-                                    updatedAt: DateTime.now(),
-                                  ),
-                                );
-                              },
+                              onTap: () => controller.createPost(),
                             ),
                     ),
                     SizedBox(

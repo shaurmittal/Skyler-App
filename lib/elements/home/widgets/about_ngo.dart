@@ -112,10 +112,12 @@ class AboutNgo extends StatelessWidget {
             SizedBox(
               width: SizeConfig.getPercentSize(5),
             ),
-            TextWidget(
-              text: 'rohanveer_99',
-              style: boldTitle(),
-              textAlign: TextAlign.center,
+            Expanded(
+              child: TextWidget(
+                text: 'www.instagrm.com/rohan_99',
+                style: boldTitle(),
+                textAlign: TextAlign.start,
+              ),
             ),
           ],
         ),

@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
-import '../../../utils/common_widgets/profile_photo_widget.dart';
+import '../../../utils/buttons/buttons.dart';
+import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
 import '../widgets/about_ngo.dart';
 import '../widgets/post_list.dart';
+import 'create_post.dart';
 
 class NgoProfilePage extends GetView<HomeController> {
   @override
@@ -58,6 +60,16 @@ class NgoProfilePage extends GetView<HomeController> {
                         style: boldBigTitle(),
                         textAlign: TextAlign.center,
                       ),
+                    ),
+                    Spacer(),
+                    SPlainButton(
+                      text: "Create",
+                      height: SizeConfig.getPercentSize(10),
+                      width: SizeConfig.getPercentSize(30),
+                      btnTxtStl: smallButton(color: ColorConstants.white),
+                      onTap: () {
+                        Get.to(() => CreatePostPage());
+                      },
                     ),
                   ],
                 ),

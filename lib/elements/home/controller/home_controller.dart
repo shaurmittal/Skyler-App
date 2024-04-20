@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/firebase_constants.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/common_widgets/snack_bar.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -13,22 +16,18 @@ class HomeController extends GetxController
   var isVisiblePass = true.obs;
   var imageUrl = ''.obs;
   var isDrawerClosed = true.obs;
+  var isActive = true.obs;
 
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController locationController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController socialController = TextEditingController();
+  GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
 
-  TextEditingController ngoNameController = TextEditingController();
-  TextEditingController aboutNgoController = TextEditingController();
-  TextEditingController ngoLocationController = TextEditingController();
-  TextEditingController ngoPhoneController = TextEditingController();
-  TextEditingController ngoSocialController = TextEditingController();
+  TextEditingController captionController = TextEditingController();
+  TextEditingController participantController = TextEditingController();
 
   late TabController tabController;
+
+  var postImgUrl = [].obs;
 
   @override
   void onInit() {
@@ -58,10 +57,32 @@ class HomeController extends GetxController
     isVisiblePass = true.obs;
   }
 
+  switchIsActive(var value) {
+    isActive(value);
+  }
+
   logout() async {
     isLoading(true);
     await firebaseAuth.signOut();
     Get.offAllNamed(Routes.SIGNUP);
     isLoading(false);
+  }
+
+  createPost() {
+    if (postFormKey.currentState!.validate()) {
+      print(postImgUrl.length);
+      if (postImgUrl.length > 5) {
+        showAppSnackBar(
+          message: 'Only 5 photos are allowed',
+          toastType: ToastType.error,
+        );
+      } else {
+        Get.back();
+        showAppSnackBar(
+          message: 'Post Uploaded',
+          toastType: ToastType.success,
+        );
+      }
+    }
   }
 }
