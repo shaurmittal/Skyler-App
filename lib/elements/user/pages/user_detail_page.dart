@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/profile_photo_widget.dart';
@@ -159,13 +160,20 @@ class UserDetailPage extends GetView<UserController> {
                               width: double.infinity,
                               onTap: () {
                                 controller.addUserDetails(
-                                  email: email,
-                                  profilePic: controller.imageUrl.value,
-                                  name: controller.nameController.text,
-                                  age: controller.ageController.text,
-                                  location: controller.locationController.text,
-                                  phoneNo: controller.phoneController.text,
-                                  socialLink: controller.socialController.text,
+                                  user: UserModel(
+                                    id: '',
+                                    email: email,
+                                    profilePhoto: controller.imageUrl.value,
+                                    name: controller.nameController.text,
+                                    age: controller.ageController.text,
+                                    location:
+                                        controller.locationController.text,
+                                    phoneNo: controller.phoneController.text,
+                                    socialLink:
+                                        controller.socialController.text,
+                                    createdAt: DateTime.now(),
+                                    updatedAt: DateTime.now(),
+                                  ),
                                 );
                               },
                             ),

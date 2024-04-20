@@ -107,7 +107,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                     SPlainButton(
                       text: "Sign Up",
                       width: double.infinity,
-                      onTap: () => Get.toNamed(Routes.NGOUSERDETAILS),
+                      onTap: () => controller.signUp(isNGO: true),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(3),

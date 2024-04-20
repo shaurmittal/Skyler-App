@@ -1,4 +1,5 @@
 class UserModel {
+  final String id;
   final String email;
   final String profilePhoto;
   final String name;
@@ -6,10 +7,11 @@ class UserModel {
   final String location;
   final String phoneNo;
   final String socialLink;
-  final String createdAt;
-  final String updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
   UserModel({
+    required this.id,
     required this.email,
     required this.profilePhoto,
     required this.name,

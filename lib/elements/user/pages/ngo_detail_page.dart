@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+import '../../../models/ngo_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/profile_photo_widget.dart';
@@ -14,6 +15,7 @@ import '../controller/user_controller.dart';
 class NGODetailPage extends GetView<UserController> {
   @override
   Widget build(BuildContext context) {
+    final String email = Get.arguments;
     return PopScope(
       canPop: false,
       onPopInvoked: (bool didPop) async {
@@ -142,12 +144,35 @@ class NGODetailPage extends GetView<UserController> {
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
                     ),
-                    SPlainButton(
-                      text: "Submit",
-                      width: double.infinity,
-                      onTap: () {
-                        Get.toNamed(Routes.HOME);
-                      },
+                    Obx(
+                      () => controller.isLoading.value
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: ColorConstants.darkGreen,
+                              ),
+                            )
+                          : SPlainButton(
+                              text: "Submit",
+                              width: double.infinity,
+                              onTap: () {
+                                controller.addNGODetails(
+                                  user: NgoModel(
+                                    id: '',
+                                    email: email,
+                                    profilePhoto: controller.imageUrl.value,
+                                    name: controller.ngoNameController.text,
+                                    about: controller.aboutNgoController.text,
+                                    location:
+                                        controller.ngoLocationController.text,
+                                    phoneNo: controller.ngoPhoneController.text,
+                                    socialLink:
+                                        controller.ngoSocialController.text,
+                                    createdAt: DateTime.now(),
+                                    updatedAt: DateTime.now(),
+                                  ),
+                                );
+                              },
+                            ),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),

@@ -39,7 +39,7 @@ class AuthController extends GetxController {
     passwordController.clear();
   }
 
-  signUp() async {
+  signUp({required bool isNGO}) async {
     if (signupFormKey.currentState!.validate()) {
       loadingTrue();
       try {
@@ -48,10 +48,17 @@ class AuthController extends GetxController {
                 email: emailController.text.trim(),
                 password: passwordController.text.trim())
             .then((value) {
-          Get.toNamed(
-            Routes.USERDETAILS,
-            arguments: emailController.text,
-          );
+          if (isNGO) {
+            Get.toNamed(
+              Routes.NGOUSERDETAILS,
+              arguments: emailController.text,
+            );
+          } else {
+            Get.toNamed(
+              Routes.USERDETAILS,
+              arguments: emailController.text,
+            );
+          }
         });
       } on FirebaseAuthException catch (e) {
         print(e.code);

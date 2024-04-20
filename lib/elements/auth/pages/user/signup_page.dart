@@ -113,7 +113,7 @@ class SignUpPage extends GetView<AuthController> {
                           : SPlainButton(
                               text: "Sign Up",
                               width: double.infinity,
-                              onTap: () => controller.signUp(),
+                              onTap: () => controller.signUp(isNGO: false),
                             ),
                     ),
                     SizedBox(

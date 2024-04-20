@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/firebase_constants.dart';
+import '../../../models/ngo_model.dart';
+import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
 
@@ -41,15 +43,7 @@ class UserController extends GetxController {
     isVisiblePass = true.obs;
   }
 
-  addUserDetails({
-    required String email,
-    required String profilePic,
-    required String name,
-    required String age,
-    required String location,
-    required String phoneNo,
-    required String socialLink,
-  }) async {
+  addUserDetails({required UserModel user}) async {
     if (userDetailFormKey.currentState!.validate()) {
       loadingTrue();
       var currentUser = await firebaseAuth.currentUser;
@@ -57,14 +51,46 @@ class UserController extends GetxController {
       try {
         await firebaseFirestore.collection('users').doc(currentUser.uid).set({
           'uid': currentUser.uid,
-          'email': email,
-          'profilePic': profilePic,
-          'name': name,
-          'age': age,
-          'location': location,
-          'phoneNo': phoneNo,
-          'socialLink': socialLink,
-          'created': DateTime.now(),
+          'email': user.email,
+          'profilePic': user.profilePhoto,
+          'name': user.name,
+          'age': user.age,
+          'location': user.location,
+          'phoneNo': user.phoneNo,
+          'socialLink': user.socialLink,
+          'created': user.createdAt,
+          'updated': user.updatedAt,
+        }).then((value) async {
+          Get.toNamed(Routes.HOME);
+          showAppSnackBar(
+            message: 'Welcome To Sociavism',
+            toastType: ToastType.theme,
+          );
+        });
+      } catch (e) {
+        print(e);
+      }
+      loadingFalse();
+    }
+  }
+
+  addNGODetails({required NgoModel user}) async {
+    if (ngoDetailFormKey.currentState!.validate()) {
+      loadingTrue();
+      var currentUser = await firebaseAuth.currentUser;
+      print(currentUser!.uid);
+      try {
+        await firebaseFirestore.collection('ngos').doc(currentUser.uid).set({
+          'uid': currentUser.uid,
+          'email': user.email,
+          'profilePic': user.profilePhoto,
+          'name': user.name,
+          'about': user.about,
+          'location': user.location,
+          'phoneNo': user.phoneNo,
+          'socialLink': user.socialLink,
+          'created': user.createdAt,
+          'updated': user.updatedAt,
         }).then((value) async {
           Get.toNamed(Routes.HOME);
           showAppSnackBar(

@@ -32,74 +32,81 @@ class ProfilePhotoWidget extends StatelessWidget {
                 Radius.circular(30),
               ),
             ),
-            child: controller.imageUrl.value != ""
-                ? ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    child: Stack(
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl: controller.imageUrl.value,
-                          placeholder: (context, url) => Stack(
-                            children: [
-                              Center(
-                                child: CircularProgressIndicator(
+            child: controller.isImageLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: ColorConstants.darkGreen,
+                    ),
+                  )
+                : controller.imageUrl.value != ""
+                    ? ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        child: Stack(
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl: controller.imageUrl.value,
+                              placeholder: (context, url) => Stack(
+                                children: [
+                                  Center(
+                                    child: CircularProgressIndicator(
+                                      color: ColorConstants.darkGreen,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              errorWidget: (context, url, error) => Icon(
+                                  Icons.error,
+                                  color: ColorConstants.darkGreen),
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned(
+                              bottom: 5,
+                              right: 5,
+                              child: CircleAvatar(
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.edit,
+                                    size: SizeConfig.getPercentSize(5),
+                                  ),
                                   color: ColorConstants.darkGreen,
+                                  onPressed: () {
+                                    getImageGallery(controller);
+                                  },
                                 ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : GestureDetector(
+                        onTap: () {
+                          getImageGallery(controller);
+                        },
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                CupertinoIcons.photo,
+                                size: SizeConfig.getPercentSize(15),
+                                color: ColorConstants.darkGreen,
+                              ),
+                              SizedBox(
+                                height: SizeConfig.getPercentSize(4),
+                              ),
+                              Text(
+                                title,
+                                style: smallButton(),
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
-                          errorWidget: (context, url, error) => Icon(
-                              Icons.error,
-                              color: ColorConstants.darkGreen),
-                          width: double.infinity,
-                          height: double.infinity,
-                          fit: BoxFit.cover,
                         ),
-                        Positioned(
-                          bottom: 5,
-                          right: 5,
-                          child: CircleAvatar(
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.edit,
-                                size: SizeConfig.getPercentSize(5),
-                              ),
-                              color: ColorConstants.darkGreen,
-                              onPressed: () {
-                                getImageGallery(controller);
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      getImageGallery(controller);
-                    },
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            CupertinoIcons.photo,
-                            size: SizeConfig.getPercentSize(15),
-                            color: ColorConstants.darkGreen,
-                          ),
-                          SizedBox(
-                            height: SizeConfig.getPercentSize(4),
-                          ),
-                          Text(
-                            title,
-                            style: smallButton(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
                       ),
-                    ),
-                  ),
           ),
         ),
       ),
