@@ -1,9 +1,17 @@
-import 'dart:io';
+import 'dart:convert';
+// import 'dart:io';
 
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../constants/firebase_constants.dart';
+import '../../../models/ngo_model.dart';
+import '../../../models/post_model.dart';
+import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
 
@@ -68,7 +76,7 @@ class HomeController extends GetxController
     isLoading(false);
   }
 
-  createPost() {
+  createPost({required PostModel post}) async {
     if (postFormKey.currentState!.validate()) {
       print(postImgUrl.length);
       if (postImgUrl.length > 5) {
@@ -77,12 +85,62 @@ class HomeController extends GetxController
           toastType: ToastType.error,
         );
       } else {
-        Get.back();
-        showAppSnackBar(
-          message: 'Post Uploaded',
-          toastType: ToastType.success,
-        );
+        loadingTrue();
+        var uuid = Uuid();
+        var postId = uuid.v4();
+        try {
+          await firebaseFirestore.collection('posts').doc(postId).set({
+            'id': postId,
+            'creator': post.creator,
+            'caption': post.caption,
+            'images': post.images,
+            // 'volunteers': post.volunteers,
+            'volunteerLimit': post.volunteerLimit,
+            'isEvent': post.isEvent,
+            'createdAt': post.createdAt,
+            'updatedAt': post.updatedAt,
+          }).then((value) async {
+            Get.back();
+            showAppSnackBar(
+              message: 'Post Uploaded',
+              toastType: ToastType.success,
+            );
+          });
+        } catch (e) {
+          print(e);
+          showAppSnackBar(
+            message: 'Something went wrong',
+            toastType: ToastType.error,
+          );
+        }
+        loadingFalse();
       }
+    }
+  }
+
+  getUserDetails() async {
+    try {
+      final User? currentUser = firebaseAuth.currentUser;
+      print(currentUser!.uid);
+      var data = await firebaseFirestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .get();
+      return UserModel.fromJson(data.data()!);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  getNgoDetails() async {
+    try {
+      final User? currentUser = firebaseAuth.currentUser;
+      print(currentUser!.uid);
+      var data =
+          await firebaseFirestore.collection('ngos').doc(currentUser.uid).get();
+      return jsonEncode(data.data()!);
+    } catch (e) {
+      print(e);
     }
   }
 }

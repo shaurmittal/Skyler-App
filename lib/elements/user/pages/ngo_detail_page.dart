@@ -124,6 +124,7 @@ class NGODetailPage extends GetView<UserController> {
                     ),
                     STextField(
                       textController: controller.ngoPhoneController,
+                      keyboardType: TextInputType.number,
                       validate: Validator().required,
                     ),
                     SizedBox(
@@ -167,8 +168,8 @@ class NGODetailPage extends GetView<UserController> {
                                     phoneNo: controller.ngoPhoneController.text,
                                     socialLink:
                                         controller.ngoSocialController.text,
-                                    createdAt: DateTime.now(),
-                                    updatedAt: DateTime.now(),
+                                    createdAt: DateTime.now().toString(),
+                                    updatedAt: DateTime.now().toString(),
                                   ),
                                 );
                               },

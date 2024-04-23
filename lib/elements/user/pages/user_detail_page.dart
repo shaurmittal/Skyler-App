@@ -128,6 +128,7 @@ class UserDetailPage extends GetView<UserController> {
                     ),
                     STextField(
                       textController: controller.phoneController,
+                      keyboardType: TextInputType.number,
                       validate: Validator().required,
                     ),
                     SizedBox(
@@ -171,8 +172,8 @@ class UserDetailPage extends GetView<UserController> {
                                     phoneNo: controller.phoneController.text,
                                     socialLink:
                                         controller.socialController.text,
-                                    createdAt: DateTime.now(),
-                                    updatedAt: DateTime.now(),
+                                    createdAt: DateTime.now().toString(),
+                                    updatedAt: DateTime.now().toString(),
                                   ),
                                 );
                               },

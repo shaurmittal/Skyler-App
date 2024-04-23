@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,9 +51,9 @@ class UserController extends GetxController {
       print(currentUser!.uid);
       try {
         await firebaseFirestore.collection('users').doc(currentUser.uid).set({
-          'uid': currentUser.uid,
+          'id': currentUser.uid,
           'email': user.email,
-          'profilePic': user.profilePhoto,
+          'profilePhoto': user.profilePhoto,
           'name': user.name,
           'age': user.age,
           'location': user.location,
@@ -61,7 +62,7 @@ class UserController extends GetxController {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
         }).then((value) async {
-          Get.toNamed(Routes.HOME);
+          Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',
             toastType: ToastType.theme,
@@ -69,6 +70,10 @@ class UserController extends GetxController {
         });
       } catch (e) {
         print(e);
+        showAppSnackBar(
+          message: 'Something went wrong',
+          toastType: ToastType.error,
+        );
       }
       loadingFalse();
     }
@@ -77,13 +82,13 @@ class UserController extends GetxController {
   addNGODetails({required NgoModel user}) async {
     if (ngoDetailFormKey.currentState!.validate()) {
       loadingTrue();
-      var currentUser = await firebaseAuth.currentUser;
+      final User? currentUser = await firebaseAuth.currentUser;
       print(currentUser!.uid);
       try {
         await firebaseFirestore.collection('ngos').doc(currentUser.uid).set({
-          'uid': currentUser.uid,
+          'id': currentUser.uid,
           'email': user.email,
-          'profilePic': user.profilePhoto,
+          'profilePhoto': user.profilePhoto,
           'name': user.name,
           'about': user.about,
           'location': user.location,
@@ -92,7 +97,7 @@ class UserController extends GetxController {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
         }).then((value) async {
-          Get.toNamed(Routes.HOME);
+          Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',
             toastType: ToastType.theme,
@@ -100,6 +105,10 @@ class UserController extends GetxController {
         });
       } catch (e) {
         print(e);
+        showAppSnackBar(
+          message: 'Something went wrong',
+          toastType: ToastType.error,
+        );
       }
       loadingFalse();
     }

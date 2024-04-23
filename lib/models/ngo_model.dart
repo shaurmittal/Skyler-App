@@ -7,8 +7,8 @@ class NgoModel {
   final String location;
   final String phoneNo;
   final String socialLink;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   NgoModel({
     required this.id,
@@ -22,4 +22,16 @@ class NgoModel {
     required this.createdAt,
     required this.updatedAt,
   });
+
+  NgoModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        email = json['email'],
+        profilePhoto = json['profilePhoto'],
+        name = json['name'],
+        about = json['about'],
+        location = json['location'],
+        phoneNo = json['phoneNo'],
+        socialLink = json['socialLink'],
+        createdAt = json['createdAt'],
+        updatedAt = json['updatedAt'];
 }

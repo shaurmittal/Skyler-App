@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+import '../../../models/post_model.dart';
 import '../../../models/user_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
@@ -41,7 +44,6 @@ class CreatePostPage extends GetView<HomeController> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.logout();
                             Get.back();
                           },
                           icon: Icon(
@@ -60,13 +62,13 @@ class CreatePostPage extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
-                      height: SizeConfig.getPercentSize(8),
+                      height: SizeConfig.getPercentSize(5),
                     ),
                     MultiplePhotoWidget(
                       controller: controller,
                     ),
                     SizedBox(
-                      height: SizeConfig.getPercentSize(8),
+                      height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
                       text: 'Write a caption *',
@@ -144,7 +146,23 @@ class CreatePostPage extends GetView<HomeController> {
                           : SPlainButton(
                               text: "Upload",
                               width: double.infinity,
-                              onTap: () => controller.createPost(),
+                              onTap: () async {
+                                controller.createPost(
+                                  post: PostModel(
+                                    id: '',
+                                    caption: controller.captionController.text,
+                                    images: controller.postImgUrl.cast(),
+                                    creator: await controller.getNgoDetails(),
+                                    volunteerLimit: controller.isActive.value
+                                        ? int.parse(controller
+                                            .participantController.text)
+                                        : 0,
+                                    isEvent: controller.isActive.value,
+                                    createdAt: DateTime.now().toString(),
+                                    updatedAt: DateTime.now().toString(),
+                                  ),
+                                );
+                              },
                             ),
                     ),
                     SizedBox(
