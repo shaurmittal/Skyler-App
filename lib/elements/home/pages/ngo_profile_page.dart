@@ -10,7 +10,6 @@ import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
 import '../widgets/about_ngo.dart';
-import '../widgets/post_list.dart';
 import 'create_post.dart';
 
 class NgoProfilePage extends GetView<HomeController> {
@@ -116,8 +115,8 @@ class NgoProfilePage extends GetView<HomeController> {
                     controller: controller.tabController,
                     children: [
                       AboutNgo(),
-                      PostList(),
-                      PostList(),
+                      // PostList(),
+                      // PostList(),
                     ],
                   ),
                 ),

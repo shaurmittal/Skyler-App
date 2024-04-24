@@ -3,10 +3,10 @@ import 'package:main_sociavism/models/user_model.dart';
 
 class PostModel {
   final String id;
-  final String creator;
+  final NgoModel creator;
   final String caption;
-  final List<String> images;
-  final List<String>? volunteers;
+  final List images;
+  final List volunteers;
   final int volunteerLimit;
   final bool isEvent;
   final String createdAt;
@@ -16,7 +16,7 @@ class PostModel {
     required this.id,
     required this.caption,
     required this.images,
-     this.volunteers,
+    required this.volunteers,
     required this.volunteerLimit,
     required this.isEvent,
     required this.creator,
@@ -29,7 +29,7 @@ class PostModel {
       id: json['id'] ?? '',
       caption: json['caption'] ?? '',
       images: List<String>.from(json['images'] ?? []),
-      volunteers:List<String>.from(json['volunteers'] ?? []),
+      volunteers: List<String>.from(json['volunteers'] ?? []),
       volunteerLimit: json['volunteerLimit'] ?? 0,
       isEvent: json['isEvent'] ?? false,
       creator: json['creator'] ?? '',

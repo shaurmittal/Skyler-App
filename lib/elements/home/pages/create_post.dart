@@ -153,6 +153,7 @@ class CreatePostPage extends GetView<HomeController> {
                                     caption: controller.captionController.text,
                                     images: controller.postImgUrl.cast(),
                                     creator: await controller.getNgoDetails(),
+                                    volunteers: [''],
                                     volunteerLimit: controller.isActive.value
                                         ? int.parse(controller
                                             .participantController.text)

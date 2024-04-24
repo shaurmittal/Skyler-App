@@ -14,6 +14,7 @@ import '../../../models/post_model.dart';
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
+import 'package:intl/intl.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -69,6 +70,11 @@ class HomeController extends GetxController
     isActive(value);
   }
 
+  setDate(String date) {
+    DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+    return dateFormat.format(DateTime.parse(date));
+  }
+
   logout() async {
     isLoading(true);
     await firebaseAuth.signOut();
@@ -89,12 +95,13 @@ class HomeController extends GetxController
         var uuid = Uuid();
         var postId = uuid.v4();
         try {
+          print(post.creator);
           await firebaseFirestore.collection('posts').doc(postId).set({
             'id': postId,
-            'creator': post.creator,
+            'creator': jsonEncode(post.creator.toJson()),
             'caption': post.caption,
             'images': post.images,
-            // 'volunteers': post.volunteers,
+            'volunteers': post.volunteers,
             'volunteerLimit': post.volunteerLimit,
             'isEvent': post.isEvent,
             'createdAt': post.createdAt,
@@ -138,9 +145,30 @@ class HomeController extends GetxController
       print(currentUser!.uid);
       var data =
           await firebaseFirestore.collection('ngos').doc(currentUser.uid).get();
-      return jsonEncode(data.data()!);
+      print(data.data());
+      return NgoModel.fromJson(data.data()!);
     } catch (e) {
       print(e);
     }
+  }
+
+  Stream<List<PostModel>> getAllPosts() {
+    Stream<QuerySnapshot> stream =
+        firebaseFirestore.collection('posts').snapshots();
+    return stream.map((var qShot) => qShot.docs.map((doc) {
+          print(NgoModel.fromJson(jsonDecode(doc['creator'])));
+          print(doc['caption']);
+          return PostModel(
+            id: doc['id'],
+            creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+            caption: doc['caption'],
+            images: doc['images'],
+            volunteers: doc['volunteers'] ?? [''],
+            volunteerLimit: doc['volunteerLimit'],
+            isEvent: doc['isEvent'],
+            createdAt: doc['createdAt'],
+            updatedAt: doc['updatedAt'],
+          );
+        }).toList());
   }
 }

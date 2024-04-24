@@ -34,4 +34,19 @@ class NgoModel {
         socialLink = json['socialLink'],
         createdAt = json['createdAt'],
         updatedAt = json['updatedAt'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'email': email,
+      'profilePhoto': profilePhoto,
+      'name': name,
+      'about': about,
+      'location': location,
+      'phoneNo': phoneNo,
+      'socialLink': socialLink,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+    };
+  }
 }
