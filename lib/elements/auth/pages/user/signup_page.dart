@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/color_constants.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../utils/buttons/buttons.dart';
 import '../../../../utils/fields/textfield.dart';
 import '../../../../utils/size/size_config.dart';
@@ -10,7 +11,6 @@ import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/text/text_style.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
-import '../ngo/ngo_signup_page.dart';
 
 class SignUpPage extends GetView<AuthController> {
   @override
@@ -120,7 +120,9 @@ class SignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(3),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.LOGIN);
+                      },
                       child: TextWidget(
                         text: "Have an account? Login",
                         style: textField(color: ColorConstants.darkGreen),
@@ -132,7 +134,7 @@ class SignUpPage extends GetView<AuthController> {
                     SBorderedButton(
                       text: 'Join as a NGO',
                       onTap: () {
-                        Get.to(() => NGOSignUpPage());
+                        Get.toNamed(Routes.NGOSIGNUP);
                       },
                     ),
                     SizedBox(

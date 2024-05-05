@@ -15,7 +15,8 @@ class AuthController extends GetxController {
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> ngoFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> ngoLoginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> ngoSignupFormKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -40,33 +41,83 @@ class AuthController extends GetxController {
   }
 
   signUp({required bool isNGO}) async {
-    if (signupFormKey.currentState!.validate()) {
-      loadingTrue();
-      try {
-        await firebaseAuth
-            .createUserWithEmailAndPassword(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim())
-            .then((value) {
-          if (isNGO) {
+    try {
+      if (isNGO) {
+        if (ngoSignupFormKey.currentState!.validate()) {
+          loadingTrue();
+          await firebaseAuth
+              .createUserWithEmailAndPassword(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim())
+              .then((value) {
             Get.toNamed(
               Routes.NGOUSERDETAILS,
               arguments: emailController.text,
             );
-          } else {
+          });
+        }
+      } else {
+        if (signupFormKey.currentState!.validate()) {
+          loadingTrue();
+          await firebaseAuth
+              .createUserWithEmailAndPassword(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim())
+              .then((value) {
             Get.toNamed(
               Routes.USERDETAILS,
               arguments: emailController.text,
             );
-          }
-        });
-      } on FirebaseAuthException catch (e) {
-        print(e.code);
-        showAppSnackBar(
-          message: e.message!,
-          toastType: ToastType.error,
-        );
+          });
+        }
       }
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      showAppSnackBar(
+        message: e.message!,
+        toastType: ToastType.error,
+      );
+    }
+    loadingFalse();
+  }
+
+  login({required bool isNGO}) async {
+    try {
+      if (isNGO) {
+        if (ngoSignupFormKey.currentState!.validate()) {
+          loadingTrue();
+          await firebaseAuth
+              .signInWithEmailAndPassword(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim())
+              .then((value) async {
+            Get.offAllNamed(
+              Routes.HOME,
+              arguments: emailController.text,
+            );
+          });
+        }
+      } else {
+        if (signupFormKey.currentState!.validate()) {
+          loadingTrue();
+          await firebaseAuth
+              .signInWithEmailAndPassword(
+                  email: emailController.text.trim(),
+                  password: passwordController.text.trim())
+              .then((value) async {
+            Get.offAllNamed(
+              Routes.HOME,
+              arguments: emailController.text,
+            );
+          });
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
+      showAppSnackBar(
+        message: e.message!,
+        toastType: ToastType.error,
+      );
     }
     loadingFalse();
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../constants/color_constants.dart';
-import '../../../../routes/app_pages.dart';
 import '../../../../utils/buttons/buttons.dart';
 import '../../../../utils/fields/textfield.dart';
 import '../../../../utils/size/size_config.dart';
@@ -11,8 +10,9 @@ import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/text/text_style.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
+import '../ngo/ngo_signup_page.dart';
 
-class NGOSignUpPage extends GetView<AuthController> {
+class LoginPage extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -26,7 +26,7 @@ class NGOSignUpPage extends GetView<AuthController> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: controller.ngoSignupFormKey,
+              key: controller.loginFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.getPercentSize(4),
@@ -46,7 +46,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     TextWidget(
-                      text: 'Jump in as a organization!',
+                      text: 'Welcome Back',
                       style: smallTitle(),
                       textAlign: TextAlign.center,
                     ),
@@ -54,7 +54,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     Image.asset(
-                      'assets/ngo.png',
+                      'assets/earth.png',
                       height: SizeConfig.getPercentSize(50),
                       width: SizeConfig.getPercentSize(50),
                       fit: BoxFit.cover,
@@ -78,7 +78,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                         label: 'Password',
                         hint: 'Password@123',
                         keyboardType: TextInputType.name,
-                        validate: Validator().required,
+                        validate: Validator().password,
                         icon: controller.isVisiblePass.value == false
                             ? Icon(
                                 CupertinoIcons.eye_fill,
@@ -111,9 +111,9 @@ class NGOSignUpPage extends GetView<AuthController> {
                               ),
                             )
                           : SPlainButton(
-                              text: "Sign Up",
+                              text: "Login",
                               width: double.infinity,
-                              onTap: () => controller.signUp(isNGO: true),
+                              onTap: () => controller.login(isNGO: false),
                             ),
                     ),
                     SizedBox(
@@ -121,10 +121,10 @@ class NGOSignUpPage extends GetView<AuthController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.NGOLOGIN);
+                        Get.back();
                       },
                       child: TextWidget(
-                        text: "Have an account? Login",
+                        text: "New here? Login",
                         style: textField(color: ColorConstants.darkGreen),
                       ),
                     ),
@@ -132,9 +132,9 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(10),
                     ),
                     SBorderedButton(
-                      text: 'Not a NGO? Sign Up here',
+                      text: 'Join as a NGO',
                       onTap: () {
-                        Get.back();
+                        Get.to(() => NGOSignUpPage());
                       },
                     ),
                     SizedBox(

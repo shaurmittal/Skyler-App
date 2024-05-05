@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 
 import '../elements/auth/bindings/auth_binding.dart';
+import '../elements/auth/pages/ngo/ngo_login_page.dart';
+import '../elements/auth/pages/ngo/ngo_signup_page.dart';
+import '../elements/auth/pages/user/login_page.dart';
 import '../elements/auth/pages/user/signup_page.dart';
 import '../elements/home/bindings/home_binding.dart';
 import '../elements/home/pages/home_page.dart';
@@ -34,10 +37,23 @@ class AppPages {
     //   page: () => AdminHomeView(),
     //   binding: AdminHomeBinding(),
     // ),
+
     GetPage(
       name: _Paths.SIGNUP,
       page: () => SignUpPage(),
       binding: AuthBinding(),
+    ),
+        GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginPage(),
+    ),
+        GetPage(
+      name: _Paths.NGOSIGNUP,
+      page: () => NGOSignUpPage(),
+    ),
+        GetPage(
+      name: _Paths.NGOLOGIN,
+      page: () => NGOLoginPage(),
     ),
     GetPage(
       name: _Paths.USERDETAILS,

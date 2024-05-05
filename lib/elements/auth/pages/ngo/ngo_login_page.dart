@@ -12,7 +12,7 @@ import '../../../../utils/text/text_style.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
 
-class NGOSignUpPage extends GetView<AuthController> {
+class NGOLoginPage extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -26,7 +26,7 @@ class NGOSignUpPage extends GetView<AuthController> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: controller.ngoSignupFormKey,
+              key: controller.ngoLoginFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.getPercentSize(4),
@@ -111,9 +111,9 @@ class NGOSignUpPage extends GetView<AuthController> {
                               ),
                             )
                           : SPlainButton(
-                              text: "Sign Up",
+                              text: "Login",
                               width: double.infinity,
-                              onTap: () => controller.signUp(isNGO: true),
+                              onTap: () => controller.login(isNGO: true),
                             ),
                     ),
                     SizedBox(
@@ -121,10 +121,10 @@ class NGOSignUpPage extends GetView<AuthController> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(Routes.NGOLOGIN);
+                        Get.back();
                       },
                       child: TextWidget(
-                        text: "Have an account? Login",
+                        text: "New here? Login",
                         style: textField(color: ColorConstants.darkGreen),
                       ),
                     ),
@@ -134,7 +134,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                     SBorderedButton(
                       text: 'Not a NGO? Sign Up here',
                       onTap: () {
-                        Get.back();
+                        Get.offAllNamed(Routes.SIGNUP);
                       },
                     ),
                     SizedBox(

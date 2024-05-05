@@ -6,6 +6,8 @@ abstract class Routes {
   static const ONBOARD = _Paths.ONBOARD;
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
+  static const NGOSIGNUP = _Paths.NGOSIGNUP;
+  static const NGOLOGIN = _Paths.NGOLOGIN;
   static const USERDETAILS = _Paths.USERDETAILS;
   static const NGOUSERDETAILS = _Paths.NGOUSERDETAILS;
   static const HOME = _Paths.HOME;
@@ -20,6 +22,8 @@ abstract class _Paths {
   static const ONBOARD = '/onboard';
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
+  static const NGOSIGNUP = '/ngo_signup';
+  static const NGOLOGIN = '/ngo_login';
   static const USERDETAILS = '/userdetails';
   static const NGOUSERDETAILS = '/ngo_userdetails';
   static const HOME = '/home';
