@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+import 'package:main_sociavism/constants/hive_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
@@ -10,6 +11,7 @@ import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 import '../widgets/post_widget.dart';
 import 'ngo_profile_page.dart';
+import 'user_profile_page.dart';
 
 class HomePage extends GetView<HomeController> {
   @override
@@ -65,8 +67,11 @@ class HomePage extends GetView<HomeController> {
               padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
               child: IconButton(
                 onPressed: () {
-                  // Get.to(() => UserProfilePage());
-                  Get.to(() => NgoProfilePage());
+                  if (getUserType() == UserType.USER.name) {
+                    Get.to(() => UserProfilePage());
+                  } else {
+                    Get.to(() => NgoProfilePage());
+                  }
                 },
                 icon: Icon(
                   CupertinoIcons.profile_circled,

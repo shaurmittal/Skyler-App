@@ -1,5 +1,4 @@
 import 'package:main_sociavism/models/ngo_model.dart';
-import 'package:main_sociavism/models/user_model.dart';
 
 class PostModel {
   final String id;
@@ -35,6 +34,44 @@ class PostModel {
       creator: json['creator'] ?? '',
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'caption': caption,
+      'images': images,
+      'volunteers': volunteers,
+      'volunteerLimit': volunteerLimit,
+      'isEvent': isEvent,
+      'creator': creator.toJson(),
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+    };
+  }
+
+  PostModel copyWith({
+    String? id,
+    String? caption,
+    List? images,
+    List? volunteers,
+    int? volunteerLimit,
+    bool? isEvent,
+    NgoModel? creator,
+    String? createdAt,
+    String? updatedAt,
+  }) {
+    return PostModel(
+      id: id ?? this.id,
+      caption: caption ?? this.caption,
+      images: images ?? this.images,
+      volunteers: volunteers ?? this.volunteers,
+      volunteerLimit: volunteerLimit ?? this.volunteerLimit,
+      isEvent: isEvent ?? this.isEvent,
+      creator: creator ?? this.creator,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

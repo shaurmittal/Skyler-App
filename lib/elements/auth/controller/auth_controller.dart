@@ -93,6 +93,7 @@ class AuthController extends GetxController {
                   password: passwordController.text.trim())
               .then((value) async {
             setLoggedIn(true);
+            setUserType(UserType.NGO.name);
             Get.offAllNamed(
               Routes.HOME,
               arguments: emailController.text,
@@ -108,6 +109,7 @@ class AuthController extends GetxController {
                   password: passwordController.text.trim())
               .then((value) async {
             setLoggedIn(true);
+            setUserType(UserType.USER.name);
             Get.offAllNamed(
               Routes.HOME,
               arguments: emailController.text,

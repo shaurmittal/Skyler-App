@@ -9,8 +9,8 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
 
-class AboutNgo extends StatelessWidget {
-  const AboutNgo({super.key});
+class AboutUser extends StatelessWidget {
+  const AboutUser({super.key});
 
   @override
   Widget build(BuildContext context) {

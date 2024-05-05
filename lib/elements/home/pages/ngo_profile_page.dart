@@ -114,7 +114,7 @@ class NgoProfilePage extends GetView<HomeController> {
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [
-                      AboutNgo(),
+                      AboutUser(),
                       // PostList(),
                       // PostList(),
                     ],

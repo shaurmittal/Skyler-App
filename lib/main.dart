@@ -21,6 +21,7 @@ void main() async {
 
   await Hive.initFlutter();
   await Hive.openBox(isAuthHive);
+  await Hive.openBox(userTypeHive);
 
   runApp(const MyApp());
 }

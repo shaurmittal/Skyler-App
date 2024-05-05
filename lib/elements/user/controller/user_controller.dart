@@ -64,6 +64,7 @@ class UserController extends GetxController {
           'updatedAt': user.updatedAt,
         }).then((value) async {
           setLoggedIn(true);
+          setUserType(UserType.USER.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',
@@ -100,6 +101,7 @@ class UserController extends GetxController {
           'updatedAt': user.updatedAt,
         }).then((value) async {
           setLoggedIn(true);
+          setUserType(UserType.NGO.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',

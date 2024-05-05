@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
-import '../../../routes/app_pages.dart';
+import 'package:main_sociavism/elements/home/widgets/about_ngo.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/size/size_config.dart';
@@ -61,29 +61,17 @@ class UserProfilePage extends GetView<HomeController> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: SizeConfig.getPercentSize(5),
-                  ),
                   ProfilePhotoWidget(
                     controller: controller,
                     title: 'Upload your smiling photo',
                   ),
+                  AboutUser(),
                   SizedBox(
-                    height: SizeConfig.getPercentSize(8),
+                    height: SizeConfig.getPercentSize(5),
                   ),
                 ],
               ),
             ),
-          ),
-        ),
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
-          child: SPlainButton(
-            text: "Edit Profile",
-            width: double.infinity,
-            onTap: () {
-              // Get.toNamed(Routes.USERDETAILS);
-            },
           ),
         ),
       ),

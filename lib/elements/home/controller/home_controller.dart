@@ -105,8 +105,8 @@ class HomeController extends GetxController
             'creator': jsonEncode(post.creator.toJson()),
             'caption': post.caption,
             'images': post.images,
-            'volunteers': post.volunteers,
             'volunteerLimit': post.volunteerLimit,
+            'volunteers': post.volunteers,
             'isEvent': post.isEvent,
             'createdAt': post.createdAt,
             'updatedAt': post.updatedAt,
@@ -167,12 +167,35 @@ class HomeController extends GetxController
             creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
             caption: doc['caption'],
             images: doc['images'],
-            volunteers: doc['volunteers'] ?? [''],
+            volunteers: doc['volunteers'] ?? [],
             volunteerLimit: doc['volunteerLimit'],
             isEvent: doc['isEvent'],
             createdAt: doc['createdAt'],
             updatedAt: doc['updatedAt'],
           );
         }).toList());
+  }
+
+  updatePost(PostModel post) async {
+    final User? currentUser = firebaseAuth.currentUser;
+    if (post.volunteers.isEmpty) {
+      var volunteerList = [];
+      volunteerList.add(currentUser!.uid);
+      await firebaseFirestore.collection('posts').doc(post.id).update({
+        'volunteers': volunteerList,
+      }).then((value) {});
+    } else if (post.volunteers.isNotEmpty &&
+        !post.volunteers.contains(currentUser!.uid)) {
+      var volunteerList = post.volunteers;
+      volunteerList.add(currentUser.uid);
+      await firebaseFirestore.collection('posts').doc(post.id).update({
+        'volunteers': volunteerList,
+      }).then((value) {});
+    } else {
+      showAppSnackBar(
+        message: 'Already applied !',
+        toastType: ToastType.error,
+      );
+    }
   }
 }

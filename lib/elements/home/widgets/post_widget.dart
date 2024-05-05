@@ -30,7 +30,7 @@ class PostWidget extends StatelessWidget {
         color: ColorConstants.lightGreen,
         border: Border.all(
           color: post.isEvent == true
-              ? ColorConstants.blue
+              ? ColorConstants.green
               : ColorConstants.darkGreen,
           width: SizeConfig.getPercentSize(0.7),
         ),
@@ -40,7 +40,7 @@ class PostWidget extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: post.isEvent == true
-                ? ColorConstants.blue
+                ? ColorConstants.green
                 : ColorConstants.darkGreen,
             offset: Offset(
               SizeConfig.getPercentSize(1.5),
@@ -186,39 +186,46 @@ class PostWidget extends StatelessWidget {
               //     ],
               //   ),
               // ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: SizeConfig.getPercentSize(1),
-                  horizontal: SizeConfig.getPercentSize(3),
-                ),
-                decoration: BoxDecoration(
-                  color: ColorConstants.lightGreen,
-                  border: Border.all(
-                    color: ColorConstants.green,
-                    width: SizeConfig.getPercentSize(0.7),
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    SizeConfig.getPercentSize(3),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/bid.png',
-                      height: SizeConfig.getPercentSize(8),
-                      width: SizeConfig.getPercentSize(8),
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(
-                      width: SizeConfig.getPercentSize(2),
-                    ),
-                    TextWidget(
-                      text: "Volunteer",
-                      style: boldDesp(),
-                    ),
-                  ],
-                ),
-              ),
+              post.isEvent == true
+                  ? GestureDetector(
+                    onTap: (){
+                      controller.updatePost(post);
+                    },
+                    child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: SizeConfig.getPercentSize(1),
+                          horizontal: SizeConfig.getPercentSize(3),
+                        ),
+                        decoration: BoxDecoration(
+                          color: ColorConstants.lightGreen,
+                          border: Border.all(
+                            color: ColorConstants.green,
+                            width: SizeConfig.getPercentSize(0.7),
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            SizeConfig.getPercentSize(3),
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/bid.png',
+                              height: SizeConfig.getPercentSize(8),
+                              width: SizeConfig.getPercentSize(8),
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: SizeConfig.getPercentSize(2),
+                            ),
+                            TextWidget(
+                              text: "Volunteer",
+                              style: boldDesp(),
+                            ),
+                          ],
+                        ),
+                      ),
+                  )
+                  : const SizedBox(),
             ],
           ),
         ],
