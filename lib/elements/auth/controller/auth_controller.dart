@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constants/firebase_constants.dart';
+import '../../../constants/hive_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
 
@@ -91,6 +92,7 @@ class AuthController extends GetxController {
                   email: emailController.text.trim(),
                   password: passwordController.text.trim())
               .then((value) async {
+            setLoggedIn(true);
             Get.offAllNamed(
               Routes.HOME,
               arguments: emailController.text,
@@ -105,6 +107,7 @@ class AuthController extends GetxController {
                   email: emailController.text.trim(),
                   password: passwordController.text.trim())
               .then((value) async {
+            setLoggedIn(true);
             Get.offAllNamed(
               Routes.HOME,
               arguments: emailController.text,

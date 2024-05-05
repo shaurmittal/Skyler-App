@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'constants/color_constants.dart';
+import 'constants/hive_constants.dart';
 import 'firebase_options.dart';
 import 'routes/app_pages.dart';
 import 'utils/size/size_config.dart';
@@ -16,6 +18,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await Hive.initFlutter();
+  await Hive.openBox(isAuthHive);
+
   runApp(const MyApp());
 }
 
@@ -27,7 +33,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Sociavism",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: getLoggedIn() ? Routes.HOME : Routes.SIGNUP,
       getPages: AppPages.routes,
       onInit: () => SizeConfig().init(context),
       theme: ThemeData(

@@ -6,9 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../constants/firebase_constants.dart';
+import '../../../constants/hive_constants.dart';
 import '../../../models/ngo_model.dart';
 import '../../../models/post_model.dart';
 import '../../../models/user_model.dart';
@@ -50,6 +52,7 @@ class HomeController extends GetxController
   @override
   void dispose() {
     tabController.dispose();
+    Hive.close();
     super.dispose();
   }
 
@@ -77,6 +80,7 @@ class HomeController extends GetxController
 
   logout() async {
     isLoading(true);
+    setLoggedIn(false);
     await firebaseAuth.signOut();
     Get.offAllNamed(Routes.SIGNUP);
     isLoading(false);

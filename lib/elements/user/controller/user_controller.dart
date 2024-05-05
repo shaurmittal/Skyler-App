@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/firebase_constants.dart';
+import '../../../constants/hive_constants.dart';
 import '../../../models/ngo_model.dart';
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
@@ -62,6 +63,7 @@ class UserController extends GetxController {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
         }).then((value) async {
+          setLoggedIn(true);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',
@@ -97,6 +99,7 @@ class UserController extends GetxController {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
         }).then((value) async {
+          setLoggedIn(true);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
             message: 'Welcome To Sociavism',
@@ -116,6 +119,7 @@ class UserController extends GetxController {
 
   logout() async {
     isLoading(true);
+    setLoggedIn(false);
     await firebaseAuth.signOut();
     isLoading(false);
   }
