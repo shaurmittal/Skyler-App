@@ -30,6 +30,8 @@ class HomeController extends GetxController
   var imageUrl = ''.obs;
   var isDrawerClosed = true.obs;
   var isActive = true.obs;
+  var currentUserIndex = 0.obs;
+  var currentPostId = ''.obs;
 
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
@@ -178,13 +180,14 @@ class HomeController extends GetxController
   handleVolunteer(PostModel post) async {
     if (post.creator.id == firebaseAuth.currentUser!.uid) {
       loadingTrue();
+      currentPostId(post.id);
       Get.to(() => VolunteersPage());
       userList.clear();
       for (var uid in post.volunteers) {
         userList.add(await getUserDetails(userId: uid));
       }
       loadingFalse();
-    } else {
+    } else if (getUserType() == UserType.USER.name) {
       final User? currentUser = firebaseAuth.currentUser;
       if (post.volunteers.isEmpty) {
         var volunteerList = [];
@@ -220,6 +223,37 @@ class HomeController extends GetxController
           toastType: ToastType.error,
         );
       }
+    } else {
+      showAppSnackBar(
+        message: "Ngo's are not allowed to volunteer!",
+        toastType: ToastType.error,
+      );
+      showAppSnackBar(
+        message: "Sign up as a volunteer !",
+        toastType: ToastType.info,
+      );
+    }
+  }
+
+  removeVolunteer({required String postId}) async {
+    loadingTrue();
+    try {
+      await firebaseFirestore.collection('posts').doc(postId).update({
+        'volunteers': userList.map((element) => element.id).toList(),
+      }).then((value) {
+        loadingFalse();
+        showAppSnackBar(
+          message: 'Volunteer removed !',
+          toastType: ToastType.success,
+        );
+      });
+    } catch (e) {
+      print(e);
+      loadingFalse();
+      showAppSnackBar(
+        message: "Something went wrong !",
+        toastType: ToastType.error,
+      );
     }
   }
 }

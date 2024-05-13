@@ -3,12 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
-import 'package:main_sociavism/elements/home/widgets/about_ngo.dart';
-import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
+import 'view_volunteer.dart';
 
 class VolunteersPage extends GetView<HomeController> {
   @override
@@ -64,7 +63,6 @@ class VolunteersPage extends GetView<HomeController> {
                   SizedBox(
                     height: SizeConfig.getPercentSize(2),
                   ),
-// create a listview builder of lenght controller.userList.length
                   Obx(
                     () => controller.isLoading.value
                         ? Center(
@@ -115,6 +113,7 @@ class VolunteersPage extends GetView<HomeController> {
                                   return Container(
                                     // padding: EdgeInsets.all(
                                     //     SizeConfig.getPercentSize(1)),
+                                    // height: SizeConfig.getPercentSize(15),
                                     margin: EdgeInsets.only(
                                       right: SizeConfig.getPercentSize(2),
                                       bottom: SizeConfig.getPercentSize(2),
@@ -139,6 +138,10 @@ class VolunteersPage extends GetView<HomeController> {
                                       ],
                                     ),
                                     child: ListTile(
+                                      onTap: () {
+                                        Get.to(() => ViewVolunteerPage());
+                                        controller.currentUserIndex(index);
+                                      },
                                       leading: CachedNetworkImage(
                                         imageUrl: controller
                                             .userList[index].profilePhoto,

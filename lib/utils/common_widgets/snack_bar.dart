@@ -40,7 +40,7 @@ void showAppSnackBar({
       break;
     case ToastType.info:
       icon = Icons.info_outline;
-      backgroundColor = Colors.yellow[400]!.withOpacity(0.8);
+      backgroundColor = Colors.blue[400]!.withOpacity(0.8);
       break;
   }
 
