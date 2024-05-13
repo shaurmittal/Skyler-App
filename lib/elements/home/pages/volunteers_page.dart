@@ -1,0 +1,195 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:main_sociavism/constants/color_constants.dart';
+import 'package:main_sociavism/elements/home/widgets/about_ngo.dart';
+import '../../../utils/common_widgets/photo_widget.dart';
+import '../../../utils/size/size_config.dart';
+import '../../../utils/text/text_widget.dart';
+import '../../../utils/text/text_style.dart';
+import '../controller/home_controller.dart';
+
+class VolunteersPage extends GetView<HomeController> {
+  @override
+  Widget build(BuildContext context) {
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) async {
+        if (didPop) return;
+        final NavigatorState navigator = Navigator.of(context);
+        navigator.pop();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: SizeConfig.getPercentSize(4),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: SizeConfig.getPercentSize(8),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: Icon(
+                          CupertinoIcons.back,
+                          color: ColorConstants.darkGreen,
+                          size: SizeConfig.getPercentSize(7),
+                        ),
+                      ),
+                      SizedBox(
+                        width: SizeConfig.getPercentSize(1),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            bottom: SizeConfig.getPercentSize(1)),
+                        child: TextWidget(
+                          text: 'Volunteers',
+                          style: boldBigTitle(),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: SizeConfig.getPercentSize(2),
+                  ),
+// create a listview builder of lenght controller.userList.length
+                  Obx(
+                    () => controller.isLoading.value
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: ColorConstants.darkGreen,
+                            ),
+                          )
+                        : controller.userList.isEmpty
+                            ? Center(
+                                child: Container(
+                                  // height: SizeConfig.getPercentSize(20),
+                                  width: double.infinity,
+                                  margin: EdgeInsets.only(
+                                      right: SizeConfig.getPercentSize(2)),
+                                  padding: EdgeInsets.all(
+                                      SizeConfig.getPercentSize(3)),
+                                  decoration: BoxDecoration(
+                                    color: ColorConstants.lightGreen,
+                                    border: Border.all(
+                                      color: ColorConstants.redAcc,
+                                      width: SizeConfig.getPercentSize(0.7),
+                                    ),
+                                    borderRadius: BorderRadius.circular(
+                                      SizeConfig.getPercentSize(3),
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorConstants.redAcc,
+                                        offset: Offset(
+                                          SizeConfig.getPercentSize(1.5),
+                                          SizeConfig.getPercentSize(1.5),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Text(
+                                    'Volunteers not found!',
+                                    style: boldDesp(color: ColorConstants.red),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                // physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.userList.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    // padding: EdgeInsets.all(
+                                    //     SizeConfig.getPercentSize(1)),
+                                    margin: EdgeInsets.only(
+                                      right: SizeConfig.getPercentSize(2),
+                                      bottom: SizeConfig.getPercentSize(2),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: ColorConstants.lightGreen,
+                                      border: Border.all(
+                                        color: ColorConstants.darkGreen,
+                                        width: SizeConfig.getPercentSize(0.7),
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        SizeConfig.getPercentSize(3),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ColorConstants.darkGreen,
+                                          offset: Offset(
+                                            SizeConfig.getPercentSize(0.5),
+                                            SizeConfig.getPercentSize(0.5),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      leading: CachedNetworkImage(
+                                        imageUrl: controller
+                                            .userList[index].profilePhoto,
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          height: SizeConfig.getPercentSize(11),
+                                          width: SizeConfig.getPercentSize(11),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        placeholder: (context, url) =>
+                                            const Stack(
+                                          children: [
+                                            Center(
+                                              child: CircularProgressIndicator(
+                                                color: ColorConstants.darkGreen,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error,
+                                                color:
+                                                    ColorConstants.darkGreen),
+                                      ),
+                                      title: TextWidget(
+                                        text: controller.userList[index].name,
+                                        style: textField(),
+                                      ),
+                                      trailing: Icon(
+                                        CupertinoIcons.right_chevron,
+                                        color: ColorConstants.darkGreen,
+                                        size: SizeConfig.getPercentSize(5),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

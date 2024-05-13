@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/color_constants.dart';
+import '../../../constants/firebase_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -188,10 +189,10 @@ class PostWidget extends StatelessWidget {
               // ),
               post.isEvent == true
                   ? GestureDetector(
-                    onTap: (){
-                      controller.updatePost(post);
-                    },
-                    child: Container(
+                      onTap: () {
+                        controller.handleVolunteer(post);
+                      },
+                      child: Container(
                         padding: EdgeInsets.symmetric(
                           vertical: SizeConfig.getPercentSize(1),
                           horizontal: SizeConfig.getPercentSize(3),
@@ -224,7 +225,7 @@ class PostWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                  )
+                    )
                   : const SizedBox(),
             ],
           ),

@@ -18,6 +18,8 @@ import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
 import 'package:intl/intl.dart';
 
+import '../pages/volunteers_page.dart';
+
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
   static HomeController instance = Get.find();
@@ -39,6 +41,7 @@ class HomeController extends GetxController
   late TabController tabController;
 
   var postImgUrl = [].obs;
+  var userList = List<UserModel>.empty(growable: true).obs;
 
   @override
   void onInit() {
@@ -129,17 +132,13 @@ class HomeController extends GetxController
     }
   }
 
-  getUserDetails() async {
+  getUserDetails({required String userId}) async {
     try {
-      final User? currentUser = firebaseAuth.currentUser;
-      print(currentUser!.uid);
-      var data = await firebaseFirestore
-          .collection('users')
-          .doc(currentUser.uid)
-          .get();
+      var data = await firebaseFirestore.collection('users').doc(userId).get();
       return UserModel.fromJson(data.data()!);
     } catch (e) {
       print(e);
+      loadingFalse();
     }
   }
 
@@ -176,26 +175,51 @@ class HomeController extends GetxController
         }).toList());
   }
 
-  updatePost(PostModel post) async {
-    final User? currentUser = firebaseAuth.currentUser;
-    if (post.volunteers.isEmpty) {
-      var volunteerList = [];
-      volunteerList.add(currentUser!.uid);
-      await firebaseFirestore.collection('posts').doc(post.id).update({
-        'volunteers': volunteerList,
-      }).then((value) {});
-    } else if (post.volunteers.isNotEmpty &&
-        !post.volunteers.contains(currentUser!.uid)) {
-      var volunteerList = post.volunteers;
-      volunteerList.add(currentUser.uid);
-      await firebaseFirestore.collection('posts').doc(post.id).update({
-        'volunteers': volunteerList,
-      }).then((value) {});
+  handleVolunteer(PostModel post) async {
+    if (post.creator.id == firebaseAuth.currentUser!.uid) {
+      loadingTrue();
+      Get.to(() => VolunteersPage());
+      userList.clear();
+      for (var uid in post.volunteers) {
+        userList.add(await getUserDetails(userId: uid));
+      }
+      loadingFalse();
     } else {
-      showAppSnackBar(
-        message: 'Already applied !',
-        toastType: ToastType.error,
-      );
+      final User? currentUser = firebaseAuth.currentUser;
+      if (post.volunteers.isEmpty) {
+        var volunteerList = [];
+        volunteerList.add(currentUser!.uid);
+        await firebaseFirestore.collection('posts').doc(post.id).update({
+          'volunteers': volunteerList,
+        }).then((value) {
+          showAppSnackBar(
+            message: 'Registered as a volunteer !',
+            toastType: ToastType.success,
+          );
+        });
+      } else if (post.volunteers.length == post.volunteerLimit) {
+        showAppSnackBar(
+          message: 'Volunteer limit reached !',
+          toastType: ToastType.error,
+        );
+      } else if (post.volunteers.isNotEmpty &&
+          !post.volunteers.contains(currentUser!.uid)) {
+        var volunteerList = post.volunteers;
+        volunteerList.add(currentUser.uid);
+        await firebaseFirestore.collection('posts').doc(post.id).update({
+          'volunteers': volunteerList,
+        }).then((value) {
+          showAppSnackBar(
+            message: 'Registered as a volunteer !',
+            toastType: ToastType.success,
+          );
+        });
+      } else {
+        showAppSnackBar(
+          message: "You've already applied !",
+          toastType: ToastType.error,
+        );
+      }
     }
   }
 }
