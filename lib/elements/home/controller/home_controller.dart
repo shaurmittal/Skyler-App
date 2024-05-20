@@ -1,7 +1,4 @@
 import 'dart:convert';
-// import 'dart:io';
-
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -108,6 +105,7 @@ class HomeController extends GetxController
           await firebaseFirestore.collection('posts').doc(postId).set({
             'id': postId,
             'creator': jsonEncode(post.creator.toJson()),
+            'creatorId': post.creatorId,
             'caption': post.caption,
             'images': post.images,
             'volunteerLimit': post.volunteerLimit,
@@ -144,9 +142,14 @@ class HomeController extends GetxController
     }
   }
 
+  getUserId() {
+    final User? currentUser = firebaseAuth.currentUser;
+    return currentUser!.uid;
+  }
+
   getNgoDetails() async {
     try {
-      final User? currentUser = firebaseAuth.currentUser;
+      final User? currentUser = await firebaseAuth.currentUser;
       print(currentUser!.uid);
       var data =
           await firebaseFirestore.collection('ngos').doc(currentUser.uid).get();
@@ -166,6 +169,51 @@ class HomeController extends GetxController
           return PostModel(
             id: doc['id'],
             creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+            creatorId: doc['creatorId'],
+            caption: doc['caption'],
+            images: doc['images'],
+            volunteers: doc['volunteers'] ?? [],
+            volunteerLimit: doc['volunteerLimit'],
+            isEvent: doc['isEvent'],
+            createdAt: doc['createdAt'],
+            updatedAt: doc['updatedAt'],
+          );
+        }).toList());
+  }
+
+  Stream<List<PostModel>> getNgoPosts() {
+    Stream<QuerySnapshot> stream = firebaseFirestore
+        .collection('posts')
+        .where('creatorId', isEqualTo: getUserId())
+        .where('isEvent', isEqualTo: false)
+        .snapshots();
+    return stream.map((var qShot) => qShot.docs.map((doc) {
+          return PostModel(
+            id: doc['id'],
+            creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+            creatorId: doc['creatorId'],
+            caption: doc['caption'],
+            images: doc['images'],
+            volunteers: doc['volunteers'] ?? [],
+            volunteerLimit: doc['volunteerLimit'],
+            isEvent: doc['isEvent'],
+            createdAt: doc['createdAt'],
+            updatedAt: doc['updatedAt'],
+          );
+        }).toList());
+  }
+
+  Stream<List<PostModel>> getNgoEvent() {
+    Stream<QuerySnapshot> stream = firebaseFirestore
+        .collection('posts')
+        .where('creatorId', isEqualTo: getUserId())
+        .where('isEvent', isEqualTo: true)
+        .snapshots();
+    return stream.map((var qShot) => qShot.docs.map((doc) {
+          return PostModel(
+            id: doc['id'],
+            creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+            creatorId: doc['creatorId'],
             caption: doc['caption'],
             images: doc['images'],
             volunteers: doc['volunteers'] ?? [],

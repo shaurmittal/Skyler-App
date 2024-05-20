@@ -105,7 +105,7 @@ class LoginPage extends GetView<AuthController> {
                     ),
                     Obx(
                       () => controller.isLoading.value
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(
                                 color: ColorConstants.darkGreen,
                               ),

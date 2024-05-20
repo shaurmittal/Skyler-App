@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../constants/color_constants.dart';
-import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -128,7 +126,7 @@ class AboutUser extends StatelessWidget {
           text: "Edit Profile",
           width: double.infinity,
           onTap: () {
-            Get.toNamed(Routes.NGOUSERDETAILS);
+            // Get.toNamed(Routes.NGOUSERDETAILS);
           },
         ),
         SizedBox(

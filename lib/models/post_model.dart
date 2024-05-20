@@ -3,6 +3,7 @@ import 'package:main_sociavism/models/ngo_model.dart';
 class PostModel {
   final String id;
   final NgoModel creator;
+  final String creatorId;
   final String caption;
   final List images;
   final List volunteers;
@@ -14,6 +15,7 @@ class PostModel {
   PostModel({
     required this.id,
     required this.caption,
+    required this.creatorId,
     required this.images,
     required this.volunteers,
     required this.volunteerLimit,
@@ -32,6 +34,7 @@ class PostModel {
       volunteerLimit: json['volunteerLimit'] ?? 0,
       isEvent: json['isEvent'] ?? false,
       creator: json['creator'] ?? '',
+      creatorId: json['creatorId'] ?? '',
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
     );
@@ -46,6 +49,7 @@ class PostModel {
       'volunteerLimit': volunteerLimit,
       'isEvent': isEvent,
       'creator': creator.toJson(),
+      'creatorId': creatorId,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -59,6 +63,7 @@ class PostModel {
     int? volunteerLimit,
     bool? isEvent,
     NgoModel? creator,
+    String? creatorId,
     String? createdAt,
     String? updatedAt,
   }) {
@@ -70,6 +75,7 @@ class PostModel {
       volunteerLimit: volunteerLimit ?? this.volunteerLimit,
       isEvent: isEvent ?? this.isEvent,
       creator: creator ?? this.creator,
+      creatorId: creatorId ?? this.creatorId,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

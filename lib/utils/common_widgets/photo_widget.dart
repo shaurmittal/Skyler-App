@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';

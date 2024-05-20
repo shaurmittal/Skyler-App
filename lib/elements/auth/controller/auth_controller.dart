@@ -94,10 +94,7 @@ class AuthController extends GetxController {
               .then((value) async {
             setLoggedIn(true);
             setUserType(UserType.NGO.name);
-            Get.offAllNamed(
-              Routes.HOME,
-              arguments: emailController.text,
-            );
+            Get.offAllNamed(Routes.HOME);
           });
         }
       } else {
@@ -110,10 +107,7 @@ class AuthController extends GetxController {
               .then((value) async {
             setLoggedIn(true);
             setUserType(UserType.USER.name);
-            Get.offAllNamed(
-              Routes.HOME,
-              arguments: emailController.text,
-            );
+            Get.offAllNamed(Routes.HOME);
           });
         }
       }

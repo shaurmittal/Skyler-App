@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import '../../../models/post_model.dart';
-import '../../../models/user_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
@@ -100,8 +97,8 @@ class CreatePostPage extends GetView<HomeController> {
                             activeColor: ColorConstants.darkGreen,
                             value: controller.isActive.value,
                             onChanged: (value) {
-                              print(controller.isActive);
                               controller.switchIsActive(value);
+                              print(controller.isActive);
                             },
                           ),
                         ],
@@ -153,6 +150,7 @@ class CreatePostPage extends GetView<HomeController> {
                                     caption: controller.captionController.text,
                                     images: controller.postImgUrl.cast(),
                                     creator: await controller.getNgoDetails(),
+                                    creatorId: await controller.getUserId(),
                                     volunteerLimit: controller.isActive.value
                                         ? int.parse(controller
                                             .participantController.text)

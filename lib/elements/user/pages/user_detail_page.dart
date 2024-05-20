@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import '../../../models/user_model.dart';
-import '../../../routes/app_pages.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
