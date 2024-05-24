@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -33,6 +34,8 @@ class HomeController extends GetxController
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> userUpdateFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> ngoUpdateFormKey = GlobalKey<FormState>();
 
   TextEditingController captionController = TextEditingController();
   TextEditingController participantController = TextEditingController();
@@ -42,6 +45,7 @@ class HomeController extends GetxController
   var postImgUrl = [].obs;
   var userList = List<UserModel>.empty(growable: true).obs;
 
+  TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController locationController = TextEditingController();
@@ -149,8 +153,8 @@ class HomeController extends GetxController
     }
   }
 
-  getUserId() {
-    final User? currentUser = firebaseAuth.currentUser;
+  getUserId() async {
+    final User? currentUser = await firebaseAuth.currentUser;
     return currentUser!.uid;
   }
 
@@ -171,6 +175,7 @@ class HomeController extends GetxController
     loadingTrue();
     UserModel user = await getUserDetails(userId: getUserId());
     imageUrl(user.profilePhoto);
+    emailController.text = user.email;
     nameController.text = user.name;
     ageController.text = user.age;
     locationController.text = user.location;
@@ -183,6 +188,7 @@ class HomeController extends GetxController
     loadingTrue();
     NgoModel ngo = await getNgoDetails();
     imageUrl(ngo.profilePhoto);
+    emailController.text = ngo.email;
     nameController.text = ngo.name;
     locationController.text = ngo.location;
     phoneController.text = ngo.phoneNo;
@@ -333,6 +339,74 @@ class HomeController extends GetxController
         message: "Something went wrong !",
         toastType: ToastType.error,
       );
+    }
+  }
+
+  updateUser({required UserModel user}) async {
+    if (userUpdateFormKey.currentState!.validate()) {
+      loadingTrue();
+      try {
+        await firebaseFirestore.collection('users').doc(user.id).set({
+          'id': user.id,
+          'email': user.email,
+          'profilePhoto': user.profilePhoto,
+          'name': user.name,
+          'age': user.age,
+          'location': user.location,
+          'phoneNo': user.phoneNo,
+          'socialLink': user.socialLink,
+          'createdAt': user.createdAt,
+          'updatedAt': user.updatedAt,
+        }).then((value) async {
+          getUserDetails(userId: await getUserId());
+          Get.back();
+          showAppSnackBar(
+            message: 'Welcome To Sociavism',
+            toastType: ToastType.success,
+          );
+        });
+      } catch (e) {
+        print(e);
+        showAppSnackBar(
+          message: 'Something went wrong',
+          toastType: ToastType.error,
+        );
+      }
+      loadingFalse();
+    }
+  }
+
+  updateNGO({required NgoModel user}) async {
+    if (ngoUpdateFormKey.currentState!.validate()) {
+      loadingTrue();
+      try {
+        await firebaseFirestore.collection('ngos').doc(user.id).set({
+          'id': user.id,
+          'email': user.email,
+          'profilePhoto': user.profilePhoto,
+          'name': user.name,
+          'about': user.about,
+          'location': user.location,
+          'phoneNo': user.phoneNo,
+          'socialLink': user.socialLink,
+          'createdAt': user.createdAt,
+          'updatedAt': user.updatedAt,
+        }).then((value) async {
+          getNgoDetails();
+          Get.back();
+          showAppSnackBar(
+            message: 'Welcome To Sociavism',
+            toastType: ToastType.success,
+          );
+        });
+      } catch (e) {
+        print(e);
+        showAppSnackBar(
+          message: 'Something went wrong',
+          toastType: ToastType.error,
+        );
+      }
+      loadingFalse();
     }
   }
 }

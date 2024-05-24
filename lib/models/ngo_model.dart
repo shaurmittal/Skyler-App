@@ -7,7 +7,7 @@ class NgoModel {
   final String location;
   final String phoneNo;
   final String socialLink;
-  final String createdAt;
+  String? createdAt;
   final String updatedAt;
 
   NgoModel({
@@ -19,7 +19,7 @@ class NgoModel {
     required this.location,
     required this.phoneNo,
     required this.socialLink,
-    required this.createdAt,
+    this.createdAt,
     required this.updatedAt,
   });
 

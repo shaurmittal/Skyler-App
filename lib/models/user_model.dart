@@ -7,7 +7,7 @@ class UserModel {
   final String location;
   final String phoneNo;
   final String socialLink;
-  final String createdAt;
+  String? createdAt;
   final String updatedAt;
 
   UserModel({
@@ -19,12 +19,11 @@ class UserModel {
     required this.location,
     required this.phoneNo,
     required this.socialLink,
-    required this.createdAt,
+    this.createdAt,
     required this.updatedAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    
     return UserModel(
       id: json['id'] ?? '',
       email: json['email'] ?? '',
