@@ -42,6 +42,13 @@ class HomeController extends GetxController
   var postImgUrl = [].obs;
   var userList = List<UserModel>.empty(growable: true).obs;
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController socialController = TextEditingController();
+  TextEditingController aboutNgoController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -158,6 +165,30 @@ class HomeController extends GetxController
     } catch (e) {
       print(e);
     }
+  }
+
+  setUser() async {
+    loadingTrue();
+    UserModel user = await getUserDetails(userId: getUserId());
+    imageUrl(user.profilePhoto);
+    nameController.text = user.name;
+    ageController.text = user.age;
+    locationController.text = user.location;
+    phoneController.text = user.phoneNo;
+    socialController.text = user.socialLink;
+    loadingFalse();
+  }
+
+  setNgo() async {
+    loadingTrue();
+    NgoModel ngo = await getNgoDetails();
+    imageUrl(ngo.profilePhoto);
+    nameController.text = ngo.name;
+    locationController.text = ngo.location;
+    phoneController.text = ngo.phoneNo;
+    socialController.text = ngo.socialLink;
+    aboutNgoController.text = ngo.about;
+    loadingFalse();
   }
 
   Stream<List<PostModel>> getAllPosts() {

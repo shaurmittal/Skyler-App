@@ -8,7 +8,11 @@ import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
 
 class AboutUser extends StatelessWidget {
-  const AboutUser({super.key});
+  var controller;
+  AboutUser({
+    this.controller,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class AboutUser extends StatelessWidget {
               width: SizeConfig.getPercentSize(5),
             ),
             TextWidget(
-              text: 'Rohan Veer',
+              text: controller.nameController.text,
               style: boldTitle(),
               textAlign: TextAlign.center,
             ),
@@ -39,23 +43,41 @@ class AboutUser extends StatelessWidget {
         SizedBox(
           height: SizeConfig.getPercentSize(5),
         ),
-        Row(
-          children: [
-            Icon(
-              Icons.cake_rounded,
-              color: ColorConstants.darkGreen,
-              size: SizeConfig.getPercentSize(7),
-            ),
-            SizedBox(
-              width: SizeConfig.getPercentSize(5),
-            ),
-            TextWidget(
-              text: '20',
-              style: boldTitle(),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+        controller.aboutNgoController.text == ''
+            ? Row(
+                children: [
+                  Icon(
+                    Icons.cake_rounded,
+                    color: ColorConstants.darkGreen,
+                    size: SizeConfig.getPercentSize(7),
+                  ),
+                  SizedBox(
+                    width: SizeConfig.getPercentSize(5),
+                  ),
+                  TextWidget(
+                    text: controller.ageController.text,
+                    style: boldTitle(),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  Icon(
+                    Icons.summarize_rounded,
+                    color: ColorConstants.darkGreen,
+                    size: SizeConfig.getPercentSize(7),
+                  ),
+                  SizedBox(
+                    width: SizeConfig.getPercentSize(5),
+                  ),
+                  TextWidget(
+                    text: controller.aboutNgoController.text,
+                    style: boldTitle(),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
         SizedBox(
           height: SizeConfig.getPercentSize(5),
         ),
@@ -70,7 +92,7 @@ class AboutUser extends StatelessWidget {
               width: SizeConfig.getPercentSize(5),
             ),
             TextWidget(
-              text: 'Mumbai, Maharashtra',
+              text: controller.locationController.text,
               style: boldTitle(),
               textAlign: TextAlign.center,
             ),
@@ -90,7 +112,7 @@ class AboutUser extends StatelessWidget {
               width: SizeConfig.getPercentSize(5),
             ),
             TextWidget(
-              text: '+91 93XXXXXXXX',
+              text: controller.phoneController.text,
               style: boldTitle(),
               textAlign: TextAlign.center,
             ),
@@ -99,29 +121,33 @@ class AboutUser extends StatelessWidget {
         SizedBox(
           height: SizeConfig.getPercentSize(5),
         ),
-        Row(
-          children: [
-            Icon(
-              // Icons.south_america_outlined,
-              CupertinoIcons.globe,
-              color: ColorConstants.darkGreen,
-              size: SizeConfig.getPercentSize(7),
-            ),
-            SizedBox(
-              width: SizeConfig.getPercentSize(5),
-            ),
-            Expanded(
-              child: TextWidget(
-                text: 'www.instagrm.com/rohan_99',
-                style: boldTitle(),
-                textAlign: TextAlign.start,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
+        controller.socialController.text == ''
+            ? Row(
+                children: [
+                  Icon(
+                    // Icons.south_america_outlined,
+                    CupertinoIcons.globe,
+                    color: ColorConstants.darkGreen,
+                    size: SizeConfig.getPercentSize(7),
+                  ),
+                  SizedBox(
+                    width: SizeConfig.getPercentSize(5),
+                  ),
+                  Expanded(
+                    child: TextWidget(
+                      text: controller.socialController.text,
+                      style: boldTitle(),
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ],
+              )
+            : SizedBox(),
+        controller.socialController.text == ''
+            ? SizedBox(
+                height: SizeConfig.getPercentSize(5),
+              )
+            : SizedBox(),
         SPlainButton(
           text: "Edit Profile",
           width: double.infinity,

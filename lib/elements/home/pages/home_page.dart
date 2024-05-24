@@ -69,8 +69,10 @@ class HomePage extends GetView<HomeController> {
                 onPressed: () {
                   if (getUserType() == UserType.USER.name) {
                     Get.to(() => UserProfilePage());
+                    controller.setUser();
                   } else {
                     Get.to(() => NgoProfilePage());
+                    controller.setNgo();
                   }
                 },
                 icon: Icon(

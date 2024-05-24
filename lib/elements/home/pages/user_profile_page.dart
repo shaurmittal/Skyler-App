@@ -25,51 +25,59 @@ class UserProfilePage extends GetView<HomeController> {
             padding: EdgeInsets.symmetric(
               horizontal: SizeConfig.getPercentSize(4),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: SizeConfig.getPercentSize(8),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(
-                          CupertinoIcons.back,
-                          color: ColorConstants.darkGreen,
-                          size: SizeConfig.getPercentSize(7),
-                        ),
+            child: Obx(
+              () => controller.isLoading.value
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorConstants.darkGreen,
                       ),
-                      SizedBox(
-                        width: SizeConfig.getPercentSize(1),
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: SizeConfig.getPercentSize(8),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                icon: Icon(
+                                  CupertinoIcons.back,
+                                  color: ColorConstants.darkGreen,
+                                  size: SizeConfig.getPercentSize(7),
+                                ),
+                              ),
+                              SizedBox(
+                                width: SizeConfig.getPercentSize(1),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: SizeConfig.getPercentSize(1)),
+                                child: TextWidget(
+                                  text: 'Profile',
+                                  style: boldBigTitle(),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                          ProfilePhotoWidget(
+                            controller: controller,
+                            title: 'Upload your smiling photo',
+                          ),
+                          AboutUser(controller: controller),
+                          SizedBox(
+                            height: SizeConfig.getPercentSize(5),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            bottom: SizeConfig.getPercentSize(1)),
-                        child: TextWidget(
-                          text: 'Profile',
-                          style: boldBigTitle(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                  ProfilePhotoWidget(
-                    controller: controller,
-                    title: 'Upload your smiling photo',
-                  ),
-                  AboutUser(),
-                  SizedBox(
-                    height: SizeConfig.getPercentSize(5),
-                  ),
-                ],
-              ),
+                    ),
             ),
           ),
         ),
