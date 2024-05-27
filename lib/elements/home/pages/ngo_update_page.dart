@@ -53,7 +53,7 @@ class NgoUpdatePage extends GetView<HomeController> {
                           child: TextWidget(
                             text: 'Edit Profile',
                             style: smallTitle(),
-                            textAlign: TextAlign.center,
+                            // textAlign: TextAlign.center,
                           ),
                         ),
                       ],

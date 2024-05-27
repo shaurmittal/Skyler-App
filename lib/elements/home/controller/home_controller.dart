@@ -173,7 +173,7 @@ class HomeController extends GetxController
 
   setUser() async {
     loadingTrue();
-    UserModel user = await getUserDetails(userId: getUserId());
+    UserModel user = await getUserDetails(userId: await getUserId());
     imageUrl(user.profilePhoto);
     emailController.text = user.email;
     nameController.text = user.name;
@@ -361,7 +361,7 @@ class HomeController extends GetxController
           getUserDetails(userId: await getUserId());
           Get.back();
           showAppSnackBar(
-            message: 'Welcome To Sociavism',
+            message: 'Details updated successfully',
             toastType: ToastType.success,
           );
         });
@@ -395,7 +395,7 @@ class HomeController extends GetxController
           getNgoDetails();
           Get.back();
           showAppSnackBar(
-            message: 'Welcome To Sociavism',
+            message: 'Details updated successfully',
             toastType: ToastType.success,
           );
         });
