@@ -155,7 +155,8 @@ class HomeController extends GetxController
 
   getUserId() async {
     final User? currentUser = await firebaseAuth.currentUser;
-    return currentUser!.uid;
+    print(currentUser!.uid);
+    return currentUser.uid;
   }
 
   getNgoDetails() async {
@@ -220,9 +221,11 @@ class HomeController extends GetxController
 
   Stream<List<PostModel>> getNgoPosts() {
     try {
+      final User? currentUser = firebaseAuth.currentUser;
+      print(currentUser!.uid);
       Stream<QuerySnapshot> stream = firebaseFirestore
           .collection('posts')
-          .where('creatorId', isEqualTo: getUserId())
+          .where('creatorId', isEqualTo: currentUser.uid)
           .where('isEvent', isEqualTo: false)
           .snapshots();
 
@@ -247,9 +250,11 @@ class HomeController extends GetxController
   }
 
   Stream<List<PostModel>> getNgoEvent() {
+    final User? currentUser = firebaseAuth.currentUser;
+    print(currentUser!.uid);
     Stream<QuerySnapshot> stream = firebaseFirestore
         .collection('posts')
-        .where('creatorId', isEqualTo: getUserId())
+        .where('creatorId', isEqualTo: currentUser.uid)
         .where('isEvent', isEqualTo: true)
         .snapshots();
     return stream.map((var qShot) => qShot.docs.map((doc) {
