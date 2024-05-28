@@ -19,8 +19,7 @@ class LoginPage extends GetView<AuthController> {
       canPop: false,
       onPopInvoked: (bool didPop) async {
         if (didPop) return;
-        final NavigatorState navigator = Navigator.of(context);
-        navigator.pop();
+        Get.back();
       },
       child: Scaffold(
         body: SafeArea(

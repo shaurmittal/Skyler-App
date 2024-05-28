@@ -21,8 +21,7 @@ class NgoProfilePage extends GetView<HomeController> {
       canPop: false,
       onPopInvoked: (bool didPop) async {
         if (didPop) return;
-        final NavigatorState navigator = Navigator.of(context);
-        navigator.pop();
+        Get.back();
       },
       child: Scaffold(
         body: SafeArea(
@@ -126,19 +125,16 @@ class NgoProfilePage extends GetView<HomeController> {
                           child: TabBarView(
                             controller: controller.tabController,
                             children: [
+                              // TODO : update this with ngo user
                               AboutUser(controller: controller),
+                              // TODO: null error
                               StreamBuilder<List<PostModel>>(
                                 stream: controller.getNgoPosts(),
                                 builder: (context, snapshot) {
                                   print(snapshot.data);
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: ColorConstants.darkGreen,
-                                      ),
-                                    );
-                                  } else if (snapshot.hasError ||
+                                  print(snapshot.connectionState);
+                                  if (snapshot.data == null ||
+                                      snapshot.hasError ||
                                       snapshot.data!.isEmpty) {
                                     print(snapshot.error);
                                     return Center(
@@ -178,6 +174,13 @@ class NgoProfilePage extends GetView<HomeController> {
                                         ),
                                       ),
                                     );
+                                  } else if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: ColorConstants.darkGreen,
+                                      ),
+                                    );
                                   } else {
                                     List<PostModel> posts = snapshot.data!;
                                     return ListView.builder(
@@ -198,14 +201,8 @@ class NgoProfilePage extends GetView<HomeController> {
                                 stream: controller.getNgoEvent(),
                                 builder: (context, snapshot) {
                                   print(snapshot.data);
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        color: ColorConstants.darkGreen,
-                                      ),
-                                    );
-                                  } else if (snapshot.hasError ||
+                                  if (snapshot.data == null ||
+                                      snapshot.hasError ||
                                       snapshot.data!.isEmpty) {
                                     print(snapshot.error);
                                     return Center(
@@ -243,6 +240,13 @@ class NgoProfilePage extends GetView<HomeController> {
                                               color: ColorConstants.red),
                                           textAlign: TextAlign.center,
                                         ),
+                                      ),
+                                    );
+                                  } else if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        color: ColorConstants.darkGreen,
                                       ),
                                     );
                                   } else {

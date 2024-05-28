@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/color_constants.dart';
-import '../../../routes/app_pages.dart';
+import '../../../constants/hive_constants.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
+import '../pages/ngo_update_page.dart';
 import '../pages/user_update_page.dart';
 
 class AboutUser extends StatelessWidget {
@@ -155,7 +156,11 @@ class AboutUser extends StatelessWidget {
           text: "Edit Profile",
           width: double.infinity,
           onTap: () {
-            Get.to(() => UserUpdatePage());
+            if (getUserType() == UserType.USER.name) {
+              Get.to(() => UserUpdatePage());
+            } else {
+              Get.to(() => NgoUpdatePage());
+            }
           },
         ),
         SizedBox(

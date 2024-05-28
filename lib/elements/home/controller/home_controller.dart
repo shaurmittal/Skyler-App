@@ -219,25 +219,31 @@ class HomeController extends GetxController
   }
 
   Stream<List<PostModel>> getNgoPosts() {
-    Stream<QuerySnapshot> stream = firebaseFirestore
-        .collection('posts')
-        .where('creatorId', isEqualTo: getUserId())
-        .where('isEvent', isEqualTo: false)
-        .snapshots();
-    return stream.map((var qShot) => qShot.docs.map((doc) {
-          return PostModel(
-            id: doc['id'],
-            creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
-            creatorId: doc['creatorId'],
-            caption: doc['caption'],
-            images: doc['images'],
-            volunteers: doc['volunteers'] ?? [],
-            volunteerLimit: doc['volunteerLimit'],
-            isEvent: doc['isEvent'],
-            createdAt: doc['createdAt'],
-            updatedAt: doc['updatedAt'],
-          );
-        }).toList());
+    try {
+      Stream<QuerySnapshot> stream = firebaseFirestore
+          .collection('posts')
+          .where('creatorId', isEqualTo: getUserId())
+          .where('isEvent', isEqualTo: false)
+          .snapshots();
+
+      return stream.map((var qShot) => qShot.docs.map((doc) {
+            return PostModel(
+              id: doc['id'],
+              creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+              creatorId: doc['creatorId'],
+              caption: doc['caption'],
+              images: doc['images'],
+              volunteers: doc['volunteers'] ?? [],
+              volunteerLimit: doc['volunteerLimit'],
+              isEvent: doc['isEvent'],
+              createdAt: doc['createdAt'],
+              updatedAt: doc['updatedAt'],
+            );
+          }).toList());
+    } catch (e) {
+      print(e);
+      throw Exception(e);
+    }
   }
 
   Stream<List<PostModel>> getNgoEvent() {

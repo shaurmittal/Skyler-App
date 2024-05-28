@@ -20,8 +20,7 @@ class HomePage extends GetView<HomeController> {
       canPop: false,
       onPopInvoked: (bool didPop) async {
         if (didPop) return;
-        final NavigatorState navigator = Navigator.of(context);
-        navigator.pop();
+        Get.back();
       },
       child: Scaffold(
         key: controller.scaffoldkey,

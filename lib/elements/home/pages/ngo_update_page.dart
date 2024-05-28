@@ -18,8 +18,7 @@ class NgoUpdatePage extends GetView<HomeController> {
       canPop: false,
       onPopInvoked: (bool didPop) async {
         if (didPop) return;
-        final NavigatorState navigator = Navigator.of(context);
-        navigator.pop();
+        Get.back();
       },
       child: Scaffold(
         body: SafeArea(
@@ -153,7 +152,7 @@ class NgoUpdatePage extends GetView<HomeController> {
                           : SPlainButton(
                               text: "Submit",
                               width: double.infinity,
-                              onTap: () async{
+                              onTap: () async {
                                 controller.updateNGO(
                                   user: NgoModel(
                                     id: await controller.getUserId(),
@@ -161,9 +160,11 @@ class NgoUpdatePage extends GetView<HomeController> {
                                     profilePhoto: controller.imageUrl.value,
                                     name: controller.nameController.text,
                                     about: controller.aboutNgoController.text,
-                                    location: controller.locationController.text,
+                                    location:
+                                        controller.locationController.text,
                                     phoneNo: controller.phoneController.text,
-                                    socialLink: controller.socialController.text, 
+                                    socialLink:
+                                        controller.socialController.text,
                                     updatedAt: DateTime.now().toString(),
                                   ),
                                 );

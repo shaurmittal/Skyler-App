@@ -18,8 +18,7 @@ class UserUpdatePage extends GetView<HomeController> {
       canPop: false,
       onPopInvoked: (bool didPop) async {
         if (didPop) return;
-        final NavigatorState navigator = Navigator.of(context);
-        navigator.pop();
+        Get.back();
       },
       child: Scaffold(
         body: SafeArea(
@@ -41,7 +40,6 @@ class UserUpdatePage extends GetView<HomeController> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.logout();
                             Get.back();
                           },
                           icon: Icon(
