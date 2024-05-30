@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+
 import '../../../models/ngo_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
 import '../../../utils/size/size_config.dart';
-import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
+import '../../../utils/text/text_widget.dart';
 import '../../../utils/validators/text_field_validation.dart';
 import '../controller/user_controller.dart';
 
@@ -69,7 +70,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'NGO / Organization Name *',
+                      text: 'NGO/Organization Name*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -84,7 +85,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(3),
                     ),
                     TextWidget(
-                      text: 'Summary *',
+                      text: 'Description*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -98,7 +99,7 @@ class NGODetailPage extends GetView<UserController> {
                       validate: Validator().required,
                     ),
                     TextWidget(
-                      text: 'Location *',
+                      text: 'Location*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -113,7 +114,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Phone number *',
+                      text: 'Phone number*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -129,7 +130,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link (optional)',
+                      text: 'Social Link*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),

@@ -6,8 +6,8 @@ import '../../../../constants/color_constants.dart';
 import '../../../../utils/buttons/buttons.dart';
 import '../../../../utils/fields/textfield.dart';
 import '../../../../utils/size/size_config.dart';
-import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/text/text_style.dart';
+import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
 import '../ngo/ngo_signup_page.dart';
@@ -45,7 +45,7 @@ class LoginPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     TextWidget(
-                      text: 'Welcome Back',
+                      text: 'Welcome Back!',
                       style: smallTitle(),
                       textAlign: TextAlign.center,
                     ),
@@ -123,7 +123,7 @@ class LoginPage extends GetView<AuthController> {
                         Get.back();
                       },
                       child: TextWidget(
-                        text: "New here? Login",
+                        text: "New here? Sign Up",
                         style: textField(color: ColorConstants.darkGreen),
                       ),
                     ),
@@ -131,7 +131,7 @@ class LoginPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(10),
                     ),
                     SBorderedButton(
-                      text: 'Join as a NGO',
+                      text: 'Join as an NGO',
                       onTap: () {
                         Get.to(() => NGOSignUpPage());
                       },

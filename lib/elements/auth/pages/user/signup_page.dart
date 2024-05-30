@@ -7,8 +7,8 @@ import '../../../../routes/app_pages.dart';
 import '../../../../utils/buttons/buttons.dart';
 import '../../../../utils/fields/textfield.dart';
 import '../../../../utils/size/size_config.dart';
-import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/text/text_style.dart';
+import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
 
@@ -131,7 +131,7 @@ class SignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(10),
                     ),
                     SBorderedButton(
-                      text: 'Join as a NGO',
+                      text: 'Join as an NGO',
                       onTap: () {
                         Get.toNamed(Routes.NGOSIGNUP);
                       },

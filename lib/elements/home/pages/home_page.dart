@@ -1,12 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import 'package:main_sociavism/constants/hive_constants.dart';
+
 import '../../../models/post_model.dart';
 import '../../../utils/size/size_config.dart';
-import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
+import '../../../utils/text/text_widget.dart';
 import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 import '../widgets/post_widget.dart';
@@ -32,16 +34,21 @@ class HomePage extends GetView<HomeController> {
           leading: Padding(
             padding: EdgeInsets.only(left: SizeConfig.getPercentSize(4)),
             child: IconButton(
-              onPressed: () {
-                controller.scaffoldkey.currentState!.openDrawer();
-              },
-              icon: Icon(
-                CupertinoIcons.rectangle_grid_1x2_fill,
-                // CupertinoIcons.line_horizontal_3,
-                color: ColorConstants.darkGreen,
-                size: SizeConfig.getPercentSize(7),
-              ),
-            ),
+                onPressed: () {
+                  controller.scaffoldkey.currentState!.openDrawer();
+                },
+                icon: LineIcon(
+                  LineIcons.bars,
+                  size: 37,
+                  color: ColorConstants.darkGreen,
+                )
+                // Icon(
+                //   CupertinoIcons.rectangle_grid_1x2_fill,
+                //   // CupertinoIcons.line_horizontal_3,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                ),
           ),
           title: Row(
             children: [
@@ -65,21 +72,26 @@ class HomePage extends GetView<HomeController> {
             Padding(
               padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
               child: IconButton(
-                onPressed: () {
-                  if (getUserType() == UserType.USER.name) {
-                    Get.to(() => UserProfilePage());
-                    controller.setUser();
-                  } else {
-                    Get.to(() => NgoProfilePage());
-                    controller.setNgo();
-                  }
-                },
-                icon: Icon(
-                  CupertinoIcons.profile_circled,
-                  color: ColorConstants.darkGreen,
-                  size: SizeConfig.getPercentSize(8),
-                ),
-              ),
+                  onPressed: () {
+                    if (getUserType() == UserType.USER.name) {
+                      Get.to(() => UserProfilePage());
+                      controller.setUser();
+                    } else {
+                      Get.to(() => NgoProfilePage());
+                      controller.setNgo();
+                    }
+                  },
+                  icon: LineIcon(
+                    LineIcons.userCircle,
+                    size: 39,
+                    color: ColorConstants.darkGreen,
+                  )
+                  // Icon(
+                  //   CupertinoIcons.profile_circled,
+                  //   color: ColorConstants.darkGreen,
+                  //   size: SizeConfig.getPercentSize(8),
+                  // ),
+                  ),
             ),
           ],
         ),

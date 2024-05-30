@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
+
 import '../../../models/post_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
 import '../../../utils/size/size_config.dart';
-import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
+import '../../../utils/text/text_widget.dart';
 import '../../../utils/validators/text_field_validation.dart';
 import '../controller/home_controller.dart';
 
@@ -67,7 +68,7 @@ class CreatePostPage extends GetView<HomeController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Write a caption *',
+                      text: 'Write a caption*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -112,7 +113,7 @@ class CreatePostPage extends GetView<HomeController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(
-                                  text: 'Participant limit *',
+                                  text: 'Participant limit*',
                                   style: smallDescp(),
                                   textAlign: TextAlign.center,
                                 ),

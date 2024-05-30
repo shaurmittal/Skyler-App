@@ -7,8 +7,8 @@ import '../../../../routes/app_pages.dart';
 import '../../../../utils/buttons/buttons.dart';
 import '../../../../utils/fields/textfield.dart';
 import '../../../../utils/size/size_config.dart';
-import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/text/text_style.dart';
+import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
 
@@ -45,7 +45,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     TextWidget(
-                      text: 'Jump in as a organization!',
+                      text: 'Jump in as an organization!',
                       style: smallTitle(),
                       textAlign: TextAlign.center,
                     ),
@@ -131,7 +131,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(10),
                     ),
                     SBorderedButton(
-                      text: 'Not a NGO? Sign Up here',
+                      text: 'Not an NGO? Sign Up here',
                       onTap: () {
                         Get.back();
                       },
