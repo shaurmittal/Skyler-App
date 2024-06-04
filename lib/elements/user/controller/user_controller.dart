@@ -67,7 +67,7 @@ class UserController extends GetxController {
           setUserType(UserType.USER.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
-            message: 'Welcome To Sociavism',
+            message: 'Welcome To Sociavism!',
             toastType: ToastType.theme,
           );
         });
@@ -104,14 +104,14 @@ class UserController extends GetxController {
           setUserType(UserType.NGO.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
-            message: 'Welcome To Sociavism',
+            message: 'Welcome To Sociavism!',
             toastType: ToastType.theme,
           );
         });
       } catch (e) {
         print(e);
         showAppSnackBar(
-          message: 'Something went wrong',
+          message: 'Something went wrong.',
           toastType: ToastType.error,
         );
       }

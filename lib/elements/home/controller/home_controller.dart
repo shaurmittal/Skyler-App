@@ -1,10 +1,11 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../constants/firebase_constants.dart';
@@ -14,8 +15,6 @@ import '../../../models/post_model.dart';
 import '../../../models/user_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/common_widgets/snack_bar.dart';
-import 'package:intl/intl.dart';
-
 import '../pages/volunteers_page.dart';
 
 class HomeController extends GetxController
@@ -104,7 +103,7 @@ class HomeController extends GetxController
       print(postImgUrl.length);
       if (postImgUrl.length > 5) {
         showAppSnackBar(
-          message: 'Only 5 photos are allowed',
+          message: 'Only 5 photos are allowed.',
           toastType: ToastType.error,
         );
       } else {
@@ -127,14 +126,14 @@ class HomeController extends GetxController
           }).then((value) async {
             Get.back();
             showAppSnackBar(
-              message: 'Post Uploaded',
+              message: 'Post Uploaded.',
               toastType: ToastType.success,
             );
           });
         } catch (e) {
           print(e);
           showAppSnackBar(
-            message: 'Something went wrong',
+            message: 'Something went wrong.',
             toastType: ToastType.error,
           );
         }
@@ -292,13 +291,13 @@ class HomeController extends GetxController
           'volunteers': volunteerList,
         }).then((value) {
           showAppSnackBar(
-            message: 'Registered as a volunteer !',
+            message: 'Registered as a Volunteer.',
             toastType: ToastType.success,
           );
         });
       } else if (post.volunteers.length == post.volunteerLimit) {
         showAppSnackBar(
-          message: 'Volunteer limit reached !',
+          message: 'Volunteer limit reached.',
           toastType: ToastType.error,
         );
       } else if (post.volunteers.isNotEmpty &&
@@ -309,23 +308,23 @@ class HomeController extends GetxController
           'volunteers': volunteerList,
         }).then((value) {
           showAppSnackBar(
-            message: 'Registered as a volunteer !',
+            message: 'Registered as a Volunteer.',
             toastType: ToastType.success,
           );
         });
       } else {
         showAppSnackBar(
-          message: "You've already applied !",
+          message: "You've already applied.",
           toastType: ToastType.error,
         );
       }
     } else {
       showAppSnackBar(
-        message: "Ngo's are not allowed to volunteer!",
+        message: "NGOs are not allowed to Volunteer.",
         toastType: ToastType.error,
       );
       showAppSnackBar(
-        message: "Sign up as a volunteer !",
+        message: "Sign up as a Volunteer!",
         toastType: ToastType.info,
       );
     }
@@ -339,7 +338,7 @@ class HomeController extends GetxController
       }).then((value) {
         loadingFalse();
         showAppSnackBar(
-          message: 'Volunteer removed !',
+          message: 'Volunteer removed!',
           toastType: ToastType.success,
         );
       });
@@ -347,7 +346,7 @@ class HomeController extends GetxController
       print(e);
       loadingFalse();
       showAppSnackBar(
-        message: "Something went wrong !",
+        message: "Something went wrong.",
         toastType: ToastType.error,
       );
     }
@@ -372,14 +371,14 @@ class HomeController extends GetxController
           getUserDetails(userId: await getUserId());
           Get.back();
           showAppSnackBar(
-            message: 'Details updated successfully',
+            message: 'Details updated successfully!',
             toastType: ToastType.success,
           );
         });
       } catch (e) {
         print(e);
         showAppSnackBar(
-          message: 'Something went wrong',
+          message: 'Something went wrong.',
           toastType: ToastType.error,
         );
       }
@@ -406,14 +405,14 @@ class HomeController extends GetxController
           getNgoDetails();
           Get.back();
           showAppSnackBar(
-            message: 'Details updated successfully',
+            message: 'Details updated successfully!',
             toastType: ToastType.success,
           );
         });
       } catch (e) {
         print(e);
         showAppSnackBar(
-          message: 'Something went wrong',
+          message: 'Something went wrong.',
           toastType: ToastType.error,
         );
       }

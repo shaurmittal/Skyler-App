@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 
 import '../../../utils/size/size_config.dart';
@@ -32,11 +33,16 @@ class DrawerWidget extends StatelessWidget {
                 height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
-                leading: Icon(
-                  CupertinoIcons.home,
+                leading: LineIcon(
+                  LineIcons.home,
+                  size: 35,
                   color: ColorConstants.darkGreen,
-                  size: SizeConfig.getPercentSize(7),
                 ),
+                // Icon(
+                //   CupertinoIcons.home,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
                 title: TextWidget(
                   text: 'Home',
                   style: smallTitle(),
@@ -45,36 +51,55 @@ class DrawerWidget extends StatelessWidget {
                   Get.back();
                 },
               ),
+              SizedBox(
+                height: 15,
+              ),
               ListTile(
-                leading: Icon(
-                  Icons.developer_mode_sharp,
+                leading: LineIcon(
+                  LineIcons.infoCircle,
+                  size: 35,
                   color: ColorConstants.darkGreen,
-                  size: SizeConfig.getPercentSize(7),
                 ),
+                // Icon(
+                //   Icons.developer_mode_sharp,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
                 title: TextWidget(
                   text: 'About Us',
                   style: smallTitle(),
                 ),
                 onTap: () {},
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.switch_access_shortcut_rounded,
-                  color: ColorConstants.darkGreen,
-                  size: SizeConfig.getPercentSize(7),
-                ),
-                title: TextWidget(
-                  text: 'Invite',
-                  style: smallTitle(),
-                ),
-                onTap: () {},
+              SizedBox(
+                height: 10,
+              ),
+              // ListTile(
+              //   leading: Icon(
+              //     Icons.switch_access_shortcut_rounded,
+              //     color: ColorConstants.darkGreen,
+              //     size: SizeConfig.getPercentSize(7),
+              //   ),
+              //   title: TextWidget(
+              //     text: 'Invite',
+              //     style: smallTitle(),
+              //   ),
+              //   onTap: () {},
+              // ),
+              SizedBox(
+                height: 5,
               ),
               ListTile(
-                leading: Icon(
-                  Icons.logout_rounded,
+                leading: LineIcon(
+                  LineIcons.alternateSignOut,
+                  size: 35,
                   color: ColorConstants.darkGreen,
-                  size: SizeConfig.getPercentSize(7),
                 ),
+                // Icon(
+                //   Icons.logout_rounded,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
                 title: TextWidget(
                   text: 'Logout',
                   style: smallTitle(),
