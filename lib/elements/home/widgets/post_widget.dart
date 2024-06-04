@@ -144,89 +144,94 @@ class PostWidget extends StatelessWidget {
           SizedBox(
             height: SizeConfig.getPercentSize(3),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(
-                'assets/share.png',
-                height: SizeConfig.getPercentSize(10),
-                width: SizeConfig.getPercentSize(10),
-                fit: BoxFit.cover,
-              ),
-              // Container(
-              //   padding: EdgeInsets.symmetric(
-              //     vertical: SizeConfig.getPercentSize(2),
-              //     horizontal: SizeConfig.getPercentSize(3),
-              //   ),
-              //   decoration: BoxDecoration(
-              //     color: ColorConstants.lightGreen,
-              //     border: Border.all(
-              //       color: ColorConstants.green,
-              //       width: SizeConfig.getPercentSize(0.7),
-              //     ),
-              //     borderRadius: BorderRadius.circular(
-              //       SizeConfig.getPercentSize(3),
-              //     ),
-              //   ),
-              //   child: Row(
-              //     children: [
-              //       Icon(
-              //         CupertinoIcons.share,
-              //         color: ColorConstants.darkGreen,
-              //         size: SizeConfig.getPercentSize(6),
-              //       ),
-              //       SizedBox(
-              //         width: SizeConfig.getPercentSize(2),
-              //       ),
-              //       TextWidget(
-              //         text: "Share",
-              //         style: boldDesp(),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              post.isEvent == true
-                  ? GestureDetector(
-                      onTap: () {
-                        controller.handleVolunteer(post);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: SizeConfig.getPercentSize(1),
-                          horizontal: SizeConfig.getPercentSize(3),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          // Image.asset(
+          //   'assets/share.png',
+          //   height: SizeConfig.getPercentSize(10),
+          //   width: SizeConfig.getPercentSize(10),
+          //   fit: BoxFit.cover,
+          // ),
+          // Container(
+          //   padding: EdgeInsets.symmetric(
+          //     vertical: SizeConfig.getPercentSize(2),
+          //     horizontal: SizeConfig.getPercentSize(3),
+          //   ),
+          //   decoration: BoxDecoration(
+          //     color: ColorConstants.lightGreen,
+          //     border: Border.all(
+          //       color: ColorConstants.green,
+          //       width: SizeConfig.getPercentSize(0.7),
+          //     ),
+          //     borderRadius: BorderRadius.circular(
+          //       SizeConfig.getPercentSize(3),
+          //     ),
+          //   ),
+          //   child: Row(
+          //     children: [
+          //       Icon(
+          //         CupertinoIcons.share,
+          //         color: ColorConstants.darkGreen,
+          //         size: SizeConfig.getPercentSize(6),
+          //       ),
+          //       SizedBox(
+          //         width: SizeConfig.getPercentSize(2),
+          //       ),
+          //       TextWidget(
+          //         text: "Share",
+          //         style: boldDesp(),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          post.isEvent == true
+              ? Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.handleVolunteer(post);
+                    },
+                    child: Container(
+                      width: SizeConfig.getPercentSize(40),
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(
+                        vertical: SizeConfig.getPercentSize(1),
+                        horizontal: SizeConfig.getPercentSize(3),
+                      ),
+                      decoration: BoxDecoration(
+                        color: ColorConstants.lightGreen,
+                        border: Border.all(
+                          color: ColorConstants.green,
+                          width: SizeConfig.getPercentSize(0.7),
                         ),
-                        decoration: BoxDecoration(
-                          color: ColorConstants.lightGreen,
-                          border: Border.all(
-                            color: ColorConstants.green,
-                            width: SizeConfig.getPercentSize(0.7),
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            SizeConfig.getPercentSize(3),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/bid.png',
-                              height: SizeConfig.getPercentSize(8),
-                              width: SizeConfig.getPercentSize(8),
-                              fit: BoxFit.cover,
-                            ),
-                            SizedBox(
-                              width: SizeConfig.getPercentSize(2),
-                            ),
-                            TextWidget(
-                              text: "Volunteer",
-                              style: boldDesp(),
-                            ),
-                          ],
+                        borderRadius: BorderRadius.circular(
+                          SizeConfig.getPercentSize(3),
                         ),
                       ),
-                    )
-                  : const SizedBox(),
-            ],
-          ),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/bid.png',
+                            height: SizeConfig.getPercentSize(8),
+                            width: SizeConfig.getPercentSize(8),
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(
+                            width: SizeConfig.getPercentSize(2),
+                          ),
+                          TextWidget(
+                            text: "Volunteer",
+                            style: boldDesp(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox(),
+          //   ],
+          // ),
         ],
       ),
     );
