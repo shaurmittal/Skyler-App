@@ -60,12 +60,6 @@ class HomePage extends GetView<HomeController> {
               SizedBox(
                 width: SizeConfig.getPercentSize(2),
               ),
-              Image.asset(
-                'assets/earth.png',
-                height: SizeConfig.getPercentSize(8),
-                width: SizeConfig.getPercentSize(8),
-                fit: BoxFit.cover,
-              ),
             ],
           ),
           actions: [
