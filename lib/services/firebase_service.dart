@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -39,7 +40,7 @@ Future getImageGallery(dynamic controller) async {
         await _uploadImageStorage(image, controller);
       } else {
         showAppSnackBar(
-            message: 'File not selected', toastType: ToastType.error);
+            message: 'File not selected.', toastType: ToastType.error);
         controller.isImageLoading(false);
       }
       // image!.clear();
@@ -79,7 +80,8 @@ Future getImageListGallery(dynamic controller) async {
     if (image != null) {
       await _uploadImageListStorage(image, controller);
     } else {
-      showAppSnackBar(message: 'File not selected', toastType: ToastType.error);
+      showAppSnackBar(
+          message: 'File not selected.', toastType: ToastType.error);
       controller.isImageLoading(false);
     }
     image.clear();
@@ -93,7 +95,7 @@ Future getImageListGallery(dynamic controller) async {
         await _uploadImageListStorage(image, controller);
       } else {
         showAppSnackBar(
-            message: 'File not selected', toastType: ToastType.error);
+            message: 'File not selected.', toastType: ToastType.error);
         controller.isImageLoading(false);
       }
       image.clear();

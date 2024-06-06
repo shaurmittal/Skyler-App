@@ -38,7 +38,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'Sociavism',
+                      text: 'Find My NGO',
                       style: title(),
                     ),
                     SizedBox(

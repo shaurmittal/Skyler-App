@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import 'constants/color_constants.dart';
 import 'constants/hive_constants.dart';
 import 'firebase_options.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Sociavism",
+      title: "Find My NGO",
       initialRoute: getLoggedIn() ? Routes.HOME : Routes.SIGNUP,
       getPages: AppPages.routes,
       onInit: () => SizeConfig().init(context),

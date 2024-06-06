@@ -67,7 +67,7 @@ class UserController extends GetxController {
           setUserType(UserType.USER.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
-            message: 'Welcome To Sociavism!',
+            message: 'Welcome To Find My NGO!',
             toastType: ToastType.theme,
           );
         });
@@ -104,7 +104,7 @@ class UserController extends GetxController {
           setUserType(UserType.NGO.name);
           Get.offAllNamed(Routes.HOME);
           showAppSnackBar(
-            message: 'Welcome To Sociavism!',
+            message: 'Welcome To Find My NGO!',
             toastType: ToastType.theme,
           );
         });

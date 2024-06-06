@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:main_sociavism/utils/text/text_style.dart';
+
 import '../../services/firebase_service.dart';
 import '../size/size_config.dart';
 
@@ -221,7 +222,7 @@ class MultiplePhotoWidget extends StatelessWidget {
                                 height: SizeConfig.getPercentSize(4),
                               ),
                               Text(
-                                'Upload only 5 photos',
+                                'Upload only 5 photos.',
                                 style: smallButton(),
                                 textAlign: TextAlign.center,
                               ),

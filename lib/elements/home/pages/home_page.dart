@@ -53,7 +53,7 @@ class HomePage extends GetView<HomeController> {
           title: Row(
             children: [
               TextWidget(
-                text: 'Sociavism',
+                text: 'Find My NGO',
                 style: title(),
                 textAlign: TextAlign.center,
               ),
