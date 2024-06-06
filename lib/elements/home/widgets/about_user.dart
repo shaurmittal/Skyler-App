@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 
-import '../../../constants/color_constants.dart';
 import '../../../constants/hive_constants.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/size/size_config.dart';
@@ -29,10 +29,9 @@ class AboutUser extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
-              CupertinoIcons.person_solid,
-              color: ColorConstants.darkGreen,
-              size: SizeConfig.getPercentSize(7),
+            LineIcon(
+              LineIcons.userAlt,
+              size: 32,
             ),
             SizedBox(
               width: SizeConfig.getPercentSize(5),
@@ -50,10 +49,9 @@ class AboutUser extends StatelessWidget {
         controller.aboutNgoController.text == ''
             ? Row(
                 children: [
-                  Icon(
-                    Icons.cake_rounded,
-                    color: ColorConstants.darkGreen,
-                    size: SizeConfig.getPercentSize(7),
+                  LineIcon(
+                    LineIcons.birthdayCake,
+                    size: 32,
                   ),
                   SizedBox(
                     width: SizeConfig.getPercentSize(5),
@@ -67,10 +65,9 @@ class AboutUser extends StatelessWidget {
               )
             : Row(
                 children: [
-                  Icon(
-                    Icons.summarize_rounded,
-                    color: ColorConstants.darkGreen,
-                    size: SizeConfig.getPercentSize(7),
+                  LineIcon(
+                    LineIcons.clipboardAlt,
+                    size: 32,
                   ),
                   SizedBox(
                     width: SizeConfig.getPercentSize(5),
@@ -87,10 +84,9 @@ class AboutUser extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
-              CupertinoIcons.location_solid,
-              color: ColorConstants.darkGreen,
-              size: SizeConfig.getPercentSize(7),
+            LineIcon(
+              LineIcons.alternateMapMarked,
+              size: 32,
             ),
             SizedBox(
               width: SizeConfig.getPercentSize(5),
@@ -107,10 +103,9 @@ class AboutUser extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
-              CupertinoIcons.phone_fill,
-              color: ColorConstants.darkGreen,
-              size: SizeConfig.getPercentSize(7),
+            LineIcon(
+              LineIcons.mobilePhone,
+              size: 32,
             ),
             SizedBox(
               width: SizeConfig.getPercentSize(5),
@@ -128,11 +123,9 @@ class AboutUser extends StatelessWidget {
         controller.socialController.text == ''
             ? Row(
                 children: [
-                  Icon(
-                    // Icons.south_america_outlined,
-                    CupertinoIcons.globe,
-                    color: ColorConstants.darkGreen,
-                    size: SizeConfig.getPercentSize(7),
+                  LineIcon(
+                    LineIcons.globe,
+                    size: 32,
                   ),
                   SizedBox(
                     width: SizeConfig.getPercentSize(5),

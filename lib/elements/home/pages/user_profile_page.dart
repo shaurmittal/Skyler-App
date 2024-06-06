@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:main_sociavism/constants/color_constants.dart';
 import 'package:main_sociavism/elements/home/widgets/about_user.dart';
+
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/size/size_config.dart';
-import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
+import '../../../utils/text/text_widget.dart';
 import '../controller/home_controller.dart';
 
 class UserProfilePage extends GetView<HomeController> {

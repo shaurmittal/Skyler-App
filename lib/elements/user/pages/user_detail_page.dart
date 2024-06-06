@@ -133,7 +133,7 @@ class UserDetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link (optional)',
+                      text: 'Social Link/Instagram ID*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
