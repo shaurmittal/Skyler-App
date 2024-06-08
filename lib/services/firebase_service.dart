@@ -52,7 +52,7 @@ Future<void> _uploadImageStorage(XFile image, dynamic controller) async {
   try {
     controller.isImageLoading(true);
     int randomNumber = Random().nextInt(100000);
-    String imageLocation = 'sociavism/proflePic/image_$randomNumber';
+    String imageLocation = 'findmyngo/proflePic/image_$randomNumber';
 
     Reference ref = firebaseStorage.ref().child(imageLocation);
     UploadTask uploadTask = ref.putFile(File(image.path));
@@ -110,7 +110,7 @@ Future _uploadImageListStorage(List<XFile> image, dynamic controller) async {
     try {
       Reference reference = firebaseStorage
           .ref()
-          .child('sociavism')
+          .child('findmyngo')
           .child('posts')
           .child('image__$randomNumber');
       await reference.putFile(File(image[i].path));

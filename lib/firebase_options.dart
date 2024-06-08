@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '833310450020',
     projectId: 'find-my-ngo',
     storageBucket: 'find-my-ngo.appspot.com',
-    iosBundleId: 'com.example.mainSociavism',
+    iosBundleId: 'com.findmyngo.app',
   );
 }
