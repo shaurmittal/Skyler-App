@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
-import 'package:main_sociavism/elements/home/widgets/post_widget.dart';
+import '../../../constants/color_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
@@ -12,6 +11,7 @@ import '../../../utils/text/text_widget.dart';
 import '../../../utils/text/text_style.dart';
 import '../controller/home_controller.dart';
 import '../widgets/about_user.dart';
+import '../widgets/post_widget.dart';
 import 'create_post.dart';
 
 class NgoProfilePage extends GetView<HomeController> {

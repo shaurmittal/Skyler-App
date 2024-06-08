@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
 
+import '../../constants/color_constants.dart';
 import '../size/size_config.dart';
 import '../text/text_style.dart';
 

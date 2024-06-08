@@ -2,16 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
-import 'package:main_sociavism/utils/text/text_style.dart';
 
+import '../../constants/color_constants.dart';
 import '../../services/firebase_service.dart';
 import '../size/size_config.dart';
+import '../text/text_style.dart';
 
 class ProfilePhotoWidget extends StatelessWidget {
   dynamic controller;
   String title;
   ProfilePhotoWidget({
+    super.key,
     required this.controller,
     required this.title,
   });
@@ -34,7 +35,7 @@ class ProfilePhotoWidget extends StatelessWidget {
               ),
             ),
             child: controller.isImageLoading.value
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(
                       color: ColorConstants.darkGreen,
                     ),
@@ -47,7 +48,7 @@ class ProfilePhotoWidget extends StatelessWidget {
                           children: [
                             CachedNetworkImage(
                               imageUrl: controller.imageUrl.value,
-                              placeholder: (context, url) => Stack(
+                              placeholder: (context, url) => const Stack(
                                 children: [
                                   Center(
                                     child: CircularProgressIndicator(
@@ -56,7 +57,7 @@ class ProfilePhotoWidget extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              errorWidget: (context, url, error) => Icon(
+                              errorWidget: (context, url, error) => const Icon(
                                   Icons.error,
                                   color: ColorConstants.darkGreen),
                               width: double.infinity,
@@ -118,6 +119,7 @@ class ProfilePhotoWidget extends StatelessWidget {
 class MultiplePhotoWidget extends StatelessWidget {
   dynamic controller;
   MultiplePhotoWidget({
+    super.key,
     required this.controller,
   });
 
@@ -125,7 +127,7 @@ class MultiplePhotoWidget extends StatelessWidget {
   Widget build(context) {
     return Obx(
       () => controller.isImageLoading.value
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(
                 color: ColorConstants.darkGreen,
               ),
@@ -149,7 +151,7 @@ class MultiplePhotoWidget extends StatelessWidget {
                                     SizeConfig.getPercentSize(3)),
                                 child: CachedNetworkImage(
                                   imageUrl: controller.postImgUrl[index],
-                                  placeholder: (context, url) => Stack(
+                                  placeholder: (context, url) => const Stack(
                                     children: [
                                       Center(
                                         child: CircularProgressIndicator(
@@ -158,9 +160,9 @@ class MultiplePhotoWidget extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  errorWidget: (context, url, error) => Icon(
-                                      Icons.error,
-                                      color: ColorConstants.darkGreen),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error,
+                                          color: ColorConstants.darkGreen),
                                   // width: double.infinity,
                                   // height: double.infinity,
                                   fit: BoxFit.cover,

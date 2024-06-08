@@ -1,4 +1,4 @@
-import 'package:main_sociavism/models/ngo_model.dart';
+import 'ngo_model.dart';
 
 class PostModel {
   final String id;

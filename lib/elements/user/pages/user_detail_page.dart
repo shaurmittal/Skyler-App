@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
 
+import '../../../constants/color_constants.dart';
 import '../../../models/user_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
@@ -133,7 +133,7 @@ class UserDetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link/Instagram ID*',
+                      text: 'Social Link/Instagram ID (Optional)',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),

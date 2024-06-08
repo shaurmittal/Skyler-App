@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
-import 'package:main_sociavism/constants/hive_constants.dart';
 
+import '../../../constants/color_constants.dart';
+import '../../../constants/hive_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';

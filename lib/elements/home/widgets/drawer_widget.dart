@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
 
+import '../../../constants/color_constants.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
@@ -51,29 +51,29 @@ class DrawerWidget extends StatelessWidget {
                   Get.back();
                 },
               ),
-              SizedBox(
-                height: 15,
-              ),
-              ListTile(
-                leading: LineIcon(
-                  LineIcons.infoCircle,
-                  size: 35,
-                  color: ColorConstants.darkGreen,
-                ),
-                // Icon(
-                //   Icons.developer_mode_sharp,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
-                title: TextWidget(
-                  text: 'About Us',
-                  style: smallTitle(),
-                ),
-                onTap: () {},
-              ),
-              SizedBox(
-                height: 10,
-              ),
+              // SizedBox(
+              //   height: 15,
+              // ),
+              // ListTile(
+              //   leading: LineIcon(
+              //     LineIcons.infoCircle,
+              //     size: 35,
+              //     color: ColorConstants.darkGreen,
+              //   ),
+              //   // Icon(
+              //   //   Icons.developer_mode_sharp,
+              //   //   color: ColorConstants.darkGreen,
+              //   //   size: SizeConfig.getPercentSize(7),
+              //   // ),
+              //   title: TextWidget(
+              //     text: 'About Us',
+              //     style: smallTitle(),
+              //   ),
+              //   onTap: () {},
+              // ),
+              // SizedBox(
+              //   height: 10,
+              // ),
               // ListTile(
               //   leading: Icon(
               //     Icons.switch_access_shortcut_rounded,
@@ -86,8 +86,11 @@ class DrawerWidget extends StatelessWidget {
               //   ),
               //   onTap: () {},
               // ),
+              // SizedBox(
+              //   height: 5,
+              // ),
               SizedBox(
-                height: 5,
+                height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
                 leading: LineIcon(

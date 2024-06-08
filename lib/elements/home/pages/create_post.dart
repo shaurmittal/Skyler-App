@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:main_sociavism/constants/color_constants.dart';
 
+import '../../../constants/color_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
