@@ -1,4 +1,4 @@
-package com.example.main_sociavism
+package com.findmyngo.app
 
 import io.flutter.embedding.android.FlutterActivity
 
