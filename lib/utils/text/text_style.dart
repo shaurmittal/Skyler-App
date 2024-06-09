@@ -41,6 +41,14 @@ TextStyle textField({Color? color}) {
     color: color ?? ColorConstants.darkGreen,
   );
 }
+TextStyle underline({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(4),
+    fontWeight: FontWeight.w500,
+    color: color ?? ColorConstants.darkGreen,
+    decoration: TextDecoration.underline,
+  );
+}
 
 TextStyle hintField() {
   return TextStyle(

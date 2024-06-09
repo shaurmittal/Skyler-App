@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../../constants/firebase_constants.dart';
 import '../../../constants/hive_constants.dart';
 import '../../../routes/app_pages.dart';
@@ -21,6 +22,11 @@ class AuthController extends GetxController {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final webController = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.disabled)
+    ..loadRequest(Uri.parse(
+        "https://shaurmittal.wixsite.com/find-my-ngo/privacy-policy"));
 
   void loadingTrue() {
     isLoading(true);

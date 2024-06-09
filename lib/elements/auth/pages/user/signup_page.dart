@@ -1,3 +1,4 @@
+import 'package:findmyngo/elements/auth/pages/privacy_policy.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -97,10 +98,7 @@ class SignUpPage extends GetView<AuthController> {
                       ),
                     ),
                     SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
+                      height: SizeConfig.getPercentSize(4),
                     ),
                     Obx(
                       () => controller.isLoading.value
@@ -125,6 +123,18 @@ class SignUpPage extends GetView<AuthController> {
                       child: TextWidget(
                         text: "Have an account? Login",
                         style: textField(color: ColorConstants.darkGreen),
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.getPercentSize(2),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => PrivacyPolicyPage());
+                      },
+                      child: TextWidget(
+                        text: "Privacy Policy",
+                        style: underline(),
                       ),
                     ),
                     SizedBox(
