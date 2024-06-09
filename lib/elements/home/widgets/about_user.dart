@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -72,10 +73,12 @@ class AboutUser extends StatelessWidget {
                   SizedBox(
                     width: SizeConfig.getPercentSize(5),
                   ),
-                  TextWidget(
-                    text: controller.aboutNgoController.text,
-                    style: boldTitle(),
-                    textAlign: TextAlign.center,
+                  Expanded(
+                    child: TextWidget(
+                      text: controller.aboutNgoController.text,
+                      style: boldTitle(),
+                      textAlign: TextAlign.start,
+                    ),
                   ),
                 ],
               ),

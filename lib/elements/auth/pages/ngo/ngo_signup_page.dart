@@ -11,6 +11,7 @@ import '../../../../utils/text/text_style.dart';
 import '../../../../utils/text/text_widget.dart';
 import '../../../../utils/validators/text_field_validation.dart';
 import '../../controller/auth_controller.dart';
+import '../privacy_policy.dart';
 
 class NGOSignUpPage extends GetView<AuthController> {
   @override
@@ -125,6 +126,18 @@ class NGOSignUpPage extends GetView<AuthController> {
                       child: TextWidget(
                         text: "Have an account? Login",
                         style: textField(color: ColorConstants.darkGreen),
+                      ),
+                    ),
+                    SizedBox(
+                      height: SizeConfig.getPercentSize(2),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => PrivacyPolicyPage());
+                      },
+                      child: TextWidget(
+                        text: "Privacy Policy",
+                        style: underline(),
                       ),
                     ),
                     SizedBox(
