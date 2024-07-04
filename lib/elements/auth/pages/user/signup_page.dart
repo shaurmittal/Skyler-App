@@ -38,7 +38,7 @@ class SignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'Find My NGO',
+                      text: 'SKYLER',
                       style: title(),
                     ),
                     SizedBox(
@@ -53,9 +53,9 @@ class SignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     Image.asset(
-                      'assets/earth.png',
-                      height: SizeConfig.getPercentSize(50),
-                      width: SizeConfig.getPercentSize(50),
+                      'assets/dove2.png',
+                      height: SizeConfig.getPercentSize(55),
+                      width: SizeConfig.getPercentSize(55),
                       fit: BoxFit.cover,
                     ),
                     SizedBox(

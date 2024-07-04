@@ -38,7 +38,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(8),
                     ),
                     TextWidget(
-                      text: 'Find My NGO',
+                      text: 'SKYLER',
                       style: title(),
                     ),
                     SizedBox(
@@ -104,7 +104,7 @@ class NGOSignUpPage extends GetView<AuthController> {
                     ),
                     Obx(
                       () => controller.isLoading.value
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(
                                 color: ColorConstants.darkGreen,
                               ),

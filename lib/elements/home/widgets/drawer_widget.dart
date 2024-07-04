@@ -52,11 +52,11 @@ class DrawerWidget extends StatelessWidget {
                 },
               ),
               SizedBox(
-                height: 15,
+                height: 5,
               ),
               ListTile(
                 leading: LineIcon(
-                  LineIcons.infoCircle,
+                  LineIcons.exclamationTriangle,
                   size: 35,
                   color: ColorConstants.darkGreen,
                 ),
@@ -66,13 +66,13 @@ class DrawerWidget extends StatelessWidget {
                 //   size: SizeConfig.getPercentSize(7),
                 // ),
                 title: TextWidget(
-                  text: 'About Us',
+                  text: 'Missions',
                   style: smallTitle(),
                 ),
                 onTap: () {},
               ),
               SizedBox(
-                height: 10,
+                height: 5,
               ),
               // ListTile(
               //   leading: Icon(
@@ -91,6 +91,50 @@ class DrawerWidget extends StatelessWidget {
               ),
               ListTile(
                 leading: LineIcon(
+                  LineIcons.gem,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   Icons.logout_rounded,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Credit System',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  // controller.logout();
+                  // Get.back();
+                },
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              ListTile(
+                leading: LineIcon(
+                  LineIcons.crown,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   Icons.logout_rounded,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Leaderboard',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  // controller.logout();
+                  // Get.back();
+                },
+              ),
+              SizedBox(height: 470),
+              ListTile(
+                leading: const LineIcon(
                   LineIcons.alternateSignOut,
                   size: 35,
                   color: ColorConstants.darkGreen,
