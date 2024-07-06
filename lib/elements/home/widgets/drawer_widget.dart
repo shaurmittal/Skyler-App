@@ -89,8 +89,75 @@ class DrawerWidget extends StatelessWidget {
               // SizedBox(
               //   height: 5,
               // ),
+
               SizedBox(
                 height: SizeConfig.getPercentSize(2),
+              ),
+              ListTile(
+                leading: LineIcon(
+                  LineIcons.exclamationTriangle,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   CupertinoIcons.home,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Missions',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              SizedBox(
+                height: SizeConfig.getPercentSize(2),
+              ),
+              ListTile(
+                leading: LineIcon(
+                  LineIcons.gem,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   CupertinoIcons.home,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Credit System',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              SizedBox(
+                height: SizeConfig.getPercentSize(2),
+              ),
+              ListTile(
+                leading: LineIcon(
+                  LineIcons.crown,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   CupertinoIcons.home,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Leaderboard',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              SizedBox(
+                height: SizeConfig.getPercentSize(110),
               ),
               ListTile(
                 leading: LineIcon(

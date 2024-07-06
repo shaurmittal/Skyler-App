@@ -53,7 +53,7 @@ class HomePage extends GetView<HomeController> {
           title: Row(
             children: [
               TextWidget(
-                text: 'Find My NGO',
+                text: 'SKYLER',
                 style: title(),
                 textAlign: TextAlign.center,
               ),
@@ -76,7 +76,7 @@ class HomePage extends GetView<HomeController> {
                     }
                   },
                   icon: LineIcon(
-                    LineIcons.userCircle,
+                    LineIcons.dove,
                     size: 39,
                     color: ColorConstants.darkGreen,
                   )
