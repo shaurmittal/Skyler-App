@@ -93,7 +93,7 @@ class NgoUpdatePage extends GetView<HomeController> {
                     ),
                     STextField(
                       textController: controller.aboutNgoController,
-                      maxLength: 200,
+                      maxLength: 155,
                       maxLines: 4,
                       validate: Validator().required,
                     ),

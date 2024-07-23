@@ -109,6 +109,11 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('This feature will be available soon!'),
+                    ),
+                  );
                   Get.back();
                 },
               ),
@@ -131,6 +136,11 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('This feature will be available soon!'),
+                    ),
+                  );
                   Get.back();
                 },
               ),
@@ -153,6 +163,11 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('This feature will be available soon!'),
+                    ),
+                  );
                   Get.back();
                 },
               ),
