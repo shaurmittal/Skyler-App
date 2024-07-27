@@ -112,9 +112,10 @@ class HomeController extends GetxController
             },
           ),
           TextButton(
-            child: const Text('Delete',style: TextStyle(
-              color: Colors.red
-            ),),
+            child: const Text(
+              'Delete',
+              style: TextStyle(color: Colors.red),
+            ),
             onPressed: () async {
               Get.back(); // Close the dialog
               await deleteUser();
@@ -135,6 +136,7 @@ class HomeController extends GetxController
       if (getUserType() == UserType.USER.name) {
         await firebaseFirestore.collection('users').doc(userId).delete();
       } else {
+        deleteNgoPosts(userId);
         await firebaseFirestore.collection('ngos').doc(userId).delete();
       }
 
@@ -150,6 +152,26 @@ class HomeController extends GetxController
       isLoading(false);
     }
   }
+
+  Future<void> deleteNgoPosts(String userId) async {
+    try {
+      QuerySnapshot snapshot = await firebaseFirestore
+          .collection('posts')
+          .where('creatorId', isEqualTo: userId)
+          .get();
+
+      for (QueryDocumentSnapshot doc in snapshot.docs) {
+        await firebaseFirestore.collection('posts').doc(doc.id).delete();
+      }
+    } catch (e) {
+      print(e);
+      showAppSnackBar(
+        message: 'Failed to delete posts',
+        toastType: ToastType.error,
+      );
+    }
+  }
+
   createPost({required PostModel post}) async {
     if (postFormKey.currentState!.validate()) {
       print(postImgUrl.length);
