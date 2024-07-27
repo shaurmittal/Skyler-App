@@ -1,3 +1,7 @@
+import 'package:findmyngo/constants/hive_constants.dart';
+import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
+import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
+import 'package:findmyngo/utils/common_widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -8,6 +12,7 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
 
+// ignore: must_be_immutable
 class DrawerWidget extends StatelessWidget {
   BuildContext context;
   var controller;
@@ -33,7 +38,7 @@ class DrawerWidget extends StatelessWidget {
                 height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
-                leading: LineIcon(
+                leading: const LineIcon(
                   LineIcons.home,
                   size: 35,
                   color: ColorConstants.darkGreen,
@@ -49,6 +54,26 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Get.back();
+                },
+              ),
+              ListTile(
+                leading: const LineIcon(
+                  LineIcons.user,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                title: TextWidget(
+                  text: 'Profile',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  if (getUserType() == UserType.USER.name) {
+                    Get.to(() => UserProfilePage());
+                    controller.setUser();
+                  } else {
+                    Get.to(() => NgoProfilePage());
+                    controller.setNgo();
+                  }
                 },
               ),
               // SizedBox(
@@ -94,7 +119,7 @@ class DrawerWidget extends StatelessWidget {
                 height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
-                leading: LineIcon(
+                leading: const LineIcon(
                   LineIcons.exclamationTriangle,
                   size: 35,
                   color: ColorConstants.darkGreen,
@@ -109,11 +134,6 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('This feature will be available soon!'),
-                    ),
-                  );
                   Get.back();
                 },
               ),
@@ -121,7 +141,7 @@ class DrawerWidget extends StatelessWidget {
                 height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
-                leading: LineIcon(
+                leading: const LineIcon(
                   LineIcons.gem,
                   size: 35,
                   color: ColorConstants.darkGreen,
@@ -136,11 +156,8 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('This feature will be available soon!'),
-                    ),
-                  );
+                  controller.showSnackBar(context,
+                      'This feature will be available soon!', ToastType.info);
                   Get.back();
                 },
               ),
@@ -148,7 +165,7 @@ class DrawerWidget extends StatelessWidget {
                 height: SizeConfig.getPercentSize(2),
               ),
               ListTile(
-                leading: LineIcon(
+                leading: const LineIcon(
                   LineIcons.crown,
                   size: 35,
                   color: ColorConstants.darkGreen,
@@ -164,18 +181,16 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('This feature will be available soon!'),
                     ),
                   );
                   Get.back();
                 },
               ),
-              SizedBox(
-                height: SizeConfig.getPercentSize(110),
-              ),
+              const Divider(),
               ListTile(
-                leading: LineIcon(
+                leading: const LineIcon(
                   LineIcons.alternateSignOut,
                   size: 35,
                   color: ColorConstants.darkGreen,

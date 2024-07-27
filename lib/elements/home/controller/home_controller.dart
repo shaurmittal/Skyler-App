@@ -98,6 +98,31 @@ class HomeController extends GetxController
     isLoading(false);
   }
 
+  deleteUser() async {
+    isLoading(true);
+    setLoggedIn(false);
+
+    try {
+      String userId = await getUserId();
+
+      if (getUserType() == UserType.USER.name) {
+        await firebaseFirestore.collection('users').doc(userId).delete();
+      } else {
+        await firebaseFirestore.collection('ngos').doc(userId).delete();
+      }
+      await firebaseAuth.currentUser?.delete();
+      await firebaseAuth.signOut();
+      Get.offAllNamed(Routes.SIGNUP);
+    } catch (e) {
+      showAppSnackBar(
+        message: 'Failed to delete user. Please try again.',
+        toastType: ToastType.error,
+      );
+    } finally {
+      isLoading(false);
+    }
+  }
+
   createPost({required PostModel post}) async {
     if (postFormKey.currentState!.validate()) {
       print(postImgUrl.length);
@@ -418,5 +443,12 @@ class HomeController extends GetxController
       }
       loadingFalse();
     }
+  }
+
+  showSnackBar({required String message, required ToastType toastType}) {
+    showAppSnackBar(
+      message: message,
+      toastType: toastType,
+    );
   }
 }

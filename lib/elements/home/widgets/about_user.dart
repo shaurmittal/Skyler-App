@@ -12,6 +12,7 @@ import '../../../utils/text/text_widget.dart';
 import '../pages/ngo_update_page.dart';
 import '../pages/user_update_page.dart';
 
+// ignore: must_be_immutable
 class AboutUser extends StatelessWidget {
   var controller;
   AboutUser({
@@ -21,148 +22,161 @@ class AboutUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: SizeConfig.getPercentSize(8),
-        ),
-        Row(
-          children: [
-            LineIcon(
-              LineIcons.userAlt,
-              size: 32,
-            ),
-            SizedBox(
-              width: SizeConfig.getPercentSize(5),
-            ),
-            TextWidget(
-              text: controller.nameController.text,
-              style: boldTitle(),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
-        controller.aboutNgoController.text == ''
-            ? Row(
-                children: [
-                  LineIcon(
-                    LineIcons.birthdayCake,
-                    size: 32,
-                  ),
-                  SizedBox(
-                    width: SizeConfig.getPercentSize(5),
-                  ),
-                  TextWidget(
-                    text: controller.ageController.text,
-                    style: boldTitle(),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              )
-            : Row(
-                children: [
-                  LineIcon(
-                    LineIcons.clipboardAlt,
-                    size: 32,
-                  ),
-                  SizedBox(
-                    width: SizeConfig.getPercentSize(5),
-                  ),
-                  Expanded(
-                    child: TextWidget(
-                      text: controller.aboutNgoController.text,
-                      style: boldTitle(),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: SizeConfig.getPercentSize(8),
+          ),
+          Row(
+            children: [
+              const LineIcon(
+                LineIcons.userAlt,
+                size: 32,
               ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
-        Row(
-          children: [
-            LineIcon(
-              LineIcons.alternateMapMarked,
-              size: 32,
-            ),
-            SizedBox(
-              width: SizeConfig.getPercentSize(5),
-            ),
-            TextWidget(
-              text: controller.locationController.text,
-              style: boldTitle(),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
-        Row(
-          children: [
-            LineIcon(
-              LineIcons.mobilePhone,
-              size: 32,
-            ),
-            SizedBox(
-              width: SizeConfig.getPercentSize(5),
-            ),
-            TextWidget(
-              text: controller.phoneController.text,
-              style: boldTitle(),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
-        controller.socialController.text == ''
-            ? Row(
-                children: [
-                  LineIcon(
-                    LineIcons.globe,
-                    size: 32,
-                  ),
-                  SizedBox(
-                    width: SizeConfig.getPercentSize(5),
-                  ),
-                  Expanded(
-                    child: TextWidget(
-                      text: controller.socialController.text,
-                      style: boldTitle(),
-                      textAlign: TextAlign.start,
+              SizedBox(
+                width: SizeConfig.getPercentSize(5),
+              ),
+              TextWidget(
+                text: controller.nameController.text,
+                style: boldTitle(),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+          controller.aboutNgoController.text == ''
+              ? Row(
+                  children: [
+                    const LineIcon(
+                      LineIcons.birthdayCake,
+                      size: 32,
                     ),
-                  ),
-                ],
-              )
-            : SizedBox(),
-        controller.socialController.text == ''
-            ? SizedBox(
-                height: SizeConfig.getPercentSize(5),
-              )
-            : SizedBox(),
-        SPlainButton(
-          text: "Edit Profile",
-          width: double.infinity,
-          onTap: () {
-            if (getUserType() == UserType.USER.name) {
-              Get.to(() => UserUpdatePage());
-            } else {
-              Get.to(() => NgoUpdatePage());
-            }
-          },
-        ),
-        SizedBox(
-          height: SizeConfig.getPercentSize(5),
-        ),
-      ],
+                    SizedBox(
+                      width: SizeConfig.getPercentSize(5),
+                    ),
+                    TextWidget(
+                      text: controller.ageController.text,
+                      style: boldTitle(),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                )
+              : Row(
+                  children: [
+                    const LineIcon(
+                      LineIcons.clipboardAlt,
+                      size: 32,
+                    ),
+                    SizedBox(
+                      width: SizeConfig.getPercentSize(5),
+                    ),
+                    Expanded(
+                      child: TextWidget(
+                        text: controller.aboutNgoController.text,
+                        style: boldTitle(),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
+                ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+          Row(
+            children: [
+              const LineIcon(
+                LineIcons.alternateMapMarked,
+                size: 32,
+              ),
+              SizedBox(
+                width: SizeConfig.getPercentSize(5),
+              ),
+              TextWidget(
+                text: controller.locationController.text,
+                style: boldTitle(),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+          Row(
+            children: [
+              const LineIcon(
+                LineIcons.mobilePhone,
+                size: 32,
+              ),
+              SizedBox(
+                width: SizeConfig.getPercentSize(5),
+              ),
+              TextWidget(
+                text: controller.phoneController.text,
+                style: boldTitle(),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+          controller.socialController.text == ''
+              ? Row(
+                  children: [
+                    const LineIcon(
+                      LineIcons.globe,
+                      size: 32,
+                    ),
+                    SizedBox(
+                      width: SizeConfig.getPercentSize(5),
+                    ),
+                    Expanded(
+                      child: TextWidget(
+                        text: controller.socialController.text,
+                        style: boldTitle(),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox(),
+          controller.socialController.text == ''
+              ? SizedBox(
+                  height: SizeConfig.getPercentSize(5),
+                )
+              : const SizedBox(),
+          SPlainButton(
+            text: "Edit Profile",
+            width: double.infinity,
+            onTap: () {
+              if (getUserType() == UserType.USER.name) {
+                Get.to(() => UserUpdatePage());
+              } else {
+                Get.to(() => NgoUpdatePage());
+              }
+            },
+          ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+          SPlainButton(
+            text: "Delete Profile",
+            width: double.infinity,
+            onTap: () {
+              controller.deleteUser();
+              Get.back();
+            },
+          ),
+          SizedBox(
+            height: SizeConfig.getPercentSize(5),
+          ),
+        ],
+      ),
     );
   }
 }

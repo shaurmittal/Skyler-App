@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,7 +70,7 @@ class NgoProfilePage extends GetView<HomeController> {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SPlainButton(
                               text: "Create",
                               height: SizeConfig.getPercentSize(10),
@@ -109,7 +111,7 @@ class NgoProfilePage extends GetView<HomeController> {
                             fontSize: SizeConfig.getPercentSize(4),
                             fontWeight: FontWeight.w500,
                           ),
-                          tabs: [
+                          tabs: const [
                             Tab(
                               text: 'About',
                             ),
@@ -176,7 +178,7 @@ class NgoProfilePage extends GetView<HomeController> {
                                     );
                                   } else if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
-                                    return Center(
+                                    return const Center(
                                       child: CircularProgressIndicator(
                                         color: ColorConstants.darkGreen,
                                       ),
@@ -244,7 +246,7 @@ class NgoProfilePage extends GetView<HomeController> {
                                     );
                                   } else if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
-                                    return Center(
+                                    return const Center(
                                       child: CircularProgressIndicator(
                                         color: ColorConstants.darkGreen,
                                       ),
