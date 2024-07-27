@@ -27,11 +27,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<string>This app requires access to your camera to allow you to take photos and videos for sharing on the platform, helping to connect and promote NGO activities and collaborations.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone is used to record for notes.</string>
+	<string>This app requires access to your microphone to allow you to record audio for videos and voice messages, enhancing communication and collaboration between users and NGOs.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>In order to upload data, this app requires permission to access the photo library.</string>
+	<string>This app requires access to your photo library to allow you to upload photos and videos to share with other NGOs and users on the platform. Your media will help connect and promote NGO activities and collaborations.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
