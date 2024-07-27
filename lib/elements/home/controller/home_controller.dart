@@ -98,7 +98,34 @@ class HomeController extends GetxController
     isLoading(false);
   }
 
-  deleteUser() async {
+  void deleteUserWithConfirmation() {
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Confirm Deletion'),
+        content: const Text(
+            'Do you really want to delete your account? This will delete all posts and your data from our servers, and you cannot recover it.'),
+        actions: [
+          TextButton(
+            child: const Text('Cancel'),
+            onPressed: () {
+              Get.back(); // Close the dialog
+            },
+          ),
+          TextButton(
+            child: const Text('Delete',style: TextStyle(
+              color: Colors.red
+            ),),
+            onPressed: () async {
+              Get.back(); // Close the dialog
+              await deleteUser();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> deleteUser() async {
     isLoading(true);
     setLoggedIn(false);
 
@@ -110,6 +137,7 @@ class HomeController extends GetxController
       } else {
         await firebaseFirestore.collection('ngos').doc(userId).delete();
       }
+
       await firebaseAuth.currentUser?.delete();
       await firebaseAuth.signOut();
       Get.offAllNamed(Routes.SIGNUP);
@@ -122,7 +150,6 @@ class HomeController extends GetxController
       isLoading(false);
     }
   }
-
   createPost({required PostModel post}) async {
     if (postFormKey.currentState!.validate()) {
       print(postImgUrl.length);
@@ -133,7 +160,7 @@ class HomeController extends GetxController
         );
       } else {
         loadingTrue();
-        var uuid = Uuid();
+        var uuid = const Uuid();
         var postId = uuid.v4();
         try {
           print(post.creator);

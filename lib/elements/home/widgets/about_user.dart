@@ -1,10 +1,10 @@
+import 'package:findmyngo/constants/hive_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
-import '../../../constants/hive_constants.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -12,11 +12,11 @@ import '../../../utils/text/text_widget.dart';
 import '../pages/ngo_update_page.dart';
 import '../pages/user_update_page.dart';
 
-// ignore: must_be_immutable
 class AboutUser extends StatelessWidget {
-  var controller;
+  final controller;
+
   AboutUser({
-    this.controller,
+    required this.controller,
     super.key,
   });
 
@@ -168,8 +168,7 @@ class AboutUser extends StatelessWidget {
             text: "Delete Profile",
             width: double.infinity,
             onTap: () {
-              controller.deleteUser();
-              Get.back();
+              controller.deleteUserWithConfirmation();
             },
           ),
           SizedBox(
