@@ -1,7 +1,6 @@
 import 'package:findmyngo/constants/hive_constants.dart';
 import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
 import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
-import 'package:findmyngo/utils/common_widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -115,79 +114,79 @@ class DrawerWidget extends StatelessWidget {
               //   height: 5,
               // ),
 
-              SizedBox(
-                height: SizeConfig.getPercentSize(2),
-              ),
-              ListTile(
-                leading: const LineIcon(
-                  LineIcons.exclamationTriangle,
-                  size: 35,
-                  color: ColorConstants.darkGreen,
-                ),
-                // Icon(
-                //   CupertinoIcons.home,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
-                title: TextWidget(
-                  text: 'Missions',
-                  style: smallTitle(),
-                ),
-                onTap: () {
-                  Get.back();
-                },
-              ),
-              SizedBox(
-                height: SizeConfig.getPercentSize(2),
-              ),
-              ListTile(
-                leading: const LineIcon(
-                  LineIcons.gem,
-                  size: 35,
-                  color: ColorConstants.darkGreen,
-                ),
-                // Icon(
-                //   CupertinoIcons.home,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
-                title: TextWidget(
-                  text: 'Credit System',
-                  style: smallTitle(),
-                ),
-                onTap: () {
-                  controller.showSnackBar(context,
-                      'This feature will be available soon!', ToastType.info);
-                  Get.back();
-                },
-              ),
-              SizedBox(
-                height: SizeConfig.getPercentSize(2),
-              ),
-              ListTile(
-                leading: const LineIcon(
-                  LineIcons.crown,
-                  size: 35,
-                  color: ColorConstants.darkGreen,
-                ),
-                // Icon(
-                //   CupertinoIcons.home,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
-                title: TextWidget(
-                  text: 'Leaderboard',
-                  style: smallTitle(),
-                ),
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('This feature will be available soon!'),
-                    ),
-                  );
-                  Get.back();
-                },
-              ),
+              // SizedBox(
+              //   height: SizeConfig.getPercentSize(2),
+              // ),
+              // ListTile(
+              //   leading: const LineIcon(
+              //     LineIcons.exclamationTriangle,
+              //     size: 35,
+              //     color: ColorConstants.darkGreen,
+              //   ),
+              //   // Icon(
+              //   //   CupertinoIcons.home,
+              //   //   color: ColorConstants.darkGreen,
+              //   //   size: SizeConfig.getPercentSize(7),
+              //   // ),
+              //   title: TextWidget(
+              //     text: 'Missions',
+              //     style: smallTitle(),
+              //   ),
+              //   onTap: () {
+              //     Get.back();
+              //   },
+              // ),
+              // SizedBox(
+              //   height: SizeConfig.getPercentSize(2),
+              // ),
+              // ListTile(
+              //   leading: const LineIcon(
+              //     LineIcons.gem,
+              //     size: 35,
+              //     color: ColorConstants.darkGreen,
+              //   ),
+              //   // Icon(
+              //   //   CupertinoIcons.home,
+              //   //   color: ColorConstants.darkGreen,
+              //   //   size: SizeConfig.getPercentSize(7),
+              //   // ),
+              //   title: TextWidget(
+              //     text: 'Credit System',
+              //     style: smallTitle(),
+              //   ),
+              //   onTap: () {
+              //     controller.showSnackBar(context,
+              //         'This feature will be available soon!', ToastType.info);
+              //     Get.back();
+              //   },
+              // ),
+              // SizedBox(
+              //   height: SizeConfig.getPercentSize(2),
+              // ),
+              // ListTile(
+              //   leading: const LineIcon(
+              //     LineIcons.crown,
+              //     size: 35,
+              //     color: ColorConstants.darkGreen,
+              //   ),
+              //   // Icon(
+              //   //   CupertinoIcons.home,
+              //   //   color: ColorConstants.darkGreen,
+              //   //   size: SizeConfig.getPercentSize(7),
+              //   // ),
+              //   title: TextWidget(
+              //     text: 'Leaderboard',
+              //     style: smallTitle(),
+              //   ),
+              //   onTap: () {
+              //     ScaffoldMessenger.of(context).showSnackBar(
+              //       const SnackBar(
+              //         content: Text('This feature will be available soon!'),
+              //       ),
+              //     );
+              //     Get.back();
+              //   },
+              // ),
               const Divider(),
               ListTile(
                 leading: const LineIcon(
