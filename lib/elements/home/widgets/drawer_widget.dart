@@ -1,6 +1,7 @@
 import 'package:findmyngo/constants/hive_constants.dart';
 import 'package:findmyngo/elements/home/controller/home_controller.dart';
 import 'package:findmyngo/elements/home/pages/create_mission.dart';
+import 'package:findmyngo/elements/home/pages/home_page.dart';
 import 'package:findmyngo/elements/home/pages/leaderboard_page.dart';
 import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
 import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
@@ -55,7 +56,7 @@ class DrawerWidget extends StatelessWidget {
                   style: smallTitle(),
                 ),
                 onTap: () {
-                  Get.back();
+                  Get.to(() => HomePage());
                 },
               ),
               ListTile(

@@ -25,31 +25,11 @@ class HomePage extends GetView<HomeController> {
         Get.back();
       },
       child: Scaffold(
-        key: controller.scaffoldkey,
         appBar: AppBar(
           backgroundColor: ColorConstants.lightGreen,
           surfaceTintColor: ColorConstants.transparent,
           elevation: 0,
           toolbarHeight: SizeConfig.getPercentSize(20),
-          leading: Padding(
-            padding: EdgeInsets.only(left: SizeConfig.getPercentSize(4)),
-            child: IconButton(
-                onPressed: () {
-                  controller.scaffoldkey.currentState!.openDrawer();
-                },
-                icon: LineIcon(
-                  LineIcons.bars,
-                  size: 37,
-                  color: ColorConstants.darkGreen,
-                )
-                // Icon(
-                //   CupertinoIcons.rectangle_grid_1x2_fill,
-                //   // CupertinoIcons.line_horizontal_3,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
-                ),
-          ),
           title: Row(
             children: [
               TextWidget(
@@ -106,6 +86,7 @@ class HomePage extends GetView<HomeController> {
             child: StreamBuilder<List<PostModel>>(
               stream: controller.getAllPosts(),
               builder: (context, snapshot) {
+                print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(

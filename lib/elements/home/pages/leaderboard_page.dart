@@ -18,7 +18,6 @@ class LeaderboardPage extends GetView<HomeController> {
         Get.back();
       },
       child: Scaffold(
-        key: controller.leaderboardKey,
         appBar: AppBar(
           backgroundColor: ColorConstants.lightGreen,
           surfaceTintColor: ColorConstants.transparent,
