@@ -1,0 +1,22 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "find-my-ngo",
+                    "appId": "1:833310450020:android:8a74ed1ebe0a8179c9da71",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "find-my-ngo",
+                    "configurations": {
+                        "android": "1:833310450020:android:8a74ed1ebe0a8179c9da71",
+                        "ios": "1:833310450020:ios:05c2e862632d6c8cc9da71"
+                    }
+                }
+            }
+        }
+    }
+}

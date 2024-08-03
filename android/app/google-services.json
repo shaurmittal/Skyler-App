@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "531965731071",
-    "project_id": "main-proj-app",
-    "storage_bucket": "main-proj-app.appspot.com"
+    "project_number": "833310450020",
+    "project_id": "find-my-ngo",
+    "storage_bucket": "find-my-ngo.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:531965731071:android:f865ad6d65eda654856cca",
+        "mobilesdk_app_id": "1:833310450020:android:8a74ed1ebe0a8179c9da71",
         "android_client_info": {
-          "package_name": "com.example.main_sociavism"
+          "package_name": "com.findmyngo.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC_RA49a7FX-nTIAeXtDmurCsfvvc6kUK0"
+          "current_key": "AIzaSyDHD8V5E753fwGfJJSL3mibqYP7s0GTcaE"
         }
       ],
       "services": {
