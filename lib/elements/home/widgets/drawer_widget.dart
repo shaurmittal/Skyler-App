@@ -1,4 +1,6 @@
 import 'package:findmyngo/constants/hive_constants.dart';
+import 'package:findmyngo/elements/home/controller/home_controller.dart';
+import 'package:findmyngo/elements/home/pages/create_mission.dart';
 import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
 import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ import '../../../utils/text/text_widget.dart';
 // ignore: must_be_immutable
 class DrawerWidget extends StatelessWidget {
   BuildContext context;
-  var controller;
+  HomeController controller;
   DrawerWidget({
     required this.context,
     required this.controller,
@@ -78,23 +80,21 @@ class DrawerWidget extends StatelessWidget {
               // SizedBox(
               //   height: 15,
               // ),
-              // ListTile(
-              //   leading: LineIcon(
-              //     LineIcons.infoCircle,
-              //     size: 35,
-              //     color: ColorConstants.darkGreen,
-              //   ),
-              //   // Icon(
-              //   //   Icons.developer_mode_sharp,
-              //   //   color: ColorConstants.darkGreen,
-              //   //   size: SizeConfig.getPercentSize(7),
-              //   // ),
-              //   title: TextWidget(
-              //     text: 'About Us',
-              //     style: smallTitle(),
-              //   ),
-              //   onTap: () {},
-              // ),
+              if (controller.isAdminId)
+                ListTile(
+                  leading: const LineIcon(
+                    LineIcons.superpowers,
+                    size: 35,
+                    color: ColorConstants.darkGreen,
+                  ),
+                  title: TextWidget(
+                    text: 'Post Mission',
+                    style: smallTitle(),
+                  ),
+                  onTap: () {
+                    Get.to(() => CreateMissionPage());
+                  },
+                ),
               // SizedBox(
               //   height: 10,
               // ),

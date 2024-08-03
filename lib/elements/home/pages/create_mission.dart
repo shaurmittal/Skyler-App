@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/color_constants.dart';
-import '../../../models/user_model.dart';
+import '../../../models/post_model.dart';
 import '../../../utils/buttons/buttons.dart';
 import '../../../utils/common_widgets/photo_widget.dart';
 import '../../../utils/fields/textfield.dart';
@@ -12,9 +12,7 @@ import '../../../utils/text/text_widget.dart';
 import '../../../utils/validators/text_field_validation.dart';
 import '../controller/home_controller.dart';
 
-class UserUpdatePage extends GetView<HomeController> {
-  const UserUpdatePage({super.key});
-
+class CreateMissionPage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -27,7 +25,7 @@ class UserUpdatePage extends GetView<HomeController> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
-              key: controller.userUpdateFormKey,
+              key: controller.postFormKey,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: SizeConfig.getPercentSize(4),
@@ -53,7 +51,7 @@ class UserUpdatePage extends GetView<HomeController> {
                         ),
                         Expanded(
                           child: TextWidget(
-                            text: 'Edit Profile',
+                            text: 'Create a new post',
                             style: smallTitle(),
                             // textAlign: TextAlign.center,
                           ),
@@ -61,17 +59,16 @@ class UserUpdatePage extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(
-                      height: SizeConfig.getPercentSize(8),
+                      height: SizeConfig.getPercentSize(5),
                     ),
-                    ProfilePhotoWidget(
+                    MultiplePhotoWidget(
                       controller: controller,
-                      title: 'Upload your photo',
                     ),
                     SizedBox(
-                      height: SizeConfig.getPercentSize(8),
+                      height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'First & Last Name*',
+                      text: 'Write a caption*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),
@@ -79,70 +76,59 @@ class UserUpdatePage extends GetView<HomeController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     STextField(
-                      textController: controller.nameController,
+                      textController: controller.captionController,
                       validate: Validator().required,
+                      maxLength: 200,
+                      maxLines: 4,
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(3),
                     ),
-                    TextWidget(
-                      text: 'Age*',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Event Mode",
+                            style: smallDescp(),
+                          ),
+                          Switch(
+                            activeTrackColor: ColorConstants.green,
+                            activeColor: ColorConstants.darkGreen,
+                            value: controller.isActive.value,
+                            onChanged: (value) {
+                              controller.switchIsActive(value);
+                              print(controller.isActive);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(2),
                     ),
-                    STextField(
-                      textController: controller.ageController,
-                      keyboardType: TextInputType.number,
-                      validate: Validator().required,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(5),
-                    ),
-                    TextWidget(
-                      text: 'Location*',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.locationController,
-                      validate: Validator().required,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(5),
-                    ),
-                    TextWidget(
-                      text: 'Phone number (Preferably WhatsApp)*',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.phoneController,
-                      keyboardType: TextInputType.number,
-                      validate: Validator().required,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(5),
-                    ),
-                    TextWidget(
-                      text: 'Social Link/Instagram ID*',
-                      style: smallDescp(),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: SizeConfig.getPercentSize(2),
-                    ),
-                    STextField(
-                      textController: controller.socialController,
-                      validate: null,
+                    Obx(
+                      () => controller.isActive.value
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextWidget(
+                                  text: 'Participant limit*',
+                                  style: smallDescp(),
+                                  textAlign: TextAlign.center,
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.getPercentSize(2),
+                                ),
+                                STextField(
+                                  textController:
+                                      controller.participantController,
+                                  keyboardType: TextInputType.number,
+                                  validate: Validator().required,
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
                     ),
                     SizedBox(
                       height: SizeConfig.getPercentSize(5),
@@ -155,20 +141,23 @@ class UserUpdatePage extends GetView<HomeController> {
                               ),
                             )
                           : SPlainButton(
-                              text: "Submit",
+                              text: "Upload",
                               width: double.infinity,
                               onTap: () async {
-                                controller.updateUser(
-                                  user: UserModel(
-                                    id: await controller.getUserId(),
-                                    email: controller.emailController.text,
-                                    profilePhoto: controller.imageUrl.value,
-                                    name: controller.nameController.text,
-                                    age: controller.ageController.text,
-                                    location: controller.phoneController.text,
-                                    phoneNo: controller.phoneController.text,
-                                    socialLink:
-                                        controller.socialController.text,
+                                controller.createPost(
+                                  post: PostModel(
+                                    id: '',
+                                    caption: controller.captionController.text,
+                                    images: controller.postImgUrl.cast(),
+                                    creator: await controller.getNgoDetails(),
+                                    creatorId: await controller.getUserId(),
+                                    volunteerLimit: controller.isActive.value
+                                        ? int.parse(controller
+                                            .participantController.text)
+                                        : 0,
+                                    volunteers: [],
+                                    isEvent: controller.isActive.value,
+                                    createdAt: DateTime.now().toString(),
                                     updatedAt: DateTime.now().toString(),
                                   ),
                                 );

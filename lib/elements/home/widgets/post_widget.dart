@@ -122,7 +122,7 @@ class PostWidget extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(SizeConfig.getPercentSize(3)),
                 child: CachedNetworkImage(
-                  imageUrl: post.images[index],
+                  imageUrl: post.images[index] ?? "",
                   width: double.infinity,
                   placeholder: (context, url) => const Stack(
                     children: [

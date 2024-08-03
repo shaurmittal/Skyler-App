@@ -32,6 +32,8 @@ class HomeController extends GetxController
 
   var ngoGem = 0;
 
+  bool isAdminId = false;
+
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
@@ -61,6 +63,7 @@ class HomeController extends GetxController
       length: 3,
       vsync: this,
     );
+    getAdminAccess();
   }
 
   @override
@@ -425,6 +428,18 @@ class HomeController extends GetxController
         message: "Something went wrong.",
         toastType: ToastType.error,
       );
+    }
+  }
+
+  getAdminAccess() async {
+    var adminId =
+        await firebaseFirestore.collection('admin').doc('access_id').get();
+    if (adminId.data() != null) {
+      if (adminId.data()!['id'] == await getUserId()) {
+        isAdminId = true;
+      } else {
+        isAdminId = false;
+      }
     }
   }
 
