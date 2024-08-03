@@ -99,6 +99,7 @@ class UserController extends GetxController {
           'socialLink': user.socialLink,
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
+          'gems': 0,
         }).then((value) async {
           setLoggedIn(true);
           setUserType(UserType.NGO.name);

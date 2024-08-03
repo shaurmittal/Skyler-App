@@ -30,6 +30,8 @@ class HomeController extends GetxController
   var currentUserIndex = 0.obs;
   var currentPostId = ''.obs;
 
+  var ngoGem = 0;
+
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
@@ -460,7 +462,9 @@ class HomeController extends GetxController
     }
   }
 
-  updateNGO({required NgoModel user}) async {
+  updateNGO({
+    required NgoModel user,
+  }) async {
     if (ngoUpdateFormKey.currentState!.validate()) {
       loadingTrue();
       try {
@@ -475,6 +479,7 @@ class HomeController extends GetxController
           'socialLink': user.socialLink,
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
+          'gems': user.gems,
         }).then((value) async {
           getNgoDetails();
           Get.back();

@@ -9,6 +9,7 @@ class NgoModel {
   final String socialLink;
   String? createdAt;
   final String updatedAt;
+  int? gems;
 
   NgoModel({
     required this.id,
@@ -21,6 +22,7 @@ class NgoModel {
     required this.socialLink,
     this.createdAt,
     required this.updatedAt,
+     this.gems,
   });
 
   NgoModel.fromJson(Map<String, dynamic> json)
@@ -32,6 +34,7 @@ class NgoModel {
         location = json['location'],
         phoneNo = json['phoneNo'],
         socialLink = json['socialLink'],
+        gems = json['gems'],
         createdAt = json['createdAt'],
         updatedAt = json['updatedAt'];
 
@@ -47,6 +50,7 @@ class NgoModel {
       'socialLink': socialLink,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
+      'gems': gems,
     };
   }
 }

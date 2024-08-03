@@ -145,7 +145,7 @@ class NgoUpdatePage extends GetView<HomeController> {
                     ),
                     Obx(
                       () => controller.isLoading.value
-                          ? Center(
+                          ? const Center(
                               child: CircularProgressIndicator(
                                 color: ColorConstants.darkGreen,
                               ),
