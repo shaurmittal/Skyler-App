@@ -1,6 +1,7 @@
 import 'package:findmyngo/constants/hive_constants.dart';
 import 'package:findmyngo/elements/home/controller/home_controller.dart';
 import 'package:findmyngo/elements/home/pages/create_mission.dart';
+import 'package:findmyngo/elements/home/pages/leaderboard_page.dart';
 import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
 import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
@@ -163,30 +164,20 @@ class DrawerWidget extends StatelessWidget {
               // SizedBox(
               //   height: SizeConfig.getPercentSize(2),
               // ),
-              // ListTile(
-              //   leading: const LineIcon(
-              //     LineIcons.crown,
-              //     size: 35,
-              //     color: ColorConstants.darkGreen,
-              //   ),
-              //   // Icon(
-              //   //   CupertinoIcons.home,
-              //   //   color: ColorConstants.darkGreen,
-              //   //   size: SizeConfig.getPercentSize(7),
-              //   // ),
-              //   title: TextWidget(
-              //     text: 'Leaderboard',
-              //     style: smallTitle(),
-              //   ),
-              //   onTap: () {
-              //     ScaffoldMessenger.of(context).showSnackBar(
-              //       const SnackBar(
-              //         content: Text('This feature will be available soon!'),
-              //       ),
-              //     );
-              //     Get.back();
-              //   },
-              // ),
+              ListTile(
+                leading: const LineIcon(
+                  LineIcons.crown,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                title: TextWidget(
+                  text: 'Leaderboard',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.to(() => LeaderboardPage());
+                },
+              ),
               const Divider(),
               ListTile(
                 leading: const LineIcon(

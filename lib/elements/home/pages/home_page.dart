@@ -106,7 +106,6 @@ class HomePage extends GetView<HomeController> {
             child: StreamBuilder<List<PostModel>>(
               stream: controller.getAllPosts(),
               builder: (context, snapshot) {
-                print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(

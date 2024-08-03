@@ -105,8 +105,8 @@ class NGOSignUpPage extends GetView<AuthController> {
                     ),
                     Obx(
                       () => controller.isLoading.value
-                          ? Center(
-                              child: CircularProgressIndicator(
+                          ? const Center(
+                              child: const CircularProgressIndicator(
                                 color: ColorConstants.darkGreen,
                               ),
                             )

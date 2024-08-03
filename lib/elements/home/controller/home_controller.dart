@@ -35,6 +35,7 @@ class HomeController extends GetxController
   bool isAdminId = false;
 
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> leaderboardKey = GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> userUpdateFormKey = GlobalKey<FormState>();
@@ -519,5 +520,19 @@ class HomeController extends GetxController
       message: message,
       toastType: toastType,
     );
+  }
+
+  Stream<List<NgoModel>> getTop10NgoWithGems() {
+    return firebaseFirestore
+        .collection('ngos')
+        .orderBy('gems', descending: true)
+        .limit(10)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) {
+        final data = doc.data();
+        return NgoModel.fromJson(data);
+      }).toList();
+    });
   }
 }
