@@ -77,7 +77,6 @@ class NGOSignUpPage extends GetView<AuthController> {
                         textController: controller.passwordController,
                         label: 'Password',
                         hint: 'Password@123',
-                        keyboardType: TextInputType.name,
                         validate: Validator().required,
                         icon: controller.isVisiblePass.value == false
                             ? Icon(

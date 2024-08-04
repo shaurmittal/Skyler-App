@@ -106,41 +106,43 @@ class PostWidget extends StatelessWidget {
           SizedBox(
             height: SizeConfig.getPercentSize(2),
           ),
-          CarouselSlider.builder(
-            options: CarouselOptions(
-                height: SizeConfig.getPercentSize(35),
-                enlargeCenterPage: true,
-                autoPlay: true,
-                viewportFraction: 0.5,
-                // reverse: true,
-                onPageChanged: (index, reason) {
-                  // controller.activeIndex(index).toInt();
-                }),
-            itemCount: post.images.length,
-            itemBuilder: (context, index, realIndex) {
-              return ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.getPercentSize(3)),
-                child: CachedNetworkImage(
-                  imageUrl: post.images[index] ?? "",
-                  width: double.infinity,
-                  placeholder: (context, url) => const Stack(
-                    children: [
-                      Center(
-                        child: CircularProgressIndicator(
-                          color: ColorConstants.darkGreen,
+          if (post.images.isNotEmpty)
+            CarouselSlider.builder(
+              options: CarouselOptions(
+                  height: SizeConfig.getPercentSize(35),
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  viewportFraction: 0.5,
+                  // reverse: true,
+                  onPageChanged: (index, reason) {
+                    // controller.activeIndex(index).toInt();
+                  }),
+              itemCount: post.images.length,
+              itemBuilder: (context, index, realIndex) {
+                return ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(SizeConfig.getPercentSize(3)),
+                  child: CachedNetworkImage(
+                    imageUrl: post.images[index] ?? "",
+                    width: double.infinity,
+                    placeholder: (context, url) => const Stack(
+                      children: [
+                        Center(
+                          child: CircularProgressIndicator(
+                            color: ColorConstants.darkGreen,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                    errorWidget: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: ColorConstants.darkGreen),
+                    // width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.error, color: ColorConstants.darkGreen),
-                  // width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              );
-            },
-          ),
+                );
+              },
+            ),
           SizedBox(
             height: SizeConfig.getPercentSize(3),
           ),
