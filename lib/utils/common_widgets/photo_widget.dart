@@ -21,7 +21,7 @@ class ProfilePhotoWidget extends StatelessWidget {
   Widget build(context) {
     return Obx(
       () => Center(
-        child: Container(
+        child: SizedBox(
           height: SizeConfig.getPercentSize(45),
           width: SizeConfig.getPercentSize(45),
           child: Container(
@@ -63,22 +63,6 @@ class ProfilePhotoWidget extends StatelessWidget {
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,
-                            ),
-                            Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: CircleAvatar(
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.edit,
-                                    size: SizeConfig.getPercentSize(5),
-                                  ),
-                                  color: ColorConstants.darkGreen,
-                                  onPressed: () {
-                                    getImageGallery(controller);
-                                  },
-                                ),
-                              ),
                             ),
                           ],
                         ),
