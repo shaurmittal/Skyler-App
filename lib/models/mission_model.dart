@@ -1,12 +1,13 @@
-import 'package:findmyngo/models/user_model.dart';
+import 'package:findmyngo/models/ngo_model.dart';
 
 class MissionModel {
   final String id;
-  final UserModel creator;
+  final NgoModel creator;
   final String creatorId;
   final String caption;
   final List images;
   final List ngoVolunteers;
+  final List ngoVolunteersId;
   final int ngoLimit;
   final String createdAt;
   final String updatedAt;
@@ -21,6 +22,7 @@ class MissionModel {
     required this.creator,
     required this.createdAt,
     required this.updatedAt,
+    required this.ngoVolunteersId,
   });
 
   factory MissionModel.fromJson(Map<String, dynamic> json) {
@@ -28,12 +30,13 @@ class MissionModel {
       id: json['id'] ?? '',
       caption: json['caption'] ?? '',
       images: List<String>.from(json['images'] ?? []),
-      ngoVolunteers: List<String>.from(json['volunteers'] ?? []),
+      ngoVolunteers: List<String>.from(json['ngoVolunteers'] ?? []),
       ngoLimit: json['ngoLimit'] ?? 0,
       creator: json['creator'] ?? '',
       creatorId: json['creatorId'] ?? '',
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
+      ngoVolunteersId: List<String>.from(json['ngoVolunteersId'] ?? []),
     );
   }
 
@@ -42,12 +45,13 @@ class MissionModel {
       'id': id,
       'caption': caption,
       'images': images,
-      'volunteers': ngoVolunteers,
+      'ngoVolunteers': ngoVolunteers,
       'ngoLimit': ngoLimit,
       'creator': creator.toJson(),
       'creatorId': creatorId,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
+      'ngoVolunteersId': ngoVolunteersId,
     };
   }
 
@@ -55,24 +59,26 @@ class MissionModel {
     String? id,
     String? caption,
     List? images,
-    List? volunteers,
+    List? ngoVolunteers,
     int? ngoLimit,
     bool? isEvent,
-    UserModel? creator,
+    NgoModel? creator,
     String? creatorId,
     String? createdAt,
     String? updatedAt,
+    List? ngoVolunteersId,
   }) {
     return MissionModel(
       id: id ?? this.id,
       caption: caption ?? this.caption,
       images: images ?? this.images,
-      ngoVolunteers: volunteers ?? this.ngoVolunteers,
+      ngoVolunteers: ngoVolunteers ?? this.ngoVolunteers,
       ngoLimit: ngoLimit ?? this.ngoLimit,
       creator: creator ?? this.creator,
       creatorId: creatorId ?? this.creatorId,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      ngoVolunteersId: ngoVolunteersId ?? this.ngoVolunteersId,
     );
   }
 }

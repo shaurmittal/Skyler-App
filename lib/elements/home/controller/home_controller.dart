@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findmyngo/elements/home/pages/ngo_volunteers_page.dart';
 import 'package:findmyngo/models/mission_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
   static HomeController instance = Get.find();
 
+  final User? currentUser = firebaseAuth.currentUser.obs.value;
+
   var isLoading = false.obs;
   var isImageLoading = false.obs;
   var isVisiblePass = true.obs;
@@ -30,6 +33,8 @@ class HomeController extends GetxController
   var isActive = true.obs;
   var currentUserIndex = 0.obs;
   var currentPostId = ''.obs;
+  var currentMissionId = ''.obs;
+  var isCurrentUserNgo = false.obs;
 
   var ngoGem = 0;
 
@@ -50,6 +55,7 @@ class HomeController extends GetxController
 
   var postImgUrl = [].obs;
   var userList = List<UserModel>.empty(growable: true).obs;
+  var missionUserList = List<NgoModel>.empty(growable: true).obs;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -234,6 +240,72 @@ class HomeController extends GetxController
     }
   }
 
+  Future<void> addPointsAndGemsInNgoProfile(MissionModel model) async {
+    try {
+      final User? currentUser = firebaseAuth.currentUser;
+      if (currentUser == null) {
+        throw Exception("User is not logged in");
+      }
+
+      // Fetch the mission details
+      final missionDoc =
+          await firebaseFirestore.collection('missions').doc(model.id).get();
+      if (!missionDoc.exists) {
+        throw Exception("Mission not found");
+      }
+
+      final missionData = missionDoc.data()!;
+      final ngoVolunteersId =
+          List<String>.from(missionData['ngoVolunteersId'] ?? []);
+
+      // Check if the NGO has already collected points for this mission
+      if (ngoVolunteersId.contains(currentUser.uid)) {
+        showAppSnackBar(
+          message: 'You have already collected points for this mission.',
+          toastType: ToastType.info,
+        );
+        return;
+      }
+
+      // Update the mission to mark the NGO as having received points
+      await firebaseFirestore.collection('missions').doc(model.id).update({
+        'ngoVolunteersId': FieldValue.arrayUnion([currentUser.uid]),
+      });
+
+      // Fetch the current NGO details
+      final ngoDoc =
+          await firebaseFirestore.collection('ngos').doc(currentUser.uid).get();
+      if (!ngoDoc.exists) {
+        throw Exception("NGO details not found");
+      }
+
+      final ngoData = ngoDoc.data()!;
+      int newPoints = ngoData['points'] + 1;
+      int newGems = ngoData['gems'];
+      if (newPoints % 10 == 0) {
+        newGems += 1;
+      }
+
+      // Update the NGO profile with new points and gems
+      await firebaseFirestore.collection('ngos').doc(currentUser.uid).update({
+        'points': newPoints,
+        'gems': newGems,
+      });
+
+      // Show success message
+      showAppSnackBar(
+        message: '1 Point added and gems updated in your profile.',
+        toastType: ToastType.success,
+      );
+    } catch (e) {
+      print(e);
+      showAppSnackBar(
+        message: 'Failed to update points and gems. Please try again.',
+        toastType: ToastType.error,
+      );
+    }
+  }
+
   getUserAccountStats() async {
     String userId = await getUserId();
     UserModel user = await getUserDetails(userId: userId);
@@ -256,6 +328,17 @@ class HomeController extends GetxController
       return NgoModel.fromJson(data.data()!);
     } catch (e) {
       print(e);
+    }
+  }
+
+  getNgoUserId({required String ngoUserId}) async {
+    try {
+      var data =
+          await firebaseFirestore.collection('ngos').doc(ngoUserId).get();
+      return NgoModel.fromJson(data.data()!);
+    } catch (e) {
+      print(e);
+      loadingFalse();
     }
   }
 
@@ -289,8 +372,6 @@ class HomeController extends GetxController
     Stream<QuerySnapshot> stream =
         firebaseFirestore.collection('posts').snapshots();
     return stream.map((var qShot) => qShot.docs.map((doc) {
-          print(NgoModel.fromJson(jsonDecode(doc['creator'])));
-          print(doc['caption']);
           return PostModel(
             id: doc['id'],
             creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
@@ -300,6 +381,25 @@ class HomeController extends GetxController
             volunteers: doc['volunteers'] ?? [],
             volunteerLimit: doc['volunteerLimit'],
             isEvent: doc['isEvent'],
+            createdAt: doc['createdAt'],
+            updatedAt: doc['updatedAt'],
+          );
+        }).toList());
+  }
+
+  Stream<List<MissionModel>> getAllMissions() {
+    Stream<QuerySnapshot> stream =
+        firebaseFirestore.collection('missions').snapshots();
+    return stream.map((var qShot) => qShot.docs.map((doc) {
+          return MissionModel(
+            creator: NgoModel.fromJson(jsonDecode(doc['creator'])),
+            id: doc['id'],
+            ngoVolunteersId: doc['ngoVolunteersId'] ?? [],
+            creatorId: doc['creatorId'],
+            caption: doc['caption'],
+            images: doc['images'],
+            ngoVolunteers: doc['ngoVolunteers'] ?? [],
+            ngoLimit: doc['ngoLimit'],
             createdAt: doc['createdAt'],
             updatedAt: doc['updatedAt'],
           );
@@ -358,6 +458,77 @@ class HomeController extends GetxController
             updatedAt: doc['updatedAt'],
           );
         }).toList());
+  }
+
+  handleNgoVolunteer(MissionModel mission) async {
+    if (getUserType() == UserType.NGO.name) {
+      loadingTrue();
+      final User? currentUser = firebaseAuth.currentUser;
+      final ngoDetails = await getNgoDetails();
+
+      // Check if the current NGO is the creator of the mission
+      if (mission.creatorId == currentUser!.uid) {
+        // Display the list of volunteers
+        currentMissionId(mission.id);
+        Get.to(() => NgoVolunteersPage());
+        missionUserList.clear();
+        for (var uid in mission.ngoVolunteers) {
+          missionUserList.add(await getNgoUserId(ngoUserId: uid));
+        }
+        loadingFalse();
+      } else {
+        if (mission.ngoVolunteers.isEmpty) {
+          // Register the NGO as the first volunteer
+          var ngoVolunteersList = [];
+          ngoVolunteersList.add(currentUser.uid);
+          await firebaseFirestore
+              .collection('missions')
+              .doc(mission.id)
+              .update({
+            'ngoVolunteers': ngoVolunteersList,
+          }).then((value) {
+            showAppSnackBar(
+              message: 'Registered as a Volunteer.',
+              toastType: ToastType.success,
+            );
+          });
+        } else if (mission.ngoVolunteers.length == mission.ngoLimit) {
+          showAppSnackBar(
+            message: 'Volunteer limit reached.',
+            toastType: ToastType.error,
+          );
+        } else if (mission.ngoVolunteers.isNotEmpty &&
+            !mission.ngoVolunteers.contains(currentUser.uid)) {
+          var ngoVolunteersList = mission.ngoVolunteers;
+          ngoVolunteersList.add(currentUser.uid);
+          await firebaseFirestore
+              .collection('missions')
+              .doc(mission.id)
+              .update({
+            'ngoVolunteers': ngoVolunteersList,
+          }).then((value) {
+            showAppSnackBar(
+              message: 'Registered as a Volunteer.',
+              toastType: ToastType.success,
+            );
+          });
+        } else {
+          showAppSnackBar(
+            message: "You've already applied.",
+            toastType: ToastType.error,
+          );
+        }
+      }
+    } else {
+      showAppSnackBar(
+        message: "Only NGOs can volunteer.",
+        toastType: ToastType.error,
+      );
+      showAppSnackBar(
+        message: "Sign up as an NGO to participate!",
+        toastType: ToastType.info,
+      );
+    }
   }
 
   handleVolunteer(PostModel post) async {
@@ -449,6 +620,14 @@ class HomeController extends GetxController
       } else {
         isAdminId = false;
       }
+    }
+  }
+
+  checkIfCurrentUserIsNgo() {
+    if (getUserType() == UserType.NGO.name) {
+      return true;
+    } else {
+      return false;
     }
   }
 

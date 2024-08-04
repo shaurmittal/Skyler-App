@@ -1,5 +1,4 @@
 import 'package:findmyngo/models/mission_model.dart';
-import 'package:findmyngo/models/user_model.dart';
 import 'package:findmyngo/utils/common_widgets/photo_widget.dart';
 import 'package:findmyngo/utils/common_widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -150,20 +149,20 @@ class CreateMissionPage extends GetView<HomeController> {
                                   );
                                   return;
                                 }
-                                UserModel creator =
-                                    await controller.getUserAccountStats();
+                               
                                 // Proceed with mission creation
                                 controller.createMission(
                                   mission: MissionModel(
                                     id: '',
                                     caption: caption,
                                     images: controller.postImgUrl.cast(),
-                                    creator: creator,
+                                    creator: await controller.getNgoDetails(),
                                     creatorId: await controller.getUserId(),
                                     ngoLimit: controller.isActive.value
                                         ? participantLimit
                                         : 0,
                                     ngoVolunteers: [],
+                                    ngoVolunteersId: [],
                                     createdAt: DateTime.now().toString(),
                                     updatedAt: DateTime.now().toString(),
                                   ),

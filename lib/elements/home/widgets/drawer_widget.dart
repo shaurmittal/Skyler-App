@@ -3,6 +3,7 @@ import 'package:findmyngo/elements/home/controller/home_controller.dart';
 import 'package:findmyngo/elements/home/pages/create_mission.dart';
 import 'package:findmyngo/elements/home/pages/home_page.dart';
 import 'package:findmyngo/elements/home/pages/leaderboard_page.dart';
+import 'package:findmyngo/elements/home/pages/missions_page.dart';
 import 'package:findmyngo/elements/home/pages/ngo_profile_page.dart';
 import 'package:findmyngo/elements/home/pages/user_profile_page.dart';
 import 'package:flutter/material.dart';
@@ -116,28 +117,28 @@ class DrawerWidget extends StatelessWidget {
               //   height: 5,
               // ),
 
-              // SizedBox(
-              //   height: SizeConfig.getPercentSize(2),
-              // ),
-              // ListTile(
-              //   leading: const LineIcon(
-              //     LineIcons.exclamationTriangle,
-              //     size: 35,
-              //     color: ColorConstants.darkGreen,
-              //   ),
-              //   // Icon(
-              //   //   CupertinoIcons.home,
-              //   //   color: ColorConstants.darkGreen,
-              //   //   size: SizeConfig.getPercentSize(7),
-              //   // ),
-              //   title: TextWidget(
-              //     text: 'Missions',
-              //     style: smallTitle(),
-              //   ),
-              //   onTap: () {
-              //     Get.back();
-              //   },
-              // ),
+              SizedBox(
+                height: SizeConfig.getPercentSize(2),
+              ),
+              ListTile(
+                leading: const LineIcon(
+                  LineIcons.exclamationTriangle,
+                  size: 35,
+                  color: ColorConstants.darkGreen,
+                ),
+                // Icon(
+                //   CupertinoIcons.home,
+                //   color: ColorConstants.darkGreen,
+                //   size: SizeConfig.getPercentSize(7),
+                // ),
+                title: TextWidget(
+                  text: 'Missions',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.to(() => MissionsPage());
+                },
+              ),
               // SizedBox(
               //   height: SizeConfig.getPercentSize(2),
               // ),

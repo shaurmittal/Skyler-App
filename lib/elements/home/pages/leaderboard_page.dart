@@ -134,7 +134,7 @@ class LeaderboardPage extends GetView<HomeController> {
                               style: smallDescp(),
                             ),
                             trailing: Container(
-                              width: 130,
+                              width: 135,
                               child: Row(
                                 children: [
                                   TextWidget(
@@ -144,7 +144,7 @@ class LeaderboardPage extends GetView<HomeController> {
                                   const Spacer(),
                                   TextWidget(
                                     text: 'Gems',
-                                    style: smallDescp2(),
+                                    style: smallDescp(),
                                   ),
                                 ],
                               ),

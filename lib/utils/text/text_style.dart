@@ -42,6 +42,14 @@ TextStyle smallDescp2({Color? color}) {
   );
 }
 
+TextStyle smallDescp3({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(3.01),
+    fontWeight: FontWeight.w500,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
 TextStyle textField({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4.5),
