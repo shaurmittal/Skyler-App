@@ -748,7 +748,6 @@ class HomeController extends GetxController
         var mID = uuid.v4();
 
         try {
-          print(mission.creator);
           await firebaseFirestore.collection('missions').doc(mID).set({
             'id': mID,
             'creator': jsonEncode(mission.creator.toJson()),
@@ -757,6 +756,7 @@ class HomeController extends GetxController
             'images': mission.images,
             'ngoLimit': mission.ngoLimit,
             'ngoVolunteers': mission.ngoVolunteers,
+            'ngoVolunteersId': mission.ngoVolunteersId,
             'createdAt': mission.createdAt,
             'updatedAt': mission.updatedAt,
           }).then((value) async {

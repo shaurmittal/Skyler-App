@@ -117,9 +117,6 @@ class DrawerWidget extends StatelessWidget {
               //   height: 5,
               // ),
 
-              SizedBox(
-                height: SizeConfig.getPercentSize(2),
-              ),
               ListTile(
                 leading: const LineIcon(
                   LineIcons.exclamationTriangle,
