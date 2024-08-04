@@ -34,6 +34,14 @@ TextStyle smallDescp({Color? color}) {
   );
 }
 
+TextStyle smallDescp2({Color? color}) {
+  return TextStyle(
+    fontSize: SizeConfig.getPercentSize(3.5),
+    fontWeight: FontWeight.w500,
+    color: color ?? ColorConstants.darkGreen,
+  );
+}
+
 TextStyle textField({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4.5),
@@ -41,6 +49,7 @@ TextStyle textField({Color? color}) {
     color: color ?? ColorConstants.darkGreen,
   );
 }
+
 TextStyle underline({Color? color}) {
   return TextStyle(
     fontSize: SizeConfig.getPercentSize(4),

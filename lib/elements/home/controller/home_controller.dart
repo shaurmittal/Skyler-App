@@ -522,10 +522,10 @@ class HomeController extends GetxController
     );
   }
 
-  Stream<List<NgoModel>> getTop10NgoWithGems() {
+  Stream<List<NgoModel>> getTop10NgoWithPoints() {
     return firebaseFirestore
         .collection('ngos')
-        .orderBy('gems', descending: true)
+        .orderBy('points', descending: true)
         .limit(10)
         .snapshots()
         .map((snapshot) {

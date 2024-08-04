@@ -100,6 +100,7 @@ class UserController extends GetxController {
           'createdAt': user.createdAt,
           'updatedAt': user.updatedAt,
           'gems': 0,
+          'points': 0,
         }).then((value) async {
           setLoggedIn(true);
           setUserType(UserType.NGO.name);

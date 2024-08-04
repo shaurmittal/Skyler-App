@@ -51,7 +51,7 @@ class LeaderboardPage extends GetView<HomeController> {
               horizontal: SizeConfig.getPercentSize(4),
             ),
             child: StreamBuilder<List<NgoModel>>(
-              stream: controller.getTop10NgoWithGems(),
+              stream: controller.getTop10NgoWithPoints(),
               builder: (context, snapshot) {
                 print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -125,19 +125,30 @@ class LeaderboardPage extends GetView<HomeController> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ListTile(
-                          leading: TextWidget(
-                            text: '#',
-                            style: smallDescp(),
-                          ),
-                          title: TextWidget(
-                            text: 'Name',
-                            style: smallDescp(),
-                          ),
-                          trailing: TextWidget(
-                            text: 'Gems',
-                            style: smallDescp(),
-                          ),
-                        ),
+                            leading: TextWidget(
+                              text: '#',
+                              style: smallDescp(),
+                            ),
+                            title: TextWidget(
+                              text: 'Name',
+                              style: smallDescp(),
+                            ),
+                            trailing: Container(
+                              width: 130,
+                              child: Row(
+                                children: [
+                                  TextWidget(
+                                    text: 'Points',
+                                    style: smallDescp(),
+                                  ),
+                                  const Spacer(),
+                                  TextWidget(
+                                    text: 'Gems',
+                                    style: smallDescp2(),
+                                  ),
+                                ],
+                              ),
+                            )),
                         ListView.builder(
                           itemCount: leaderboard.length,
                           shrinkWrap: true,
@@ -179,9 +190,24 @@ class LeaderboardPage extends GetView<HomeController> {
                                   text: leaderboard[index].name,
                                   style: smallDescp(),
                                 ),
-                                trailing: TextWidget(
-                                  text: leaderboard[index].gems.toString(),
-                                  style: smallDescp(),
+                                trailing: Container(
+                                  width: 100,
+                                  child: Row(
+                                    children: [
+                                      TextWidget(
+                                        text: leaderboard[index]
+                                            .points
+                                            .toString(),
+                                        style: smallDescp2(),
+                                      ),
+                                      const Spacer(),
+                                      TextWidget(
+                                        text:
+                                            leaderboard[index].gems.toString(),
+                                        style: smallDescp2(),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
