@@ -1,6 +1,8 @@
 import 'package:findmyngo/models/ngo_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:line_icons/line_icon.dart';
+import 'package:line_icons/line_icons.dart';
 import '../../../constants/color_constants.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -27,7 +29,7 @@ class LeaderboardPage extends GetView<HomeController> {
             children: [
               TextWidget(
                 text: 'Leaderboard',
-                style: title(),
+                style: smallTitle(),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -35,6 +37,20 @@ class LeaderboardPage extends GetView<HomeController> {
               ),
             ],
           ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
+              child: IconButton(
+                  onPressed: () {
+                    controller.showLearderBoardBottomModelSheet();
+                  },
+                  icon: const LineIcon(
+                    LineIcons.infoCircle,
+                    size: 39,
+                    color: ColorConstants.darkGreen,
+                  )),
+            ),
+          ],
         ),
         drawer: SafeArea(
           child: Padding(

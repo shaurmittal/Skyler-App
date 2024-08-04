@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findmyngo/elements/home/pages/ngo_volunteers_page.dart';
+import 'package:findmyngo/elements/home/widgets/credit_bottom_sht.dart';
 import 'package:findmyngo/models/mission_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +111,16 @@ class HomeController extends GetxController
     await firebaseAuth.signOut();
     Get.offAllNamed(Routes.SIGNUP);
     isLoading(false);
+  }
+
+  void showLearderBoardBottomModelSheet() {
+    Get.bottomSheet(
+      CreditBottomSheet(
+        onDone: () {
+          Get.back();
+        },
+      ),
+    );
   }
 
   void deleteUserWithConfirmation() {
