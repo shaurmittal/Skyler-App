@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:findmyngo/elements/home/controller/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -100,8 +101,9 @@ class ProfilePhotoWidget extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class MultiplePhotoWidget extends StatelessWidget {
-  dynamic controller;
+  HomeController controller;
   MultiplePhotoWidget({
     super.key,
     required this.controller,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findmyngo/models/mission_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,6 +39,7 @@ class HomeController extends GetxController
   GlobalKey<ScaffoldState> leaderboardKey = GlobalKey<ScaffoldState>();
 
   GlobalKey<FormState> postFormKey = GlobalKey<FormState>();
+
   GlobalKey<FormState> userUpdateFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> ngoUpdateFormKey = GlobalKey<FormState>();
 
@@ -230,6 +232,12 @@ class HomeController extends GetxController
       print(e);
       loadingFalse();
     }
+  }
+
+  getUserAccountStats() async {
+    String userId = await getUserId();
+    UserModel user = await getUserDetails(userId: userId);
+    return user;
   }
 
   getUserId() async {
@@ -534,5 +542,54 @@ class HomeController extends GetxController
         return NgoModel.fromJson(data);
       }).toList();
     });
+  }
+
+  createMission({required MissionModel mission}) async {
+    if (postFormKey.currentState!.validate()) {
+      print(postImgUrl.length);
+      if (postImgUrl.length > 5) {
+        showAppSnackBar(
+          message: 'Only 5 photos are allowed.',
+          toastType: ToastType.error,
+        );
+      } else {
+        loadingTrue();
+        var uuid = const Uuid();
+        var mID = uuid.v4();
+
+        try {
+          print(mission.creator);
+          await firebaseFirestore.collection('missions').doc(mID).set({
+            'id': mID,
+            'creator': jsonEncode(mission.creator.toJson()),
+            'creatorId': mission.creatorId,
+            'caption': mission.caption,
+            'images': mission.images,
+            'ngoLimit': mission.ngoLimit,
+            'ngoVolunteers': mission.ngoVolunteers,
+            'createdAt': mission.createdAt,
+            'updatedAt': mission.updatedAt,
+          }).then((value) async {
+            Get.back();
+            showAppSnackBar(
+              message: 'Mission Uploaded.',
+              toastType: ToastType.success,
+            );
+          });
+
+          postImgUrl.clear();
+          participantController.clear();
+          captionController.clear();
+          Get.back();
+        } catch (e) {
+          print(e);
+          showAppSnackBar(
+            message: 'Something went wrong.',
+            toastType: ToastType.error,
+          );
+        }
+        loadingFalse();
+      }
+    }
   }
 }

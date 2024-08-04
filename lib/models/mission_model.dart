@@ -1,14 +1,13 @@
-import 'ngo_model.dart';
+import 'package:findmyngo/models/user_model.dart';
 
 class MissionModel {
   final String id;
-  final NgoModel creator;
+  final UserModel creator;
   final String creatorId;
   final String caption;
   final List images;
-  final List volunteers;
+  final List ngoVolunteers;
   final int ngoLimit;
-  final bool isEvent;
   final String createdAt;
   final String updatedAt;
 
@@ -17,9 +16,8 @@ class MissionModel {
     required this.caption,
     required this.creatorId,
     required this.images,
-    required this.volunteers,
+    required this.ngoVolunteers,
     required this.ngoLimit,
-    required this.isEvent,
     required this.creator,
     required this.createdAt,
     required this.updatedAt,
@@ -30,9 +28,8 @@ class MissionModel {
       id: json['id'] ?? '',
       caption: json['caption'] ?? '',
       images: List<String>.from(json['images'] ?? []),
-      volunteers: List<String>.from(json['volunteers'] ?? []),
+      ngoVolunteers: List<String>.from(json['volunteers'] ?? []),
       ngoLimit: json['ngoLimit'] ?? 0,
-      isEvent: json['isEvent'] ?? false,
       creator: json['creator'] ?? '',
       creatorId: json['creatorId'] ?? '',
       createdAt: json['createdAt'] ?? '',
@@ -45,9 +42,8 @@ class MissionModel {
       'id': id,
       'caption': caption,
       'images': images,
-      'volunteers': volunteers,
+      'volunteers': ngoVolunteers,
       'ngoLimit': ngoLimit,
-      'isEvent': isEvent,
       'creator': creator.toJson(),
       'creatorId': creatorId,
       'createdAt': createdAt,
@@ -62,7 +58,7 @@ class MissionModel {
     List? volunteers,
     int? ngoLimit,
     bool? isEvent,
-    NgoModel? creator,
+    UserModel? creator,
     String? creatorId,
     String? createdAt,
     String? updatedAt,
@@ -71,9 +67,8 @@ class MissionModel {
       id: id ?? this.id,
       caption: caption ?? this.caption,
       images: images ?? this.images,
-      volunteers: volunteers ?? this.volunteers,
+      ngoVolunteers: volunteers ?? this.ngoVolunteers,
       ngoLimit: ngoLimit ?? this.ngoLimit,
-      isEvent: isEvent ?? this.isEvent,
       creator: creator ?? this.creator,
       creatorId: creatorId ?? this.creatorId,
       createdAt: createdAt ?? this.createdAt,
