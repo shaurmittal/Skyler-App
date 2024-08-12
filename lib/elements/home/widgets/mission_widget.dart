@@ -181,9 +181,9 @@ class MissionWidget extends StatelessWidget {
                           width: SizeConfig.getPercentSize(2),
                         ),
                         TextWidget(
-                          text: "Ngo Volunteer",
-                          style: smallDescp3(),
-                        ),
+                            text: "ACTIVATE",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 17)),
                       ],
                     ),
                   ),

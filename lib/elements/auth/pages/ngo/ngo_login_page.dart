@@ -45,7 +45,7 @@ class NGOLoginPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     TextWidget(
-                      text: 'Jump in as an organization!',
+                      text: 'Welcome Back! Login as an NGO.',
                       style: smallTitle(),
                       textAlign: TextAlign.center,
                     ),
@@ -53,7 +53,7 @@ class NGOLoginPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     Image.asset(
-                      'assets/dove2.png',
+                      'assets/ngo.png',
                       height: SizeConfig.getPercentSize(50),
                       width: SizeConfig.getPercentSize(50),
                       fit: BoxFit.cover,

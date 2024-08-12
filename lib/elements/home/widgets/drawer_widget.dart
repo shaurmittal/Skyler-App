@@ -60,6 +60,9 @@ class DrawerWidget extends StatelessWidget {
                   Get.to(() => HomePage());
                 },
               ),
+              SizedBox(
+                height: 5,
+              ),
               ListTile(
                 leading: const LineIcon(
                   LineIcons.user,
@@ -79,6 +82,9 @@ class DrawerWidget extends StatelessWidget {
                     controller.setNgo();
                   }
                 },
+              ),
+              SizedBox(
+                height: 5,
               ),
               // SizedBox(
               //   height: 15,
@@ -136,6 +142,9 @@ class DrawerWidget extends StatelessWidget {
                   Get.to(() => MissionsPage());
                 },
               ),
+              SizedBox(
+                height: 5,
+              ),
               // SizedBox(
               //   height: SizeConfig.getPercentSize(2),
               // ),
@@ -176,6 +185,9 @@ class DrawerWidget extends StatelessWidget {
                 onTap: () {
                   Get.to(() => LeaderboardPage());
                 },
+              ),
+              SizedBox(
+                height: 5,
               ),
               const Divider(),
               ListTile(

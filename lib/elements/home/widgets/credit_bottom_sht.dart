@@ -11,6 +11,7 @@ class CreditBottomSheet extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
+        height: 4000,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: ColorConstants.lightGreen,
@@ -19,7 +20,7 @@ class CreditBottomSheet extends StatelessWidget {
             width: SizeConfig.getPercentSize(0.7),
           ),
           borderRadius: BorderRadius.circular(
-            SizeConfig.getPercentSize(3),
+            SizeConfig.getPercentSize(9),
           ),
           boxShadow: [
             BoxShadow(
@@ -42,7 +43,7 @@ class CreditBottomSheet extends StatelessWidget {
                 const Text(
                   'Credit System',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -52,20 +53,34 @@ class CreditBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16.0), // Space between heading and text
+            const SizedBox(height: 15.0), // Space between heading and text
 
             // Explanation text with tick icon
 
             _buildListItem('Welcome to the challenge!'),
+            SizedBox(
+              height: 10,
+            ),
             _buildListItem(
-                'Every NGO strives to be the best, now its your turn'),
+                'Every NGO strives to be the best, now its your turn!'),
+            SizedBox(
+              height: 10,
+            ),
             _buildListItem('On the missions tab, find missions weekly.'),
+            SizedBox(
+              height: 10,
+            ),
             _buildListItem('Once you complete them, you earn a point.'),
+            SizedBox(
+              height: 10,
+            ),
             _buildListItem('Once you complete ten missions, you earn a gem.'),
+            SizedBox(
+              height: 10,
+            ),
             _buildListItem(
                 'Use these gems to earn incentives for helping the community!'),
-
-            const SizedBox(height: 16.0), // Space before buttons
+            // Space before buttons
           ],
         ),
       ),
@@ -78,8 +93,8 @@ Widget _buildListItem(String text) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const Icon(
-        Icons.check_circle,
-        color: Colors.green,
+        Icons.check,
+        color: Colors.grey,
         size: 20,
       ),
       const SizedBox(width: 8.0),
@@ -87,7 +102,7 @@ Widget _buildListItem(String text) {
         child: Text(
           text,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 15,
             color: Colors.black,
           ),
         ),

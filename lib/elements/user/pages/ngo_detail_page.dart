@@ -130,7 +130,7 @@ class NGODetailPage extends GetView<UserController> {
                       height: SizeConfig.getPercentSize(5),
                     ),
                     TextWidget(
-                      text: 'Social Link/Instagram ID (Optional)',
+                      text: 'Social Link/Instagram ID*',
                       style: smallDescp(),
                       textAlign: TextAlign.center,
                     ),

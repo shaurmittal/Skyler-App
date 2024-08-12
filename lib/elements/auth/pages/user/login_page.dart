@@ -45,7 +45,7 @@ class LoginPage extends GetView<AuthController> {
                       height: SizeConfig.getPercentSize(2),
                     ),
                     TextWidget(
-                      text: 'Welcome Back!',
+                      text: 'Welcome Back! Login as a User.',
                       style: smallTitle(),
                       textAlign: TextAlign.center,
                     ),

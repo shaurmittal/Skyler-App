@@ -2,6 +2,7 @@ import 'package:findmyngo/elements/home/widgets/mission_widget.dart';
 import 'package:findmyngo/models/mission_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../constants/color_constants.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -28,7 +29,7 @@ class MissionsPage extends GetView<HomeController> {
             children: [
               TextWidget(
                 text: 'Missions',
-                style: smallTitle(),
+                style: title(),
                 textAlign: TextAlign.center,
               ),
               SizedBox(

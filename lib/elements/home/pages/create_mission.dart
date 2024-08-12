@@ -91,7 +91,7 @@ class CreateMissionPage extends GetView<HomeController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: 'Ngo limit*',
+                          text: 'NGO Limit*',
                           style: smallDescp(),
                           textAlign: TextAlign.center,
                         ),
@@ -149,7 +149,7 @@ class CreateMissionPage extends GetView<HomeController> {
                                   );
                                   return;
                                 }
-                               
+
                                 // Proceed with mission creation
                                 controller.createMission(
                                   mission: MissionModel(

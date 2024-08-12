@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+
 import '../../../constants/color_constants.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
@@ -29,8 +30,8 @@ class LeaderboardPage extends GetView<HomeController> {
             children: [
               TextWidget(
                 text: 'Leaderboard',
-                style: smallTitle(),
-                textAlign: TextAlign.center,
+                style: title(),
+                textAlign: TextAlign.left,
               ),
               SizedBox(
                 width: SizeConfig.getPercentSize(2),
@@ -45,7 +46,7 @@ class LeaderboardPage extends GetView<HomeController> {
                     controller.showLearderBoardBottomModelSheet();
                   },
                   icon: const LineIcon(
-                    LineIcons.infoCircle,
+                    LineIcons.questionCircle,
                     size: 39,
                     color: ColorConstants.darkGreen,
                   )),
@@ -153,6 +154,9 @@ class LeaderboardPage extends GetView<HomeController> {
                               width: 135,
                               child: Row(
                                 children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
                                   TextWidget(
                                     text: 'Points',
                                     style: smallDescp(),
@@ -207,7 +211,7 @@ class LeaderboardPage extends GetView<HomeController> {
                                   style: smallDescp(),
                                 ),
                                 trailing: Container(
-                                  width: 100,
+                                  width: 65,
                                   child: Row(
                                     children: [
                                       TextWidget(

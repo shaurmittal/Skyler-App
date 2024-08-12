@@ -1,3 +1,4 @@
+import 'package:findmyngo/utils/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -8,7 +9,6 @@ import '../../../constants/hive_constants.dart';
 import '../../../models/post_model.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
-import '../../../utils/text/text_widget.dart';
 import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 import '../widgets/post_widget.dart';
@@ -31,14 +31,14 @@ class HomePage extends GetView<HomeController> {
           elevation: 0,
           toolbarHeight: SizeConfig.getPercentSize(20),
           title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextWidget(
-                text: 'SKYLER',
-                style: title(),
-                textAlign: TextAlign.center,
+                text: "SKYLER",
+                style: boldBigTitle(),
               ),
               SizedBox(
-                width: SizeConfig.getPercentSize(2),
+                width: SizeConfig.getPercentSize(0),
               ),
             ],
           ),
