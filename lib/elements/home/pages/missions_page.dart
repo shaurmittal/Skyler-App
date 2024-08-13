@@ -6,11 +6,12 @@ import 'package:get/get.dart';
 import '../../../constants/color_constants.dart';
 import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
-import '../../../utils/text/text_widget.dart';
 import '../controller/home_controller.dart';
 import '../widgets/drawer_widget.dart';
 
 class MissionsPage extends GetView<HomeController> {
+  const MissionsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -25,24 +26,15 @@ class MissionsPage extends GetView<HomeController> {
           surfaceTintColor: ColorConstants.transparent,
           elevation: 0,
           toolbarHeight: SizeConfig.getPercentSize(20),
-          title: Row(
-            children: [
-              TextWidget(
-                text: 'Missions',
-                style: title(),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                width: SizeConfig.getPercentSize(2),
-              ),
-            ],
+          centerTitle: false,
+          title: const Text(
+            "Missions",
           ),
         ),
         drawer: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
             child: DrawerWidget(
-              context: context,
               controller: controller,
             ),
           ),

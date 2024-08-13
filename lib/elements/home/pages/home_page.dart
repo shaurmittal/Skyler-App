@@ -1,4 +1,3 @@
-import 'package:findmyngo/utils/text/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -16,6 +15,8 @@ import 'ngo_profile_page.dart';
 import 'user_profile_page.dart';
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -30,17 +31,9 @@ class HomePage extends GetView<HomeController> {
           surfaceTintColor: ColorConstants.transparent,
           elevation: 0,
           toolbarHeight: SizeConfig.getPercentSize(20),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              TextWidget(
-                text: "SKYLER",
-                style: boldBigTitle(),
-              ),
-              SizedBox(
-                width: SizeConfig.getPercentSize(0),
-              ),
-            ],
+          centerTitle: false,
+          title: const Text(
+            "SKYLER",
           ),
           actions: [
             Padding(
@@ -55,17 +48,11 @@ class HomePage extends GetView<HomeController> {
                       controller.setNgo();
                     }
                   },
-                  icon: LineIcon(
+                  icon: const LineIcon(
                     LineIcons.dove,
                     size: 39,
                     color: ColorConstants.darkGreen,
-                  )
-                  // Icon(
-                  //   CupertinoIcons.profile_circled,
-                  //   color: ColorConstants.darkGreen,
-                  //   size: SizeConfig.getPercentSize(8),
-                  // ),
-                  ),
+                  )),
             ),
           ],
         ),
@@ -73,7 +60,6 @@ class HomePage extends GetView<HomeController> {
           child: Padding(
             padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
             child: DrawerWidget(
-              context: context,
               controller: controller,
             ),
           ),
@@ -88,7 +74,7 @@ class HomePage extends GetView<HomeController> {
               builder: (context, snapshot) {
                 print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(
                       color: ColorConstants.darkGreen,
                     ),

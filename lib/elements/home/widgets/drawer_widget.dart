@@ -1,6 +1,7 @@
 import 'package:findmyngo/constants/hive_constants.dart';
 import 'package:findmyngo/elements/home/controller/home_controller.dart';
 import 'package:findmyngo/elements/home/pages/create_mission.dart';
+import 'package:findmyngo/elements/home/pages/faq_page.dart';
 import 'package:findmyngo/elements/home/pages/home_page.dart';
 import 'package:findmyngo/elements/home/pages/leaderboard_page.dart';
 import 'package:findmyngo/elements/home/pages/missions_page.dart';
@@ -16,24 +17,23 @@ import '../../../utils/size/size_config.dart';
 import '../../../utils/text/text_style.dart';
 import '../../../utils/text/text_widget.dart';
 
-// ignore: must_be_immutable
+// Ignore the need for BuildContext in the constructor; it's not required here.
 class DrawerWidget extends StatelessWidget {
-  BuildContext context;
-  HomeController controller;
-  DrawerWidget({
-    required this.context,
+  final HomeController controller;
+
+  const DrawerWidget({
     required this.controller,
     super.key,
   });
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(SizeConfig.getPercentSize(3)),
       child: Drawer(
         width: SizeConfig.getPercentSize(70),
         backgroundColor: ColorConstants.lightGreen,
-        child: Container(
+        child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: ListView(
@@ -47,20 +47,15 @@ class DrawerWidget extends StatelessWidget {
                   size: 35,
                   color: ColorConstants.darkGreen,
                 ),
-                // Icon(
-                //   CupertinoIcons.home,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
                 title: TextWidget(
                   text: 'Home',
                   style: smallTitle(),
                 ),
                 onTap: () {
-                  Get.to(() => HomePage());
+                  Get.to(() => const HomePage());
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               ListTile(
@@ -83,12 +78,9 @@ class DrawerWidget extends StatelessWidget {
                   }
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              // SizedBox(
-              //   height: 15,
-              // ),
               if (controller.isAdminId)
                 ListTile(
                   leading: const LineIcon(
@@ -101,77 +93,46 @@ class DrawerWidget extends StatelessWidget {
                     style: smallTitle(),
                   ),
                   onTap: () {
-                    Get.to(() => CreateMissionPage());
+                    Get.to(() => const CreateMissionPage());
                   },
                 ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // ListTile(
-              //   leading: Icon(
-              //     Icons.switch_access_shortcut_rounded,
-              //     color: ColorConstants.darkGreen,
-              //     size: SizeConfig.getPercentSize(7),
-              //   ),
-              //   title: TextWidget(
-              //     text: 'Invite',
-              //     style: smallTitle(),
-              //   ),
-              //   onTap: () {},
-              // ),
-              // SizedBox(
-              //   height: 5,
-              // ),
-
+              const SizedBox(
+                height: 5,
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.switch_access_shortcut_rounded,
+                  color: ColorConstants.darkGreen,
+                  size: SizeConfig.getPercentSize(7),
+                ),
+                title: TextWidget(
+                  text: 'FAQ',
+                  style: smallTitle(),
+                ),
+                onTap: () {
+                  Get.to(FAQScreen());
+                },
+              ),
+              const SizedBox(
+                height: 5,
+              ),
               ListTile(
                 leading: const LineIcon(
                   LineIcons.exclamationTriangle,
                   size: 35,
                   color: ColorConstants.darkGreen,
                 ),
-                // Icon(
-                //   CupertinoIcons.home,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
                 title: TextWidget(
                   text: 'Missions',
                   style: smallTitle(),
                 ),
                 onTap: () {
-                  Get.to(() => MissionsPage());
+                  Get.to(() => const MissionsPage());
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              // SizedBox(
-              //   height: SizeConfig.getPercentSize(2),
-              // ),
-              // ListTile(
-              //   leading: const LineIcon(
-              //     LineIcons.gem,
-              //     size: 35,
-              //     color: ColorConstants.darkGreen,
-              //   ),
-              //   // Icon(
-              //   //   CupertinoIcons.home,
-              //   //   color: ColorConstants.darkGreen,
-              //   //   size: SizeConfig.getPercentSize(7),
-              //   // ),
-              //   title: TextWidget(
-              //     text: 'Credit System',
-              //     style: smallTitle(),
-              //   ),
-              //   onTap: () {
-              //     controller.showSnackBar(context,
-              //         'This feature will be available soon!', ToastType.info);
-              //     Get.back();
-              //   },
-              // ),
-              // SizedBox(
-              //   height: SizeConfig.getPercentSize(2),
-              // ),
               ListTile(
                 leading: const LineIcon(
                   LineIcons.crown,
@@ -186,7 +147,7 @@ class DrawerWidget extends StatelessWidget {
                   Get.to(() => LeaderboardPage());
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               const Divider(),
@@ -196,18 +157,14 @@ class DrawerWidget extends StatelessWidget {
                   size: 35,
                   color: ColorConstants.darkGreen,
                 ),
-                // Icon(
-                //   Icons.logout_rounded,
-                //   color: ColorConstants.darkGreen,
-                //   size: SizeConfig.getPercentSize(7),
-                // ),
                 title: TextWidget(
                   text: 'Logout',
                   style: smallTitle(),
                 ),
                 onTap: () {
                   controller.logout();
-                  Get.back();
+                  // Optionally, navigate to another page after logout, e.g.,
+                  // Get.off(() => LoginPage());
                 },
               ),
             ],

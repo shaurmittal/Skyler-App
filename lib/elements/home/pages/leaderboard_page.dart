@@ -26,17 +26,9 @@ class LeaderboardPage extends GetView<HomeController> {
           surfaceTintColor: ColorConstants.transparent,
           elevation: 0,
           toolbarHeight: SizeConfig.getPercentSize(20),
-          title: Row(
-            children: [
-              TextWidget(
-                text: 'Leaderboard',
-                style: title(),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(
-                width: SizeConfig.getPercentSize(2),
-              ),
-            ],
+          centerTitle: false,
+          title: const Text(
+            "Leaderboard",
           ),
           actions: [
             Padding(
@@ -57,7 +49,6 @@ class LeaderboardPage extends GetView<HomeController> {
           child: Padding(
             padding: EdgeInsets.all(SizeConfig.getPercentSize(4)),
             child: DrawerWidget(
-              context: context,
               controller: controller,
             ),
           ),
