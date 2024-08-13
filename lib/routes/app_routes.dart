@@ -14,6 +14,7 @@ abstract class Routes {
   static const ADMIN = _Paths.ADMIN;
   static const USER = _Paths.USER;
   static const NGO = _Paths.NGO;
+  static const SPLASH = _Paths.SPLASH;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const ADMIN = '/admin';
   static const USER = '/user';
   static const NGO = '/ngo';
+  static const SPLASH = '/splash';
 }

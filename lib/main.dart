@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Find My NGO",
-      initialRoute: getLoggedIn() ? Routes.HOME : Routes.SIGNUP,
+      initialRoute: Routes.SPLASH,
       getPages: AppPages.routes,
       onInit: () => SizeConfig().init(context),
       theme: ThemeData(

@@ -1,3 +1,4 @@
+import 'package:findmyngo/elements/home/pages/splash_page.dart';
 import 'package:get/get.dart';
 
 import '../elements/auth/bindings/auth_binding.dart';
@@ -43,15 +44,15 @@ class AppPages {
       page: () => SignUpPage(),
       binding: AuthBinding(),
     ),
-        GetPage(
+    GetPage(
       name: _Paths.LOGIN,
       page: () => LoginPage(),
     ),
-        GetPage(
+    GetPage(
       name: _Paths.NGOSIGNUP,
       page: () => NGOSignUpPage(),
     ),
-        GetPage(
+    GetPage(
       name: _Paths.NGOLOGIN,
       page: () => NGOLoginPage(),
     ),
@@ -69,6 +70,10 @@ class AppPages {
       name: _Paths.HOME,
       page: () => HomePage(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashPage(),
     ),
   ];
 }
