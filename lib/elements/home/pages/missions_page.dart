@@ -1,3 +1,4 @@
+import 'package:findmyngo/elements/home/widgets/custom_app_bar.dart';
 import 'package:findmyngo/elements/home/widgets/mission_widget.dart';
 import 'package:findmyngo/models/mission_model.dart';
 import 'package:flutter/material.dart';
@@ -21,15 +22,8 @@ class MissionsPage extends GetView<HomeController> {
         Get.back();
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorConstants.lightGreen,
-          surfaceTintColor: ColorConstants.transparent,
-          elevation: 0,
-          toolbarHeight: SizeConfig.getPercentSize(20),
-          centerTitle: false,
-          title: const Text(
-            "Missions",
-          ),
+        appBar: const CustomAppBar(
+          titleText: "Missions",
         ),
         drawer: SafeArea(
           child: Padding(

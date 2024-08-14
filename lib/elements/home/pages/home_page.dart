@@ -1,3 +1,4 @@
+import 'package:findmyngo/elements/home/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icon.dart';
@@ -26,35 +27,56 @@ class HomePage extends GetView<HomeController> {
         Get.back();
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorConstants.lightGreen,
-          surfaceTintColor: ColorConstants.transparent,
-          elevation: 0,
-          toolbarHeight: SizeConfig.getPercentSize(20),
-          centerTitle: false,
-          title: const Text(
-            "SKYLER",
+        // appBar: AppBar(
+        //   backgroundColor: ColorConstants.lightGreen,
+        //   surfaceTintColor: ColorConstants.transparent,
+        //   elevation: 0,
+        //   toolbarHeight: SizeConfig.getPercentSize(20),
+        //   centerTitle: false,
+        //   title: const Text(
+        //     "SKYLER",
+        //   ),
+        //   actions: [
+        //     Padding(
+        //       padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
+        //       child: IconButton(
+        //           onPressed: () {
+        //             if (getUserType() == UserType.USER.name) {
+        //               Get.to(() => UserProfilePage());
+        //               controller.setUser();
+        //             } else {
+        //               Get.to(() => NgoProfilePage());
+        //               controller.setNgo();
+        //             }
+        //           },
+        //           icon: const LineIcon(
+        //             LineIcons.dove,
+        //             size: 39,
+        //             color: ColorConstants.darkGreen,
+        //           )),
+        //     ),
+        //   ],
+        // ),
+        appBar: CustomAppBar(
+          titleText: "Skyler",
+          iconWidget: Padding(
+            padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
+            child: IconButton(
+                onPressed: () {
+                  if (getUserType() == UserType.USER.name) {
+                    Get.to(() => UserProfilePage());
+                    controller.setUser();
+                  } else {
+                    Get.to(() => NgoProfilePage());
+                    controller.setNgo();
+                  }
+                },
+                icon: const LineIcon(
+                  LineIcons.dove,
+                  size: 39,
+                  color: ColorConstants.darkGreen,
+                )),
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
-              child: IconButton(
-                  onPressed: () {
-                    if (getUserType() == UserType.USER.name) {
-                      Get.to(() => UserProfilePage());
-                      controller.setUser();
-                    } else {
-                      Get.to(() => NgoProfilePage());
-                      controller.setNgo();
-                    }
-                  },
-                  icon: const LineIcon(
-                    LineIcons.dove,
-                    size: 39,
-                    color: ColorConstants.darkGreen,
-                  )),
-            ),
-          ],
         ),
         drawer: SafeArea(
           child: Padding(

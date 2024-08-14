@@ -1,5 +1,6 @@
 import 'package:findmyngo/constants/color_constants.dart';
 import 'package:findmyngo/elements/home/controller/home_controller.dart';
+import 'package:findmyngo/elements/home/widgets/custom_app_bar.dart';
 import 'package:findmyngo/elements/home/widgets/drawer_widget.dart';
 import 'package:findmyngo/utils/size/size_config.dart';
 import 'package:flutter/material.dart';
@@ -31,14 +32,11 @@ class _FAQScreenState extends State<FAQScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorConstants.lightGreen,
-        surfaceTintColor: ColorConstants.transparent,
-        elevation: 0,
-        toolbarHeight: SizeConfig.getPercentSize(20),
-        centerTitle: false,
-        title: const Text("FAQ"),
+      appBar: CustomAppBar(
+        titleText: "FAQ",
         bottom: TabBar(
+          indicatorColor: ColorConstants.darkGreen,
+          labelColor: ColorConstants.darkGreen,
           controller: tabController,
           tabs: const [
             Tab(text: "NGO FAQ"),

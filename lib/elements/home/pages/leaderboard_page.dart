@@ -1,3 +1,4 @@
+import 'package:findmyngo/elements/home/widgets/custom_app_bar.dart';
 import 'package:findmyngo/models/ngo_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,29 +22,20 @@ class LeaderboardPage extends GetView<HomeController> {
         Get.back();
       },
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorConstants.lightGreen,
-          surfaceTintColor: ColorConstants.transparent,
-          elevation: 0,
-          toolbarHeight: SizeConfig.getPercentSize(20),
-          centerTitle: false,
-          title: const Text(
-            "Leaderboard",
+        appBar: CustomAppBar(
+          titleText: "Leaderboard",
+          iconWidget: Padding(
+            padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
+            child: IconButton(
+                onPressed: () {
+                  controller.showLearderBoardBottomModelSheet();
+                },
+                icon: const LineIcon(
+                  LineIcons.questionCircle,
+                  size: 39,
+                  color: ColorConstants.darkGreen,
+                )),
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: SizeConfig.getPercentSize(4)),
-              child: IconButton(
-                  onPressed: () {
-                    controller.showLearderBoardBottomModelSheet();
-                  },
-                  icon: const LineIcon(
-                    LineIcons.questionCircle,
-                    size: 39,
-                    color: ColorConstants.darkGreen,
-                  )),
-            ),
-          ],
         ),
         drawer: SafeArea(
           child: Padding(
